@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>school color</key>
+	<string></string>
+	<key>school name</key>
+	<string>平和双语学校</string>
+	<key>menu items</key>
+	<dict>
+		<key>student</key>
+		<array>
+			<dict>
+				<key>title</key>
+				<string>首页</string>
+				<key>identifier</key>
+				<string>YYHomeViewController</string>
+			</dict>
+		</array>
+		<key>teacher</key>
+		<array>
+			<dict>
+				<key>title</key>
+				<string>首页</string>
+				<key>identifier</key>
+				<string>YYHomeViewController</string>
+			</dict>
+		</array>
+		<key>parent</key>
+		<array>
+			<dict>
+				<key>title</key>
+				<string>首页</string>
+				<key>identifier</key>
+				<string>YYHomeViewController</string>
+			</dict>
+		</array>
+		<key>admin</key>
+		<array>
+			<dict>
+				<key>title</key>
+				<string>首页</string>
+				<key>identifier</key>
+				<string>YYHomeViewController</string>
+			</dict>
+		</array>
+	</dict>
+</dict>
+</plist>

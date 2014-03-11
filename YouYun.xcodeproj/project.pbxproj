@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F1AC74418CEB2690045FA4F /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2F1AC74318CEB2690045FA4F /* settings.plist */; };
+		2F1AC74818CEB4EB0045FA4F /* YYUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F1AC74718CEB4EB0045FA4F /* YYUser.m */; };
+		2F1AC74C18CEB8080045FA4F /* YYLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F1AC74B18CEB8080045FA4F /* YYLoginViewController.m */; };
 		2FCFD96318C1B2BB0080BB2B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FCFD96218C1B2BB0080BB2B /* Foundation.framework */; };
 		2FCFD96518C1B2BB0080BB2B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FCFD96418C1B2BB0080BB2B /* CoreGraphics.framework */; };
 		2FCFD96718C1B2BB0080BB2B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FCFD96618C1B2BB0080BB2B /* UIKit.framework */; };
@@ -37,6 +40,11 @@
 
 /* Begin PBXFileReference section */
 		01B3922D83A9434481DDF803 /* Pods-YouYun.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YouYun.xcconfig"; path = "Pods/Pods-YouYun.xcconfig"; sourceTree = "<group>"; };
+		2F1AC74318CEB2690045FA4F /* settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = settings.plist; sourceTree = "<group>"; };
+		2F1AC74618CEB4EB0045FA4F /* YYUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYUser.h; sourceTree = "<group>"; };
+		2F1AC74718CEB4EB0045FA4F /* YYUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYUser.m; sourceTree = "<group>"; };
+		2F1AC74A18CEB8080045FA4F /* YYLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYLoginViewController.h; sourceTree = "<group>"; };
+		2F1AC74B18CEB8080045FA4F /* YYLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYLoginViewController.m; sourceTree = "<group>"; };
 		2FCFD95F18C1B2BB0080BB2B /* YouYun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouYun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FCFD96218C1B2BB0080BB2B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2FCFD96418C1B2BB0080BB2B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -86,6 +94,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2F1AC74518CEB4DC0045FA4F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2F1AC74618CEB4EB0045FA4F /* YYUser.h */,
+				2F1AC74718CEB4EB0045FA4F /* YYUser.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2F1AC74918CEB7FC0045FA4F /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				2F1AC74A18CEB8080045FA4F /* YYLoginViewController.h */,
+				2F1AC74B18CEB8080045FA4F /* YYLoginViewController.m */,
+			);
+			path = Others;
+			sourceTree = "<group>";
+		};
 		2FCFD95618C1B2BB0080BB2B = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +147,7 @@
 		2FCFD96818C1B2BB0080BB2B /* YouYun */ = {
 			isa = PBXGroup;
 			children = (
+				2F1AC74518CEB4DC0045FA4F /* Models */,
 				2FCFD9A318C1B7C30080BB2B /* Reusable Views */,
 				2FCFD9A418C1B7C30080BB2B /* View Controllers */,
 				2FCFD97118C1B2BB0080BB2B /* YYAppDelegate.h */,
@@ -139,6 +166,7 @@
 				2FCFD96B18C1B2BB0080BB2B /* InfoPlist.strings */,
 				2FCFD96E18C1B2BB0080BB2B /* main.m */,
 				2FCFD97018C1B2BB0080BB2B /* YouYun-Prefix.pch */,
+				2F1AC74318CEB2690045FA4F /* settings.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -171,6 +199,7 @@
 		2FCFD9A418C1B7C30080BB2B /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2F1AC74918CEB7FC0045FA4F /* Others */,
 				2FCFD9AA18C1BF7C0080BB2B /* Containers */,
 				2FCFD9A518C1B7C30080BB2B /* Drawers */,
 				2FCFD9A618C1B7C30080BB2B /* Panes */,
@@ -283,6 +312,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2FCFD97B18C1B2BB0080BB2B /* Images.xcassets in Resources */,
+				2F1AC74418CEB2690045FA4F /* settings.plist in Resources */,
 				2FCFD96D18C1B2BB0080BB2B /* InfoPlist.strings in Resources */,
 				2FCFD97618C1B2BB0080BB2B /* Main.storyboard in Resources */,
 			);
@@ -340,6 +370,8 @@
 				2FCFD9AD18C1BF7C0080BB2B /* YYNavigationController.m in Sources */,
 				2FCFD9A918C1B7D60080BB2B /* YYMenuViewController.m in Sources */,
 				2FCFD96F18C1B2BB0080BB2B /* main.m in Sources */,
+				2F1AC74C18CEB8080045FA4F /* YYLoginViewController.m in Sources */,
+				2F1AC74818CEB4EB0045FA4F /* YYUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

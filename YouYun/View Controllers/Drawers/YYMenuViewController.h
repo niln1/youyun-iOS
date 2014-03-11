@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MSDynamicsDrawerViewController/MSDynamicsDrawerViewController.h>
 
 @interface YYMenuViewController : UIViewController
+
+@property (nonatomic, weak) MSDynamicsDrawerViewController *dynamicsDrawerViewController;
 
 @end
