@@ -44,7 +44,7 @@ static YYUser *instance;
 
 - (BOOL)isLoggedIn
 {
-    return self.isLoggedIn;
+    return self.loggedIn;
 }
 
 - (void)loginWithUsername:(NSString *) username andPassword:(NSString *) password

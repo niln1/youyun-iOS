@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 #import <MSDynamicsDrawerViewController/MSDynamicsDrawerViewController.h>
 
-#import "YYUser.h";
+#import "YYUser.h"
+#import "YYLoginViewController.h"
 
 @interface YYAppDelegate : UIResponder <UIApplicationDelegate, MSDynamicsDrawerViewControllerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) MSDynamicsDrawerViewController *rootViewCtrl;
+@property (strong, nonatomic) MSDynamicsDrawerViewController *drawer;
 @property (strong, nonatomic) YYUser *user;
 
 @end

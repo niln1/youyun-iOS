@@ -7,7 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FlatUIKit/FlatUIKit.h>
+#import <CRMotionView/CRMotionView.h>
+#import <UITextField+Shake/UITextField+Shake.h>
+#import <QuartzCore/QuartzCore.h>
+#import <FlatUIKit/UIColor+FlatUI.h>
+#import "YYHTTPManager.h"
+#import "UIView+Addon.h"
 
 @interface YYLoginViewController : UIViewController
+
+@property (nonatomic, retain) CRMotionView *background;
+@property (nonatomic, weak) IBOutlet UITextField *usernameField;
+@property (nonatomic, weak) IBOutlet UITextField *passwordField;
+@property (nonatomic, weak) IBOutlet UIButton *loginButton;
+
+- (IBAction)loginButtonClicked:(id)sender;
 
 @end

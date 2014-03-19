@@ -13,4 +13,55 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+    #import "UIViewController+Addon.h"
 #endif
+
+#ifdef DEBUG
+    #define DLog(...) NSLog(__VA_ARGS__);
+    //    #define DLog(...) /* */
+    #define OLog(...) NSLog(@"%s : %@", #__VA_ARGS__, __VA_ARGS__);
+    #define FLog(...) NSLog(@"%s : %f", #__VA_ARGS__, __VA_ARGS__);
+    #define ILog(...) NSLog(@"%s : %lld", #__VA_ARGS__, __VA_ARGS__);
+#else
+    #define DLog(...) /* */
+    #define OLog(...) /* */
+    #define FLog(...) /* */
+    #define ILog(...) /* */
+#endif
+#define ALog(...) NSLog(__VA_ARGS__)
+
+/*
+TURQUOISE
+GREEN SEA
+
+EMERALD
+NEPHRITIS
+
+PETER RIVER
+BELIZE HOLE
+
+AMETHYST
+WISTERIA
+
+WET ASPHALT
+MIDNIGHT BLUE
+
+SUN FLOWER
+ORANGE
+
+CARROT
+PUMPKIN
+
+ALIZARIN
+POMEGRANATE
+
+CLOUDS
+SILVER
+
+CONCRETE
+ASBESTOS
+*/
+
+#define UI_COLOR
+#define UI_SHADOW_COLOR
+#define UI_SELECTION_COLOR

@@ -13,13 +13,20 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Assign root view controller
-    _rootViewCtrl = (MSDynamicsDrawerViewController *) _window.rootViewController;
+    UINavigationController *navi = (UINavigationController *) self.window.rootViewController;
+    _drawer = (MSDynamicsDrawerViewController *) navi.viewControllers[0];
     
     // Set style for dynamics drawer
-    [_rootViewCtrl addStylersFromArray:@[[MSDynamicsDrawerScaleStyler styler], [MSDynamicsDrawerFadeStyler styler], [MSDynamicsDrawerParallaxStyler styler], [MSDynamicsDrawerShadowStyler styler], [MSDynamicsDrawerResizeStyler styler]] forDirection:MSDynamicsDrawerDirectionHorizontal];
+    [_drawer addStylersFromArray:@[[MSDynamicsDrawerScaleStyler styler], [MSDynamicsDrawerFadeStyler styler], [MSDynamicsDrawerParallaxStyler styler], [MSDynamicsDrawerShadowStyler styler], [MSDynamicsDrawerResizeStyler styler]] forDirection:MSDynamicsDrawerDirectionHorizontal];
     
     // Set delegate for drawer
-    _rootViewCtrl.delegate = self;
+    _drawer.delegate = self;
+    
+    if (!YYUser.I.isLoggedIn) {
+        YYLoginViewController *login = [_drawer.storyboard instantiateViewControllerWithIdentifier:[YYLoginViewController identifier]];
+        OLog([YYLoginViewController identifier]);
+        [_drawer.navigationController pushViewController:login animated:YES];
+    }
     
     return YES;
 }
