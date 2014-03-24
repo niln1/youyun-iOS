@@ -12,8 +12,10 @@
 #import <UITextField+Shake/UITextField+Shake.h>
 #import <QuartzCore/QuartzCore.h>
 #import <FlatUIKit/UIColor+FlatUI.h>
-#import "YYHTTPManager.h"
+#import <StackBluriOS/UIImage+StackBlur.h>
 #import "UIView+Addon.h"
+#import "YYHTTPManager.h"
+#import "YYUser.h"
 
 @interface YYLoginViewController : UIViewController
 

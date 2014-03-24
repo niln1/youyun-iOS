@@ -11,6 +11,7 @@
 
 #import "YYUser.h"
 #import "YYLoginViewController.h"
+#import "YYMenuViewController.h"
 
 @interface YYAppDelegate : UIResponder <UIApplicationDelegate, MSDynamicsDrawerViewControllerDelegate>
 

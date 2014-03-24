@@ -22,11 +22,11 @@
     // Set delegate for drawer
     _drawer.delegate = self;
     
-    if (!YYUser.I.isLoggedIn) {
-        YYLoginViewController *login = [_drawer.storyboard instantiateViewControllerWithIdentifier:[YYLoginViewController identifier]];
-        OLog([YYLoginViewController identifier]);
-        [_drawer.navigationController pushViewController:login animated:YES];
-    }
+    // Set menu view controller for drawer
+    YYMenuViewController *menu = [_drawer.storyboard instantiateViewControllerWithIdentifier:[YYMenuViewController identifier]];
+    [_drawer setDrawerViewController:menu forDirection:MSDynamicsDrawerDirectionLeft];
+    menu.drawer = _drawer;
+    [menu loadInitialMenuItem];
     
     return YES;
 }
@@ -51,6 +51,11 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    if (!YYUser.I.isLoggedIn && ![[_drawer.navigationController visibleViewController] isMemberOfClass:[YYLoginViewController class]]) {
+        YYLoginViewController *login = [_drawer.storyboard instantiateViewControllerWithIdentifier:[YYLoginViewController identifier]];
+        OLog([YYLoginViewController identifier]);
+        [_drawer.navigationController presentViewController:login animated:YES completion:nil];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

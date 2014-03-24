@@ -8,9 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import <MSDynamicsDrawerViewController/MSDynamicsDrawerViewController.h>
+#import <MSDynamicsDrawerViewController/MSDynamicsDrawerViewController.h>
+#import "YYLoginViewController.h"
+#import "YYUser.h"
 
 @interface YYMenuViewController : UIViewController
 
-@property (nonatomic, weak) MSDynamicsDrawerViewController *dynamicsDrawerViewController;
+@property (nonatomic, weak) MSDynamicsDrawerViewController *drawer;
+
+@property (nonatomic, retain) NSDictionary *moduleIdentifiers;
+@property (nonatomic, retain) NSArray *menuItems;
+@property (nonatomic, retain) NSDictionary *selectedMenuItem;
+
+- (void)loadInitialMenuItem;
+- (void)loadMenuItemAtIndex:(NSInteger) index;
 
 @end

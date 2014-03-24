@@ -42,6 +42,15 @@ static YYUser *instance;
     return self;
 }
 
+- (NSString *) typeKey {
+    switch (_type) {
+        case YYUserTypeAdmin: return @"admin";
+        case YYUserTypeParent: return @"parent";
+        case YYUserTypeStudent: return @"student";
+        case YYUserTypeTeacher: return @"teacher";
+    }
+}
+
 - (BOOL)isLoggedIn
 {
     return self.loggedIn;
@@ -49,7 +58,10 @@ static YYUser *instance;
 
 - (void)loginWithUsername:(NSString *) username andPassword:(NSString *) password
 {
-    
+    // TODO
+    _loggedIn = YES;
+    _type = YYUserTypeAdmin;
+    _name = @"Ranchao Zhang";
 }
 
 - (void)logout

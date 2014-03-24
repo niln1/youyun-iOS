@@ -18,6 +18,7 @@ typedef NS_ENUM(NSInteger, YYUserType) {
 @interface YYUser : NSObject
 
 + (YYUser *)I;
+- (NSString *) typeKey;
 - (BOOL)isLoggedIn;
 - (void)loginWithUsername:(NSString *) username andPassword:(NSString *) password;
 - (void)logout;

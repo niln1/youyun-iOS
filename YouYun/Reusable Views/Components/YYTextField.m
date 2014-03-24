@@ -40,7 +40,7 @@
 - (BOOL)becomeFirstResponder {
     BOOL outcome = [super becomeFirstResponder];
     if (outcome) {
-        [self setBorderColor:[UIColor sunflowerColor]];
+        [self setBorderColor:UI_COLOR];
     }
     return outcome;
 }
@@ -55,7 +55,7 @@
 
 - (void)initialize
 {
-    [self setBorderRadius:10.0f];
+    [self setBorderRadius:UI_CORNER_RADIUS];
     [self setBorderWidth:2.0f];
     [self setBorderColor:[UIColor silverColor]];
 }

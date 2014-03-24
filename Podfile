@@ -8,6 +8,8 @@ target "YouYun" do
 	pod 'FontAwesomeKit'
 	pod 'FlatUIKit'
 	pod 'UITextField+Shake'
+	pod 'StackBluriOS'
+	pod 'SIAlertView'
 end
 
 target "YouYunTests" do

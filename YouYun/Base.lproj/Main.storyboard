@@ -36,29 +36,56 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="158" y="99"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="ghd-py-dnk">
+        <!--Timeline View Controller-->
+        <scene sceneID="8bP-wr-DJf">
             <objects>
-                <viewController storyboardIdentifier="YYViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="deP-mi-UrN" customClass="YYViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="YYTimelineViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="SV2-00-XeU" customClass="YYTimelineViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="V4X-TB-mXR"/>
-                        <viewControllerLayoutGuide type="bottom" id="OWN-d9-ygL"/>
+                        <viewControllerLayoutGuide type="top" id="zDU-Hx-ukN"/>
+                        <viewControllerLayoutGuide type="bottom" id="XIr-e7-Cxf"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="IVG-iX-hmv">
+                    <view key="view" contentMode="scaleToFill" id="eaI-CU-SYY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="YYTimelineViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oq9-dd-6pF">
+                                <rect key="frame" x="0.0" y="277" width="320" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Yx-j5-fNQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="158" y="831"/>
+        </scene>
+        <!--Reminder View Controller-->
+        <scene sceneID="vNR-3o-usy">
+            <objects>
+                <viewController storyboardIdentifier="YYReminderViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="SSz-RI-f1J" customClass="YYReminderViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bsJ-XY-SSb"/>
+                        <viewControllerLayoutGuide type="bottom" id="O7j-C6-yN3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aY9-QM-eGW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nml-2M-8uT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hnW-fq-RpC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="158" y="779"/>
+            <point key="canvasLocation" x="629" y="831"/>
         </scene>
-        <!--View Controller-->
+        <!--Menu View Controller-->
         <scene sceneID="3P4-nX-6AB">
             <objects>
-                <viewController id="l8w-zs-lmB" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="YYMenuViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="l8w-zs-lmB" customClass="YYMenuViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aZ3-3p-Rag"/>
                         <viewControllerLayoutGuide type="bottom" id="Pr6-7z-EF6"/>
@@ -109,6 +136,17 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="YouyunLogo" translatesAutoresizingMaskIntoConstraints="NO" id="nJx-jk-cVh">
+                                <rect key="frame" x="80" y="400" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="优云教育 © 2014 " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9BJ-Wi-WYY">
+                                <rect key="frame" x="120" y="400" width="120" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -123,6 +161,9 @@
             <point key="canvasLocation" x="629" y="99"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="YouyunLogo" width="512" height="512"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

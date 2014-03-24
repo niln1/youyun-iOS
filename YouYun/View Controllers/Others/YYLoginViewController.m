@@ -39,19 +39,25 @@ static NSString *LOGIN_API_PATH = @"/api/v1/account/login";
 - (void)initializeBackground
 {
     _background = [[CRMotionView alloc] initWithFrame:self.view.bounds];
-    [_background setImage:[UIImage imageNamed:@"LoginViewBackgroundImage"]];
+    UIImage *origBGImg = [UIImage imageNamed:@"LoginViewBackgroundImage"];
+    UIImage *blurBGImg = [origBGImg stackBlur:20];
+    [_background setImage:blurBGImg];
     [self.view insertSubview:_background atIndex:0];
 }
 
 - (void)initializeButtons
 {
-    _loginButton.titleLabel.font = [UIFont boldFlatFontOfSize:16];
-    [_loginButton setTitleColor:[UIColor cloudsColor] forState:UIControlStateNormal];
-    [_loginButton setTitleColor:[UIColor cloudsColor] forState:UIControlStateHighlighted];
+    _loginButton.titleLabel.font = [UIFont flatFontOfSize:14];
+    [_loginButton setBackgroundColor:UI_COLOR];
+    [_loginButton setTintColor:[UIColor whiteColor]];
+    [_loginButton setShowsTouchWhenHighlighted:YES];
+    [_loginButton setBorderRadius:UI_CORNER_RADIUS];
 }
 
 - (void)initializeTextFields
 {
+    _usernameField.font = [UIFont flatFontOfSize:14];
+    _passwordField.font = [UIFont flatFontOfSize:14];
 }
 
 #pragma mark - Overwrite methods to control rotation
@@ -84,6 +90,10 @@ static NSString *LOGIN_API_PATH = @"/api/v1/account/login";
         @"password" : @"adminpw"
     };
     
+    [[YYUser I] loginWithUsername:@"admin" andPassword:@"adminpw"];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    /*
     [[YYHTTPManager I] POST:LOGIN_API_PATH parameters:formData success:^(AFHTTPRequestOperation *operation, id responseObject) {
         DLog(@"success");
         OLog(responseObject);
@@ -93,6 +103,7 @@ static NSString *LOGIN_API_PATH = @"/api/v1/account/login";
         [_passwordField shake:10 withDelta:5 andSpeed:0.03 shakeDirection:ShakeDirectionHorizontal];
         OLog(error);
     }];
+    */
 }
 
 @end

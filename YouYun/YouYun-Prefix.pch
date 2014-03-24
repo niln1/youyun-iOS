@@ -62,6 +62,8 @@ CONCRETE
 ASBESTOS
 */
 
-#define UI_COLOR
-#define UI_SHADOW_COLOR
+#define UI_COLOR [UIColor turquoiseColor]
+#define UI_SHADOW_COLOR [UIColor nephritisColor]
 #define UI_SELECTION_COLOR
+
+#define UI_CORNER_RADIUS 10.0f

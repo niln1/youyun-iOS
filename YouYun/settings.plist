@@ -15,6 +15,13 @@
 	<string></string>
 	<key>school name</key>
 	<string>平和双语学校</string>
+	<key>module identifiers</key>
+	<dict>
+		<key>Reminder</key>
+		<string>YYReminderViewController</string>
+		<key>Timeline</key>
+		<string>YYTimelineViewController</string>
+	</dict>
 	<key>menu items</key>
 	<dict>
 		<key>student</key>
@@ -22,8 +29,8 @@
 			<dict>
 				<key>title</key>
 				<string>首页</string>
-				<key>identifier</key>
-				<string>YYHomeViewController</string>
+				<key>module</key>
+				<string>Timeline</string>
 			</dict>
 		</array>
 		<key>teacher</key>
@@ -31,8 +38,8 @@
 			<dict>
 				<key>title</key>
 				<string>首页</string>
-				<key>identifier</key>
-				<string>YYHomeViewController</string>
+				<key>module</key>
+				<string>Timeline</string>
 			</dict>
 		</array>
 		<key>parent</key>
@@ -40,8 +47,8 @@
 			<dict>
 				<key>title</key>
 				<string>首页</string>
-				<key>identifier</key>
-				<string>YYHomeViewController</string>
+				<key>module</key>
+				<string>Timeline</string>
 			</dict>
 		</array>
 		<key>admin</key>
@@ -49,8 +56,8 @@
 			<dict>
 				<key>title</key>
 				<string>首页</string>
-				<key>identifier</key>
-				<string>YYHomeViewController</string>
+				<key>module</key>
+				<string>Timeline</string>
 			</dict>
 		</array>
 	</dict>
