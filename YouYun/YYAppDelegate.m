@@ -17,7 +17,7 @@
     _drawer = (MSDynamicsDrawerViewController *) navi.viewControllers[0];
     
     // Set style for dynamics drawer
-    [_drawer addStylersFromArray:@[[MSDynamicsDrawerScaleStyler styler], [MSDynamicsDrawerFadeStyler styler], [MSDynamicsDrawerParallaxStyler styler], [MSDynamicsDrawerShadowStyler styler], [MSDynamicsDrawerResizeStyler styler]] forDirection:MSDynamicsDrawerDirectionHorizontal];
+    [_drawer addStylersFromArray:@[[MSDynamicsDrawerScaleStyler styler], [MSDynamicsDrawerFadeStyler styler], [MSDynamicsDrawerParallaxStyler styler],[MSDynamicsDrawerResizeStyler styler], [MSDynamicsDrawerShadowStyler styler]] forDirection:MSDynamicsDrawerDirectionHorizontal];
     
     // Set delegate for drawer
     _drawer.delegate = self;

@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YYHTTPManager.h"
 
 @interface YYReminderViewController : UIViewController
+
+@property (nonatomic, weak) IBOutlet UITableView *table;
+@property (nonatomic, retain) NSMutableArray *reminders;
 
 @end

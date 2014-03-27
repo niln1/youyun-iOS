@@ -9,10 +9,16 @@
 #import <UIKit/UIKit.h>
 #import <MSDynamicsDrawerViewController/MSDynamicsDrawerViewController.h>
 #import <MSDynamicsDrawerViewController/MSDynamicsDrawerViewController.h>
+#import <MDCParallaxView/MDCParallaxView.h>
 #import "YYLoginViewController.h"
+#import "YYNavigationController.h"
 #import "YYUser.h"
 
 @interface YYMenuViewController : UIViewController
+
+@property (nonatomic, weak) IBOutlet UITableView *table;
+@property (nonatomic, weak) IBOutlet UIView *headerView;
+@property (nonatomic, weak) IBOutlet UIImageView *userIcon;
 
 @property (nonatomic, weak) MSDynamicsDrawerViewController *drawer;
 

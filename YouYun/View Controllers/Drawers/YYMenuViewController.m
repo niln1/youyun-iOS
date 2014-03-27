@@ -9,6 +9,7 @@
 #import "YYMenuViewController.h"
 
 static NSString * const LAST_VISITED_PAGE_KEY = @"LAST_VISITED_PAGE_KEY";
+static NSString * const MENU_TABLE_VIEW_CELL_ID = @"MENU_TABLE_VIEW_CELL_ID";
 
 @interface YYMenuViewController ()
 
@@ -110,12 +111,36 @@ static NSString * const LAST_VISITED_PAGE_KEY = @"LAST_VISITED_PAGE_KEY";
         UIViewController *viewController = [_drawer.storyboard instantiateViewControllerWithIdentifier:_moduleIdentifiers[info[@"module"]]];
         viewController.navigationItem.title = info[@"title"];
         
-        [_drawer setPaneViewController:viewController animated:animateTransition completion:nil];
+        YYNavigationController *navi = [[YYNavigationController alloc] initWithRootViewController:viewController];
+        
+        [_drawer setPaneViewController:navi animated:animateTransition completion:nil];
     }
     @catch (NSException *exception) {
     }
     @finally {
     }
+}
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return _menuItems.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [_table dequeueReusableCellWithIdentifier:MENU_TABLE_VIEW_CELL_ID];
+    NSDictionary *info = _menuItems[indexPath.row];
+    cell.textLabel.text = info[@"title"];
+    return cell;
+}
+
+#pragma mark - UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary *info = _menuItems[indexPath.row];
+    [self transitionToViewController:info];
 }
 
 @end

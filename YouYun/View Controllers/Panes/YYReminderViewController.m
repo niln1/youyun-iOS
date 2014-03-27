@@ -8,6 +8,9 @@
 
 #import "YYReminderViewController.h"
 
+static NSString * const GET_REMINDERS_API = @"/api/v1/reminders";
+static NSString * const REMINDER_TABLE_VIEW_CELL_ID = @"REMINDER_TABLE_VIEW_CELL_ID";
+
 @interface YYReminderViewController ()
 
 @end
@@ -27,6 +30,21 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self fetchReminders];
+}
+
+- (void)fetchReminders
+{
+    NSDictionary *parameter = @{@"signature" : @"tempkey"};
+    [[YYHTTPManager I] GET:GET_REMINDERS_API parameters:parameter success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        OLog(responseObject);
+        _reminders = responseObject[@"result"];
+        [_table reloadData];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        OLog(@"failure");
+        OLog(error);
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,15 +53,19 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - UITableViewDataSource
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    return _reminders.count;
 }
-*/
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [_table dequeueReusableCellWithIdentifier:REMINDER_TABLE_VIEW_CELL_ID];
+    NSDictionary *info = _reminders[indexPath.row];
+    cell.textLabel.text = info[@"message"];
+    return cell;
+}
 
 @end

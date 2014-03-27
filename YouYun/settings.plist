@@ -9,7 +9,7 @@
 		<key>protocol</key>
 		<string>http</string>
 		<key>host</key>
-		<string>10.0.0.6</string>
+		<string>127.0.0.1</string>
 	</dict>
 	<key>school color</key>
 	<string></string>
@@ -32,6 +32,12 @@
 				<key>module</key>
 				<string>Timeline</string>
 			</dict>
+			<dict>
+				<key>title</key>
+				<string>提醒事项</string>
+				<key>module</key>
+				<string>Reminder</string>
+			</dict>
 		</array>
 		<key>teacher</key>
 		<array>
@@ -40,6 +46,12 @@
 				<string>首页</string>
 				<key>module</key>
 				<string>Timeline</string>
+			</dict>
+			<dict>
+				<key>title</key>
+				<string>提醒事项</string>
+				<key>module</key>
+				<string>Reminder</string>
 			</dict>
 		</array>
 		<key>parent</key>
@@ -50,6 +62,12 @@
 				<key>module</key>
 				<string>Timeline</string>
 			</dict>
+			<dict>
+				<key>title</key>
+				<string>提醒事项</string>
+				<key>module</key>
+				<string>Reminder</string>
+			</dict>
 		</array>
 		<key>admin</key>
 		<array>
@@ -58,6 +76,12 @@
 				<string>首页</string>
 				<key>module</key>
 				<string>Timeline</string>
+			</dict>
+			<dict>
+				<key>title</key>
+				<string>提醒事项</string>
+				<key>module</key>
+				<string>Reminder</string>
 			</dict>
 		</array>
 	</dict>

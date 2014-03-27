@@ -10,6 +10,7 @@ target "YouYun" do
 	pod 'UITextField+Shake'
 	pod 'StackBluriOS'
 	pod 'SIAlertView'
+	pod 'MDCParallaxView'
 end
 
 target "YouYunTests" do
