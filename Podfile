@@ -11,6 +11,7 @@ target "YouYun" do
 	pod 'StackBluriOS'
 	pod 'SIAlertView'
 	pod 'MDCParallaxView'
+	pod 'MarqueeLabel'
 end
 
 target "YouYunTests" do
