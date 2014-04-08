@@ -57,6 +57,7 @@
 		2F23DF4918D01C9E00E20E41 /* YYLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYLoginViewController.h; sourceTree = "<group>"; };
 		2F23DF4A18D01CDC00E20E41 /* UIViewController+Addon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Addon.h"; sourceTree = "<group>"; };
 		2F23DF4B18D01CDC00E20E41 /* UIViewController+Addon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Addon.m"; sourceTree = "<group>"; };
+		2F2BB78D18F3C23000A8CC19 /* YYVariables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYVariables.h; sourceTree = "<group>"; };
 		2F8F519818D556CD00E45906 /* UIView+Addon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Addon.h"; sourceTree = "<group>"; };
 		2F8F519918D556CD00E45906 /* UIView+Addon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Addon.m"; sourceTree = "<group>"; };
 		2F8F519C18D55F6300E45906 /* YYTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTextField.h; sourceTree = "<group>"; };
@@ -202,6 +203,7 @@
 		2FCFD96818C1B2BB0080BB2B /* YouYun */ = {
 			isa = PBXGroup;
 			children = (
+				2F2BB78D18F3C23000A8CC19 /* YYVariables.h */,
 				2F8F519418D5565B00E45906 /* Categories */,
 				2FE1A69518D50DE400400D93 /* Classes */,
 				2FF3A28018D2BD7700E89CEF /* Libraries */,

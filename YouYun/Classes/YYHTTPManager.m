@@ -8,6 +8,8 @@
 
 #import "YYHTTPManager.h"
 
+static NSString * const SESSION_KEY = @"SESSION_KEY";
+
 @implementation YYHTTPManager
 
 static YYHTTPManager *manager;
@@ -41,20 +43,47 @@ static YYHTTPManager *manager;
     return self;
 }
 
+- (void)saveCookies
+{
+    NSData *cookiesData = [NSKeyedArchiver archivedDataWithRootObject: [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject: cookiesData forKey:SESSION_KEY];
+    [defaults synchronize];
+    
+}
+
+- (void)loadCookies
+{
+    NSArray *cookies = [NSKeyedUnarchiver unarchiveObjectWithData: [[NSUserDefaults standardUserDefaults] objectForKey:SESSION_KEY]];
+    NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    
+    for (NSHTTPCookie *cookie in cookies){
+        [cookieStorage setCookie: cookie];
+    }
+    
+}
+
 - (void)GET:(NSString *) path parameters:(NSDictionary *)parameters success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure
 {
+    [self loadCookies];
+    
     [[AFHTTPRequestOperationManager manager] GET:[self constructUrlFromPath:path] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self saveCookies];
         success(operation, responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self saveCookies];
         failure(operation, error);
     }];
 }
 
 - (void)POST:(NSString *) path parameters:(NSDictionary *)parameters success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure
 {
+    [self loadCookies];
     [[AFHTTPRequestOperationManager manager] POST:[self constructUrlFromPath:path] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self saveCookies];
         success(operation, responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self saveCookies];
         failure(operation, error);
     }];
 }

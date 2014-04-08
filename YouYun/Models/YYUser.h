@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "YYVariables.h"
+#import "YYHTTPManager.h"
 
 typedef NS_ENUM(NSInteger, YYUserType) {
     YYUserTypeAdmin,
@@ -19,7 +21,7 @@ typedef NS_ENUM(NSInteger, YYUserType) {
 
 + (YYUser *)I;
 - (NSString *) typeKey;
-- (BOOL)isLoggedIn;
+- (void)isUserLoggedIn:(void (^) (BOOL userLoggedIn, NSInteger statusCode)) callback;
 - (void)loginWithUsername:(NSString *) username andPassword:(NSString *) password;
 - (void)logout;
 

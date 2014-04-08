@@ -8,7 +8,6 @@
 
 #import "YYReminderViewController.h"
 
-static NSString * const GET_REMINDERS_API = @"/api/v1/reminders";
 static NSString * const REMINDER_TABLE_VIEW_CELL_ID = @"REMINDER_TABLE_VIEW_CELL_ID";
 
 @interface YYReminderViewController ()

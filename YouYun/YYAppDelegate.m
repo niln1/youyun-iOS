@@ -51,11 +51,13 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    if (!YYUser.I.isLoggedIn && ![[_drawer.navigationController visibleViewController] isMemberOfClass:[YYLoginViewController class]]) {
-        YYLoginViewController *login = [_drawer.storyboard instantiateViewControllerWithIdentifier:[YYLoginViewController identifier]];
-        OLog([YYLoginViewController identifier]);
-        [_drawer.navigationController presentViewController:login animated:YES completion:nil];
-    }
+    [[YYUser I] isUserLoggedIn:^(BOOL userLoggedIn, NSInteger statusCode) {
+        if (!userLoggedIn && ![[_drawer.navigationController visibleViewController] isMemberOfClass:[YYLoginViewController class]]) {
+            YYLoginViewController *login = [_drawer.storyboard instantiateViewControllerWithIdentifier:[YYLoginViewController identifier]];
+            OLog([YYLoginViewController identifier]);
+            [_drawer.navigationController presentViewController:login animated:YES completion:nil];
+        }
+    }];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

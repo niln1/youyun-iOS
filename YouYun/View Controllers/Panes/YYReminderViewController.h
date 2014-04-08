@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "YYHTTPManager.h"
 #import "YYReminderTableViewCell.h"
+#import "YYVariables.h"
 
 @interface YYReminderViewController : UIViewController
 

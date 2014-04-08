@@ -10,7 +10,6 @@
 
 @interface YYUser ()
 
-@property (nonatomic) BOOL loggedIn;
 @property (nonatomic) YYUserType type;
 @property (nonatomic, retain) NSString *name;
 
@@ -35,7 +34,6 @@ static YYUser *instance;
     self = [super init];
     if (self) {
         // TODO
-        _loggedIn = NO;
         _type = YYUserTypeAdmin;
         _name = @"";
     }
@@ -51,15 +49,20 @@ static YYUser *instance;
     }
 }
 
-- (BOOL)isLoggedIn
+- (void)isUserLoggedIn:(void (^) (BOOL userLoggedIn, NSInteger statusCode)) callback
 {
-    return self.loggedIn;
+    [[YYHTTPManager I] GET:GET_ACCOUNT_API parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSHTTPURLResponse *response = operation.response;
+        callback(YES, response.statusCode);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSHTTPURLResponse *response = operation.response;
+        callback(NO, response.statusCode);
+    }];
 }
 
 - (void)loginWithUsername:(NSString *) username andPassword:(NSString *) password
 {
     // TODO
-    _loggedIn = YES;
     _type = YYUserTypeAdmin;
     _name = @"Ranchao Zhang";
 }
