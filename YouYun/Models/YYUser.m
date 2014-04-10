@@ -45,10 +45,11 @@ static YYUser *instance;
 - (NSString *) typeKey {
     switch (_userType) {
         case YYUserTypeAdmin: return @"admin";
-        case YYUserTypeParent: return @"parent";
-        case YYUserTypeStudent: return @"student";
+        case YYUserTypeSchool: return @"school";
         case YYUserTypeTeacher: return @"teacher";
-        default: return nil;
+        case YYUserTypeStudent: return @"student";
+        case YYUserTypeParent: return @"parent";
+        case YYUserTypeAlumni: return @"alumni";
     }
 }
 
