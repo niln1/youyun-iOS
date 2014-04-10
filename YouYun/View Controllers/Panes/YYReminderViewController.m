@@ -30,9 +30,36 @@ static NSString * const REMINDER_TABLE_VIEW_CELL_ID = @"REMINDER_TABLE_VIEW_CELL
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    [self initialize];
+    
     [self fetchReminders];
 }
 
+- (void)initialize
+{
+    FAKIonIcons *newReminderIcon = [FAKIonIcons ios7PlusIconWithSize:28];
+    [newReminderIcon addAttribute:NSForegroundColorAttributeName value:UI_COLOR];
+    
+    UIButton *newReminderButton = [UIButton new];
+    newReminderButton.frame = CGRectMake(276, 0, 44, 44);
+    [newReminderButton setBackgroundImage:[newReminderIcon imageWithSize:CGSizeMake(44, 44)] forState:UIControlStateNormal];
+    [newReminderButton setShowsTouchWhenHighlighted:YES];
+    [newReminderButton addTarget:self action:@selector(newReminderButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    spacer.width = -16;
+    UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithCustomView:newReminderButton];
+    self.navigationItem.rightBarButtonItems = @[spacer, barItem];
+//    self.navigationItem.rightBarButtonItem = barItem;
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Reminder
 - (void)fetchReminders
 {
     NSDictionary *parameter = @{@"signature" : @"tempkey"};
@@ -46,10 +73,10 @@ static NSString * const REMINDER_TABLE_VIEW_CELL_ID = @"REMINDER_TABLE_VIEW_CELL
     }];
 }
 
-- (void)didReceiveMemoryWarning
+#pragma mark - UIBarButtonItem
+- (void)newReminderButtonClicked:(id)sender
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
 }
 
 #pragma mark - UITableViewDataSource
