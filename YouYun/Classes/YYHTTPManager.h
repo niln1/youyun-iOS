@@ -10,6 +10,8 @@
 #import <AFNetworking/AFNetworking.h>
 #import "YYUser.h"
 
+static NSString *API_CALL_FAILED_NOTIFICATION = @"API_CALL_FAILED_NOTIFICATION";
+
 @class YYUser;
 
 @interface YYHTTPManager : NSObject

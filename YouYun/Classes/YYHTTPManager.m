@@ -73,9 +73,8 @@ static YYHTTPManager *manager;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self saveCookies];
         NSHTTPURLResponse *response = operation.response;
-        if (response.statusCode == 401) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:USER_SESSION_INVALID_NOTIFICATION object:nil];
-        }
+        NSString *notificationName = response.statusCode == 401 ? USER_SESSION_INVALID_NOTIFICATION : API_CALL_FAILED_NOTIFICATION;
+        [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil];
         failure(operation, error);
     }];
 }
@@ -89,9 +88,8 @@ static YYHTTPManager *manager;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self saveCookies];
         NSHTTPURLResponse *response = operation.response;
-        if (response.statusCode == 401) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:USER_SESSION_INVALID_NOTIFICATION object:nil];
-        }
+        NSString *notificationName = response.statusCode == 401 ? USER_SESSION_INVALID_NOTIFICATION : API_CALL_FAILED_NOTIFICATION;
+        [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil];
         failure(operation, error);
     }];
 }

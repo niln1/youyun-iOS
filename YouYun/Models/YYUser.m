@@ -69,13 +69,13 @@ static YYUser *instance;
     NSDictionary *formData = @{@"username" : username,
                                @"password" : password};
     
-    [[YYHTTPManager I] POST:POST_LOGIN_API_PATH parameters:formData success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [[YYHTTPManager I] POST:LOGIN_API_PATH parameters:formData success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self parseLoginResponse:responseObject withOperation:operation andCallback:callback];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSHTTPURLResponse *response = operation.response;
         id responseObject = operation.responseObject;
         NSString *errorMsg = responseObject[@"description"] ? responseObject[@"description"] : @"Login response invalid.";
-        callback(NO, response.statusCode, [NSError errorWithDomain:POST_LOGIN_API_PATH code:response.statusCode userInfo:@{@"message" : errorMsg}]);
+        callback(NO, response.statusCode, [NSError errorWithDomain:LOGIN_API_PATH code:response.statusCode userInfo:@{@"message" : errorMsg}]);
     }];
 }
 
@@ -100,7 +100,10 @@ static YYUser *instance;
 
 - (void)logout
 {
-    
+    [[YYHTTPManager I] GET:LOGOUT_API_PATH parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:USER_SESSION_INVALID_NOTIFICATION object:nil];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    }];
 }
 
 @end
