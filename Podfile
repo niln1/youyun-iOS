@@ -12,6 +12,7 @@ target "YouYun" do
 	pod 'SIAlertView'
 	pod 'MDCParallaxView'
 	pod 'MarqueeLabel'
+	pod 'KNSemiModalViewController'
 end
 
 target "YouYunTests" do
