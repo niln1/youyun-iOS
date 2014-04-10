@@ -16,6 +16,7 @@
 #import "UIView+Addon.h"
 #import "YYHTTPManager.h"
 #import "YYUser.h"
+#import "YYVariables.h"
 
 @interface YYLoginViewController : UIViewController
 

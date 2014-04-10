@@ -10,19 +10,25 @@
 #import "YYVariables.h"
 #import "YYHTTPManager.h"
 
+@class YYHTTPManager;
+
+static NSString *USER_SESSION_INVALID_NOTIFICATION = @"USER_SESSION_INVALID_NOTIFICATION";
+
 typedef NS_ENUM(NSInteger, YYUserType) {
     YYUserTypeAdmin,
+    YYUserTypeSchool,
     YYUserTypeTeacher,
     YYUserTypeStudent,
-    YYUserTypeParent
+    YYUserTypeParent,
+    YYUserTypeAlumni
 };
 
 @interface YYUser : NSObject
 
 + (YYUser *)I;
 - (NSString *) typeKey;
-- (void)isUserLoggedIn:(void (^) (BOOL userLoggedIn, NSInteger statusCode)) callback;
-- (void)loginWithUsername:(NSString *) username andPassword:(NSString *) password;
+- (void)isUserLoggedIn:(void (^) (BOOL userLoggedIn, NSInteger statusCode, NSError *error)) callback;
+- (void)loginWithUsername:(NSString *) username andPassword:(NSString *) password withCallback:(void (^) (BOOL userLoggedIn, NSInteger statusCode, NSError *error)) callback;
 - (void)logout;
 
 @end

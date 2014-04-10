@@ -9,5 +9,6 @@
 /**
  * API
  */
+static NSString *POST_LOGIN_API_PATH = @"/api/v1/account/login";
 static NSString * const GET_ACCOUNT_API = @"/api/v1/account";
 static NSString * const GET_REMINDERS_API = @"/api/v1/reminders";

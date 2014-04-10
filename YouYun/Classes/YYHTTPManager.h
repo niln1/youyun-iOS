@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <AFNetworking/AFNetworking.h>
+#import "YYUser.h"
+
+@class YYUser;
 
 @interface YYHTTPManager : NSObject
 

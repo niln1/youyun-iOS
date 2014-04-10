@@ -14,8 +14,6 @@
 
 @implementation YYLoginViewController
 
-static NSString *LOGIN_API_PATH = @"/api/v1/account/login";
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -85,19 +83,13 @@ static NSString *LOGIN_API_PATH = @"/api/v1/account/login";
 
 - (IBAction)loginButtonClicked:(id)sender
 {
-    NSDictionary *formData = @{
-        @"username" : _usernameField.text,
-        @"password" : _passwordField.text
-    };
-    
-    [[YYUser I] loginWithUsername:@"admin" andPassword:@"adminpw"];
-    
-    [[YYHTTPManager I] POST:LOGIN_API_PATH parameters:formData success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        _passwordField.layer.borderColor=[[UIColor alizarinColor] CGColor];
-        [_passwordField shake:10 withDelta:5 andSpeed:0.03 shakeDirection:ShakeDirectionHorizontal];
-        OLog(error);
+    [[YYUser I] loginWithUsername:_usernameField.text andPassword:_passwordField.text withCallback:^(BOOL userLoggedIn, NSInteger statusCode, NSError *error) {
+        if (userLoggedIn) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        } else {
+            _passwordField.layer.borderColor=[[UIColor alizarinColor] CGColor];
+            [_passwordField shake:10 withDelta:5 andSpeed:0.03 shakeDirection:ShakeDirectionHorizontal];
+        }
     }];
 }
 

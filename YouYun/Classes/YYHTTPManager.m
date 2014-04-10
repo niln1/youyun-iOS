@@ -72,6 +72,10 @@ static YYHTTPManager *manager;
         success(operation, responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self saveCookies];
+        NSHTTPURLResponse *response = operation.response;
+        if (response.statusCode == 401) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:USER_SESSION_INVALID_NOTIFICATION object:nil];
+        }
         failure(operation, error);
     }];
 }
@@ -84,6 +88,10 @@ static YYHTTPManager *manager;
         success(operation, responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self saveCookies];
+        NSHTTPURLResponse *response = operation.response;
+        if (response.statusCode == 401) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:USER_SESSION_INVALID_NOTIFICATION object:nil];
+        }
         failure(operation, error);
     }];
 }
