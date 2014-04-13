@@ -13,6 +13,9 @@
 		2F1ACA2118F7BD5000AF5B50 /* YYNewReminderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F1ACA2018F7BD5000AF5B50 /* YYNewReminderView.m */; };
 		2F1ACA2318F7BEF800AF5B50 /* YYNewReminderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F1ACA2218F7BEF800AF5B50 /* YYNewReminderView.xib */; };
 		2F23DF4C18D01CDC00E20E41 /* UIViewController+Addon.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F23DF4B18D01CDC00E20E41 /* UIViewController+Addon.m */; };
+		2F84EF6918FA84D4003C3F9A /* YYReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F84EF6518FA84D4003C3F9A /* YYReminderViewController.m */; };
+		2F84EF6A18FA84D4003C3F9A /* YYTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F84EF6818FA84D4003C3F9A /* YYTimelineViewController.m */; };
+		2F84EF6D18FA84E1003C3F9A /* YYNewReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F84EF6C18FA84E1003C3F9A /* YYNewReminderViewController.m */; };
 		2F8F519A18D556CD00E45906 /* UIView+Addon.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F8F519918D556CD00E45906 /* UIView+Addon.m */; };
 		2F8F519E18D55F6300E45906 /* YYTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F8F519D18D55F6300E45906 /* YYTextField.m */; };
 		2FCFD96318C1B2BB0080BB2B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FCFD96218C1B2BB0080BB2B /* Foundation.framework */; };
@@ -34,8 +37,6 @@
 		2FE1A69A18D519BD00400D93 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FE1A69918D519BD00400D93 /* QuartzCore.framework */; };
 		2FE3FC8618E6856400F954C9 /* YYCheckbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE3FC8518E6856400F954C9 /* YYCheckbox.m */; };
 		2FE3FC8918E687C400F954C9 /* YYReminderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE3FC8818E687C400F954C9 /* YYReminderTableViewCell.m */; };
-		2FEC573518DD566B00624D12 /* YYTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC573418DD566B00624D12 /* YYTimelineViewController.m */; };
-		2FEC573818DD5C2600624D12 /* YYReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FEC573718DD5C2600624D12 /* YYReminderViewController.m */; };
 		2FF3A28418D2BD8C00E89CEF /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FF3A28318D2BD8C00E89CEF /* Reachability.m */; };
 		BF97808A10FA46439F396876 /* libPods-YouYun.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C12208A10EB450EAB99243C /* libPods-YouYun.a */; };
 /* End PBXBuildFile section */
@@ -63,6 +64,12 @@
 		2F23DF4A18D01CDC00E20E41 /* UIViewController+Addon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Addon.h"; sourceTree = "<group>"; };
 		2F23DF4B18D01CDC00E20E41 /* UIViewController+Addon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Addon.m"; sourceTree = "<group>"; };
 		2F2BB78D18F3C23000A8CC19 /* YYVariables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYVariables.h; sourceTree = "<group>"; };
+		2F84EF6418FA84D4003C3F9A /* YYReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYReminderViewController.h; sourceTree = "<group>"; };
+		2F84EF6518FA84D4003C3F9A /* YYReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYReminderViewController.m; sourceTree = "<group>"; };
+		2F84EF6718FA84D4003C3F9A /* YYTimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTimelineViewController.h; sourceTree = "<group>"; };
+		2F84EF6818FA84D4003C3F9A /* YYTimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTimelineViewController.m; sourceTree = "<group>"; };
+		2F84EF6B18FA84E1003C3F9A /* YYNewReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYNewReminderViewController.h; sourceTree = "<group>"; };
+		2F84EF6C18FA84E1003C3F9A /* YYNewReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYNewReminderViewController.m; sourceTree = "<group>"; };
 		2F8F519818D556CD00E45906 /* UIView+Addon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Addon.h"; sourceTree = "<group>"; };
 		2F8F519918D556CD00E45906 /* UIView+Addon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Addon.m"; sourceTree = "<group>"; };
 		2F8F519C18D55F6300E45906 /* YYTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTextField.h; sourceTree = "<group>"; };
@@ -95,10 +102,6 @@
 		2FE3FC8518E6856400F954C9 /* YYCheckbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYCheckbox.m; sourceTree = "<group>"; };
 		2FE3FC8718E687C400F954C9 /* YYReminderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYReminderTableViewCell.h; sourceTree = "<group>"; };
 		2FE3FC8818E687C400F954C9 /* YYReminderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYReminderTableViewCell.m; sourceTree = "<group>"; };
-		2FEC573318DD566B00624D12 /* YYTimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTimelineViewController.h; sourceTree = "<group>"; };
-		2FEC573418DD566B00624D12 /* YYTimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTimelineViewController.m; sourceTree = "<group>"; };
-		2FEC573618DD5C2600624D12 /* YYReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYReminderViewController.h; sourceTree = "<group>"; };
-		2FEC573718DD5C2600624D12 /* YYReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYReminderViewController.m; sourceTree = "<group>"; };
 		2FF3A28218D2BD8C00E89CEF /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		2FF3A28318D2BD8C00E89CEF /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		5C12208A10EB450EAB99243C /* libPods-YouYun.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YouYun.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,6 +151,26 @@
 				2F23DF4B18D01CDC00E20E41 /* UIViewController+Addon.m */,
 			);
 			path = Others;
+			sourceTree = "<group>";
+		};
+		2F84EF6318FA84D4003C3F9A /* Reminder */ = {
+			isa = PBXGroup;
+			children = (
+				2F84EF6418FA84D4003C3F9A /* YYReminderViewController.h */,
+				2F84EF6518FA84D4003C3F9A /* YYReminderViewController.m */,
+				2F84EF6B18FA84E1003C3F9A /* YYNewReminderViewController.h */,
+				2F84EF6C18FA84E1003C3F9A /* YYNewReminderViewController.m */,
+			);
+			path = Reminder;
+			sourceTree = "<group>";
+		};
+		2F84EF6618FA84D4003C3F9A /* Timeline */ = {
+			isa = PBXGroup;
+			children = (
+				2F84EF6718FA84D4003C3F9A /* YYTimelineViewController.h */,
+				2F84EF6818FA84D4003C3F9A /* YYTimelineViewController.m */,
+			);
+			path = Timeline;
 			sourceTree = "<group>";
 		};
 		2F8F519418D5565B00E45906 /* Categories */ = {
@@ -288,10 +311,8 @@
 		2FCFD9A618C1B7C30080BB2B /* Panes */ = {
 			isa = PBXGroup;
 			children = (
-				2FEC573318DD566B00624D12 /* YYTimelineViewController.h */,
-				2FEC573418DD566B00624D12 /* YYTimelineViewController.m */,
-				2FEC573618DD5C2600624D12 /* YYReminderViewController.h */,
-				2FEC573718DD5C2600624D12 /* YYReminderViewController.m */,
+				2F84EF6318FA84D4003C3F9A /* Reminder */,
+				2F84EF6618FA84D4003C3F9A /* Timeline */,
 			);
 			path = Panes;
 			sourceTree = "<group>";
@@ -470,19 +491,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				2FCFD97318C1B2BB0080BB2B /* YYAppDelegate.m in Sources */,
-				2FEC573518DD566B00624D12 /* YYTimelineViewController.m in Sources */,
 				2FCFD9AD18C1BF7C0080BB2B /* YYNavigationController.m in Sources */,
 				2F8F519A18D556CD00E45906 /* UIView+Addon.m in Sources */,
 				2F23DF4C18D01CDC00E20E41 /* UIViewController+Addon.m in Sources */,
 				2FCFD9A918C1B7D60080BB2B /* YYMenuViewController.m in Sources */,
 				2FE3FC8618E6856400F954C9 /* YYCheckbox.m in Sources */,
+				2F84EF6918FA84D4003C3F9A /* YYReminderViewController.m in Sources */,
 				2FCFD96F18C1B2BB0080BB2B /* main.m in Sources */,
-				2FEC573818DD5C2600624D12 /* YYReminderViewController.m in Sources */,
 				2F1AC74C18CEB8080045FA4F /* YYLoginViewController.m in Sources */,
 				2FE1A69818D50DF400400D93 /* YYHTTPManager.m in Sources */,
 				2F1ACA2118F7BD5000AF5B50 /* YYNewReminderView.m in Sources */,
+				2F84EF6D18FA84E1003C3F9A /* YYNewReminderViewController.m in Sources */,
 				2F1AC74818CEB4EB0045FA4F /* YYUser.m in Sources */,
 				2F8F519E18D55F6300E45906 /* YYTextField.m in Sources */,
+				2F84EF6A18FA84D4003C3F9A /* YYTimelineViewController.m in Sources */,
 				2FE3FC8918E687C400F954C9 /* YYReminderTableViewCell.m in Sources */,
 				2FF3A28418D2BD8C00E89CEF /* Reachability.m in Sources */,
 			);

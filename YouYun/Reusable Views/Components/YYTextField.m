@@ -40,7 +40,7 @@
 - (BOOL)becomeFirstResponder {
     BOOL outcome = [super becomeFirstResponder];
     if (outcome) {
-        [self setBorderColor:UI_COLOR];
+        [self setBorderColor:UI_FG_COLOR];
     }
     return outcome;
 }

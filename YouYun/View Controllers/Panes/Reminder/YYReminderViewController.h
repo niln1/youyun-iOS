@@ -13,6 +13,7 @@
 #import "YYReminderTableViewCell.h"
 #import "YYVariables.h"
 #import "YYNewReminderView.h"
+#import "YYNewReminderViewController.h"
 
 @interface YYReminderViewController : UIViewController
 

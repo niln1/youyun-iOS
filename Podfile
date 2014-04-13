@@ -13,6 +13,7 @@ target "YouYun" do
 	pod 'MDCParallaxView'
 	pod 'MarqueeLabel'
 	pod 'KNSemiModalViewController'
+	pod 'DateCellsController'
 end
 
 target "YouYunTests" do

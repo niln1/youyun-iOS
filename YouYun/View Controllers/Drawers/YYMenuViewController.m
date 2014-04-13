@@ -125,7 +125,7 @@ static NSString * const MENU_TABLE_VIEW_CELL_ID = @"MENU_TABLE_VIEW_CELL_ID";
 - (void)setMenuIconForViewController:(UIViewController *) viewCtrl
 {
     FAKIonIcons *menuIcon = [FAKIonIcons naviconRoundIconWithSize:28];
-    [menuIcon addAttribute:NSForegroundColorAttributeName value:UI_COLOR];
+    [menuIcon addAttribute:NSForegroundColorAttributeName value:UI_FG_COLOR];
     
     UIButton *menuButton = [UIButton new];
     menuButton.frame = CGRectMake(276, 0, 44, 44);
