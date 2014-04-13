@@ -1,0 +1,70 @@
+//
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import <UIColor+FlatUI.h>
+    #import "UIViewController+Addon.h"
+#endif
+
+#ifdef DEBUG
+    #define DLog(...) NSLog(__VA_ARGS__);
+    //    #define DLog(...) /* */
+    #define OLog(...) NSLog(@"%s : %@", #__VA_ARGS__, __VA_ARGS__);
+    #define FLog(...) NSLog(@"%s : %f", #__VA_ARGS__, __VA_ARGS__);
+    #define ILog(...) NSLog(@"%s : %lld", #__VA_ARGS__, __VA_ARGS__);
+#else
+    #define DLog(...) /* */
+    #define OLog(...) /* */
+    #define FLog(...) /* */
+    #define ILog(...) /* */
+#endif
+#define ALog(...) NSLog(__VA_ARGS__)
+
+/*
+TURQUOISE
+GREEN SEA
+
+EMERALD
+NEPHRITIS
+
+PETER RIVER
+BELIZE HOLE
+
+AMETHYST
+WISTERIA
+
+WET ASPHALT
+MIDNIGHT BLUE
+
+SUN FLOWER
+ORANGE
+
+CARROT
+PUMPKIN
+
+ALIZARIN
+POMEGRANATE
+
+CLOUDS
+SILVER
+
+CONCRETE
+ASBESTOS
+*/
+
+#define UI_COLOR [UIColor turquoiseColor]
+#define UI_SHADOW_COLOR [UIColor nephritisColor]
+#define UI_SELECTION_COLOR
+
+#define UI_CORNER_RADIUS 10.0f
