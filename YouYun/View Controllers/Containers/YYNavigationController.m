@@ -14,13 +14,64 @@
 
 @implementation YYNavigationController
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        [self initialize];
+    }
+    return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self initialize];
+    }
+    return self;
+}
+
+- (id)initWithNavigationBarClass:(Class)navigationBarClass toolbarClass:(Class)toolbarClass
+{
+    self = [super initWithNavigationBarClass:navigationBarClass toolbarClass:toolbarClass];
+    if (self) {
+        [self initialize];
+    }
+    return self;
+}
+
+- (id)initWithRootViewController:(UIViewController *)rootViewController
+{
+    self = [super initWithRootViewController:rootViewController];
+    if (self) {
+        [self initialize];
+    }
+    return self;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        [self initialize];
     }
     return self;
+}
+
+- (void)initialize
+{
+    //set bar color
+    [self.navigationBar setBarTintColor:UI_BG_COLOR];
+    //optional, i don't want my bar to be translucent
+    [self.navigationBar setTranslucent:NO];
+    //set title and title color
+    [self.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor]];
+    //set back button color
+    [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], UITextAttributeTextColor,nil] forState:UIControlStateNormal];
+    //set back button arrow color
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
 }
 
 - (void)viewDidLoad
@@ -37,6 +88,10 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
 }
 
 #pragma mark - Enable swipe to pop for portrait view

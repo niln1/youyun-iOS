@@ -38,7 +38,7 @@ static NSString * const REMINDER_TABLE_VIEW_CELL_ID = @"REMINDER_TABLE_VIEW_CELL
 - (void)initialize
 {
     FAKIonIcons *newReminderIcon = [FAKIonIcons ios7PlusIconWithSize:28];
-    [newReminderIcon addAttribute:NSForegroundColorAttributeName value:UI_COLOR];
+    [newReminderIcon addAttribute:NSForegroundColorAttributeName value:UI_FG_COLOR];
     
     UIButton *newReminderButton = [UIButton new];
     newReminderButton.frame = CGRectMake(276, 0, 44, 44);
@@ -50,7 +50,6 @@ static NSString * const REMINDER_TABLE_VIEW_CELL_ID = @"REMINDER_TABLE_VIEW_CELL
     spacer.width = -16;
     UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithCustomView:newReminderButton];
     self.navigationItem.rightBarButtonItems = @[spacer, barItem];
-//    self.navigationItem.rightBarButtonItem = barItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -76,8 +75,11 @@ static NSString * const REMINDER_TABLE_VIEW_CELL_ID = @"REMINDER_TABLE_VIEW_CELL
 #pragma mark - UIBarButtonItem
 - (void)newReminderButtonClicked:(id)sender
 {
-    YYNewReminderView *view = [YYNewReminderView new];
-   [self presentSemiView:view];
+//    YYNewReminderView *view = [YYNewReminderView new];
+//   [self presentSemiView:view];
+    
+    YYNewReminderViewController *viewCtrl = [self.storyboard instantiateViewControllerWithIdentifier:[YYNewReminderViewController identifier]];
+    [self.navigationController pushViewController:viewCtrl animated:YES];
 }
 
 #pragma mark - UITableViewDataSource

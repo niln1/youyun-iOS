@@ -15,6 +15,7 @@
     #import <Foundation/Foundation.h>
     #import <UIColor+FlatUI.h>
     #import "UIViewController+Addon.h"
+    #import "YYVariables.h"
 #endif
 
 #ifdef DEBUG
@@ -30,41 +31,3 @@
     #define ILog(...) /* */
 #endif
 #define ALog(...) NSLog(__VA_ARGS__)
-
-/*
-TURQUOISE
-GREEN SEA
-
-EMERALD
-NEPHRITIS
-
-PETER RIVER
-BELIZE HOLE
-
-AMETHYST
-WISTERIA
-
-WET ASPHALT
-MIDNIGHT BLUE
-
-SUN FLOWER
-ORANGE
-
-CARROT
-PUMPKIN
-
-ALIZARIN
-POMEGRANATE
-
-CLOUDS
-SILVER
-
-CONCRETE
-ASBESTOS
-*/
-
-#define UI_COLOR [UIColor turquoiseColor]
-#define UI_SHADOW_COLOR [UIColor nephritisColor]
-#define UI_SELECTION_COLOR
-
-#define UI_CORNER_RADIUS 10.0f
