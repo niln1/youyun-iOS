@@ -110,6 +110,7 @@ static NSString * const MENU_TABLE_VIEW_CELL_ID = @"MENU_TABLE_VIEW_CELL_ID";
         BOOL animateTransition = _drawer.paneViewController != nil;
         UIViewController *viewController = [_drawer.storyboard instantiateViewControllerWithIdentifier:_moduleIdentifiers[info[@"module"]]];
         viewController.navigationItem.title = info[@"title"];
+        [self setMenuIconForViewController:viewController];
         
         YYNavigationController *navi = [[YYNavigationController alloc] initWithRootViewController:viewController];
         
@@ -118,6 +119,36 @@ static NSString * const MENU_TABLE_VIEW_CELL_ID = @"MENU_TABLE_VIEW_CELL_ID";
     @catch (NSException *exception) {
     }
     @finally {
+    }
+}
+
+- (void)setMenuIconForViewController:(UIViewController *) viewCtrl
+{
+    FAKIonIcons *menuIcon = [FAKIonIcons naviconRoundIconWithSize:28];
+    [menuIcon addAttribute:NSForegroundColorAttributeName value:UI_COLOR];
+    
+    UIButton *menuButton = [UIButton new];
+    menuButton.frame = CGRectMake(276, 0, 44, 44);
+    [menuButton setBackgroundImage:[menuIcon imageWithSize:CGSizeMake(44, 44)] forState:UIControlStateNormal];
+    [menuButton setShowsTouchWhenHighlighted:YES];
+    [menuButton addTarget:self action:@selector(menuButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    spacer.width = -16;
+    UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
+    viewCtrl.navigationItem.leftBarButtonItems = @[spacer, barItem];
+}
+
+- (void)menuButtonClicked:(id)sender
+{
+    OLog(@"menuButtonClicked");
+    BOOL drawerIsOpen = _drawer.paneState == MSDynamicsDrawerPaneStateOpen;
+    if (drawerIsOpen) {
+        [_drawer setPaneState:MSDynamicsDrawerPaneStateClosed animated:YES allowUserInterruption:YES completion:^{
+        }];
+    } else {
+        [_drawer setPaneState:MSDynamicsDrawerPaneStateOpen animated:YES allowUserInterruption:YES completion:^{
+        }];
     }
 }
 

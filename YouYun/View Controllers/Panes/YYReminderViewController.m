@@ -76,7 +76,8 @@ static NSString * const REMINDER_TABLE_VIEW_CELL_ID = @"REMINDER_TABLE_VIEW_CELL
 #pragma mark - UIBarButtonItem
 - (void)newReminderButtonClicked:(id)sender
 {
-    
+    YYNewReminderView *view = [YYNewReminderView new];
+   [self presentSemiView:view];
 }
 
 #pragma mark - UITableViewDataSource

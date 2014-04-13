@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <FAKIonIcons.h>
+#import <KNSemiModalViewController/UIViewController+KNSemiModal.h>
 #import "YYHTTPManager.h"
 #import "YYReminderTableViewCell.h"
 #import "YYVariables.h"
+#import "YYNewReminderView.h"
 
 @interface YYReminderViewController : UIViewController
 
