@@ -31,7 +31,10 @@ static NSString * const REMINDER_TABLE_VIEW_CELL_ID = @"REMINDER_TABLE_VIEW_CELL
     // Do any additional setup after loading the view.
     
     [self initialize];
-    
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
     [self fetchReminders];
 }
 
@@ -51,12 +54,19 @@ static NSString * const REMINDER_TABLE_VIEW_CELL_ID = @"REMINDER_TABLE_VIEW_CELL
     spacer.width = -16;
     UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithCustomView:newReminderButton];
     self.navigationItem.rightBarButtonItems = @[spacer, barItem];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reminderDidChange:) name:REMINDERS_DID_CHANGE_NOTIFICATION object:nil];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - Reminder
@@ -73,12 +83,14 @@ static NSString * const REMINDER_TABLE_VIEW_CELL_ID = @"REMINDER_TABLE_VIEW_CELL
     }];
 }
 
+- (void)reminderDidChange:(NSNotification *) aNotification
+{
+    [self fetchReminders];
+}
+
 #pragma mark - UIBarButtonItem
 - (void)newReminderButtonClicked:(id)sender
 {
-//    YYNewReminderView *view = [YYNewReminderView new];
-//   [self presentSemiView:view];
-    
     YYNewReminderViewController *viewCtrl = [self.storyboard instantiateViewControllerWithIdentifier:[YYNewReminderViewController identifier]];
     [self.navigationController pushViewController:viewCtrl animated:YES];
 }

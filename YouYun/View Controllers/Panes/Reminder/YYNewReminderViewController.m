@@ -96,6 +96,7 @@
     YYTextFieldTableViewCell *messageCell = (YYTextFieldTableViewCell *) [_table cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
     UITableViewCell *dateCell = [_table cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:1]];
     [[YYHTTPManager I] POST:CREATE_REMINDER_API jsonWithParameters:@{ @"signature" : @"tempkey", @"message" : messageCell.textInput.text, @"dueDate" : [self.jsDateFormatter stringFromDate:[self.dateFormatter dateFromString:dateCell.textLabel.text]] } success:^(AFHTTPRequestOperation *operation, id response) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:REMINDERS_DID_CHANGE_NOTIFICATION object:nil];
         [self.navigationController popViewControllerAnimated:YES];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
     }];
