@@ -70,7 +70,7 @@ static YYUser *instance;
     NSDictionary *formData = @{@"username" : username,
                                @"password" : password};
     
-    [[YYHTTPManager I] POST:LOGIN_API_PATH parameters:formData success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [[YYHTTPManager I] POST:LOGIN_API_PATH formWithParameters:formData success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self parseLoginResponse:responseObject withOperation:operation andCallback:callback];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSHTTPURLResponse *response = operation.response;

@@ -63,14 +63,17 @@ static YYHTTPManager *manager;
     
 }
 
-- (void)GET:(NSString *) path parameters:(NSDictionary *)parameters success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure
+- (AFHTTPRequestOperation *)GET:(NSString *) path parameters:(NSDictionary *)parameters success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure
 {
     [self loadCookies];
     
-    [[AFHTTPRequestOperationManager manager] GET:[self constructUrlFromPath:path] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    OLog(path);
+    return [[AFHTTPRequestOperationManager manager] GET:[self constructUrlFromPath:path] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        OLog(responseObject);
         [self saveCookies];
         success(operation, responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        OLog(error);
         [self saveCookies];
         NSHTTPURLResponse *response = operation.response;
         NSString *notificationName = response.statusCode == 401 ? USER_SESSION_INVALID_NOTIFICATION : API_CALL_FAILED_NOTIFICATION;
@@ -79,13 +82,37 @@ static YYHTTPManager *manager;
     }];
 }
 
-- (void)POST:(NSString *) path parameters:(NSDictionary *)parameters success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure
+- (AFHTTPRequestOperation *)POST:(NSString *) path formWithParameters:(NSDictionary *)parameters success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure
+{
+    return [self POST:path helperWithParameters:parameters success:success failure:failure isJSON:NO];
+}
+
+- (AFHTTPRequestOperation *)POST:(NSString *) path jsonWithParameters:(NSDictionary *)parameters success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure
+{
+    return [self POST:path helperWithParameters:parameters success:success failure:failure isJSON:YES];
+}
+
+- (AFHTTPRequestOperation *)POST:(NSString *)path helperWithParameters:(NSDictionary *)parameters success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure isJSON:(BOOL) isJSON
 {
     [self loadCookies];
-    [[AFHTTPRequestOperationManager manager] POST:[self constructUrlFromPath:path] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.securityPolicy.allowInvalidCertificates = YES;
+    
+    if (isJSON) {
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    } else {
+        manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    }
+    
+    OLog(path);
+    return [manager POST:[self constructUrlFromPath:path] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        OLog(responseObject);
         [self saveCookies];
         success(operation, responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        OLog(error);
         [self saveCookies];
         NSHTTPURLResponse *response = operation.response;
         NSString *notificationName = response.statusCode == 401 ? USER_SESSION_INVALID_NOTIFICATION : API_CALL_FAILED_NOTIFICATION;
