@@ -46,11 +46,29 @@
     _dateFormatter = [NSDateFormatter new];
     [_dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
     
+    _jsDateFormatter = [NSDateFormatter new];
+    [_jsDateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
+    
     _dateCellsController = [DateCellsController new];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
     NSDate *date = [NSDate date];
     
     _dateCellsController.indexPathToDateMapping = [@{indexPath : date} mutableCopy];
+    
+    // Setup save reminder icon
+    FAKIonIcons *saveReminderIcon = [FAKIonIcons ios7CheckmarkIconWithSize:28];
+    [saveReminderIcon addAttribute:NSForegroundColorAttributeName value:UI_FG_COLOR];
+    
+    UIButton *saveReminderButton = [UIButton new];
+    saveReminderButton.frame = CGRectMake(276, 0, 44, 44);
+    [saveReminderButton setBackgroundImage:[saveReminderIcon imageWithSize:CGSizeMake(44, 44)] forState:UIControlStateNormal];
+    [saveReminderButton setShowsTouchWhenHighlighted:YES];
+    [saveReminderButton addTarget:self action:@selector(saveReminderButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *spacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    spacer.width = -16;
+    UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithCustomView:saveReminderButton];
+    self.navigationItem.rightBarButtonItems = @[spacer, barItem];
 }
 
 - (void)viewDidLoad
@@ -61,29 +79,49 @@
     [_dateCellsController attachToTableView:_table withDelegate:self withMapping:_dateCellsController.indexPathToDateMapping];
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Save reminder
+
+- (void)saveReminderButtonClicked:(id)sender
+{
+    YYTextFieldTableViewCell *messageCell = (YYTextFieldTableViewCell *) [_table cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+    UITableViewCell *dateCell = [_table cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:1]];
+    [[YYHTTPManager I] POST:CREATE_REMINDER_API jsonWithParameters:@{ @"signature" : @"tempkey", @"message" : messageCell.textInput.text, @"dueDate" : [self.jsDateFormatter stringFromDate:[self.dateFormatter dateFromString:dateCell.textLabel.text]] } success:^(AFHTTPRequestOperation *operation, id response) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:REMINDERS_DID_CHANGE_NOTIFICATION object:nil];
+        [self.navigationController popViewControllerAnimated:YES];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    }];
+}
+
 #pragma mark - DateCellsControllerDelegate
 
 - (void)dateCellsController:(DateCellsController *)controller
  willExpandTableViewContent:(UITableView *)tableView
-                  forHeight:(CGFloat)expandHeight {
-    
+                  forHeight:(CGFloat)expandHeight
+{
+    OLog(@"willExpandTableViewContent");
 }
 
 - (void)dateCellsController:(DateCellsController *)controller
 willCollapseTableViewContent:(UITableView *)tableView
-                  forHeight:(CGFloat)expandHeight {
-    
+                  forHeight:(CGFloat)expandHeight
+{
+    OLog(@"willCollapseTableViewContent");
 }
 
 - (void)dateCellsController:(DateCellsController *)controller
             didSelectedDate:(NSDate *)date
                forIndexPath:(NSIndexPath *)path {
+    OLog(@"didSelectedDate");
     [_table reloadRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
@@ -108,22 +146,28 @@ willCollapseTableViewContent:(UITableView *)tableView
 
 - (UITableViewCell *)tableView:(UITableView *)tableViewInner cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *cellReuseId = @"id";
+    static NSString *dateCellReuseID = @"dateCellReuseID";
+    static NSString *msgCellReuseID = @"YYTextFieldTableViewCell";
     
-    UITableViewCell *cell = [tableViewInner dequeueReusableCellWithIdentifier:cellReuseId];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellReuseId];
-    }
     
     NSDate *correspondedDate = [self.dateCellsController.indexPathToDateMapping objectForKey:indexPath];
     if (correspondedDate) {
+        UITableViewCell *cell = [_table dequeueReusableCellWithIdentifier:dateCellReuseID];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:dateCellReuseID];
+        }
+        
         cell.textLabel.textColor = [UIColor blueColor];
         cell.textLabel.text = [self.dateFormatter stringFromDate:correspondedDate];
+        
+        return cell;
     } else {
-        cell.textLabel.textColor = [UIColor lightGrayColor];
-        cell.textLabel.text = [NSString stringWithFormat:@"Section: %ld row: %ld", (long)indexPath.section, (long)indexPath.row];
+        YYTextFieldTableViewCell *cell = [_table dequeueReusableCellWithIdentifier:msgCellReuseID];
+        
+        cell.textInput.placeholder = @"提醒信息";
+        
+        return cell;
     }
-    return cell;
 }
 
 @end

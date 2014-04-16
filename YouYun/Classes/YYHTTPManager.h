@@ -21,7 +21,8 @@ static NSString *API_CALL_FAILED_NOTIFICATION = @"API_CALL_FAILED_NOTIFICATION";
 @property (nonatomic, retain) NSString *serverPort;
 
 + (YYHTTPManager *) I;
-- (void)GET:(NSString *) path parameters:(NSDictionary *)parameters success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure;
-- (void)POST:(NSString *) path parameters:(NSDictionary *)parameters success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure;
+- (AFHTTPRequestOperation *)GET:(NSString *) path parameters:(NSDictionary *)parameters success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure;
+- (AFHTTPRequestOperation *)POST:(NSString *) path formWithParameters:(NSDictionary *)parameters success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure;
+- (AFHTTPRequestOperation *)POST:(NSString *) path jsonWithParameters:(NSDictionary *)parameters success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure;
 
 @end

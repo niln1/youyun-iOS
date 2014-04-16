@@ -2,7 +2,7 @@
 //  YYCheckbox.m
 //  YouYun
 //
-//  Created by Ranchao Zhang on 3/29/14.
+//  Created by Ranchao Zhang on 4/15/14.
 //  Copyright (c) 2014 Ranchao Zhang. All rights reserved.
 //
 
@@ -12,17 +12,14 @@
 
 - (id)init
 {
-    self = [super init];
-    if (self) {
-        [self initialize];
-    }
-    return self;
+    return [self initWithWidth:44];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
+        // Initialization code
         [self initialize];
     }
     return self;
@@ -32,74 +29,105 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        // Initialization code
         [self initialize];
     }
     return self;
 }
 
-- (void)awakeFromNib
+- (id)initWithWidth:(CGFloat) width
 {
-    [self initialize];
+    self = [super initWithFrame:CGRectMake(0, 0, width, width)];
+    if (self) {
+        // Initialization code
+        [self initialize];
+    }
+    return self;
 }
 
 - (void)initialize
 {
-    [self.titleLabel setTextAlignment:NSTextAlignmentCenter];
-    [self.titleLabel setTintColor:[UIColor clearColor]];
-    [self addTarget:self action:@selector(checkboxClicked:) forControlEvents:UIControlEventTouchUpInside];
+    CGFloat width = self.frame.size.width;
     
-    _fontSizeDifference = 5.0f;
-    [self setColor:[UIColor blackColor]];
-    [self setSelectedColor:[UIColor blackColor]];
-    [self setDisabledColor:[UIColor darkGrayColor]];
+    _checked = NO;
+    _enabled = YES;
+    _icon = [FAKIonIcons ios7CircleOutlineIconWithSize:width - 10];
+//    _checkedIcon = [FAKIonIcons ios7CircleFilledIconWithSize:width - 10];
+    _checkedIcon = [FAKIonIcons ios7CheckmarkIconWithSize:width - 10];
+    _color = UI_BG_COLOR;
+    _checkedColor = UI_BG_COLOR;
+    _disabledColor = [UIColor silverColor];
+    _iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, width, width)];
+    _iconImageView.backgroundColor = [UIColor clearColor];
+    self.backgroundColor = [UIColor clearColor];
+    [self addSubview:_iconImageView];
+    
+    [self setChecked:_checked andEnabled:_enabled];
+    
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(checkboxTapped:)];
+    [self addGestureRecognizer:tapGestureRecognizer];
 }
 
-- (void)dealloc
+- (void)checkboxTapped:(UITapGestureRecognizer *) tapGestureRecognizer
 {
-    [self removeTarget:self action:@selector(checkboxClicked:) forControlEvents:UIControlEventTouchUpInside];
+    if (_enabled && tapGestureRecognizer.state == UIGestureRecognizerStateEnded) {
+        [self setChecked:!_checked];
+        if (_onTap) {
+            _onTap(_checked);
+        }
+    }
 }
 
-- (IBAction)checkboxClicked:(id)sender
+- (void)setChecked:(BOOL) checked
 {
-    [self setSelected:!self.selected];
+    [self setChecked:checked andEnabled:_enabled];
+}
+
+- (void)setEnabled:(BOOL)enabled
+{
+    [self setChecked:_checked andEnabled:enabled];
 }
 
 - (void)setColor:(UIColor *)color
 {
     _color = color;
-    CGFloat diameter = MIN(self.frame.size.width, self.frame.size.height) - _fontSizeDifference;
-    FAKIonIcons *icon = [FAKIonIcons ios7CircleOutlineIconWithSize:diameter];
-    [icon addAttribute:NSForegroundColorAttributeName value:color];
-    [self setBackgroundImage:[icon imageWithSize:self.frame.size] forState:UIControlStateNormal];
+    [self setChecked:_checked andEnabled:_enabled];
 }
 
-- (void)setSelectedColor:(UIColor *)selectedColor
+- (void)setCheckedColor:(UIColor *)checkedColor
 {
-    _selectedColor = selectedColor;
-    CGFloat diameter = MIN(self.frame.size.width, self.frame.size.height) - _fontSizeDifference;
-    FAKIonIcons *icon = [FAKIonIcons ios7CircleFilledIconWithSize:diameter];
-    [icon addAttribute:NSForegroundColorAttributeName value:selectedColor];
-    [self setBackgroundImage:[icon imageWithSize:self.frame.size] forState:UIControlStateSelected];
+    _checkedColor = checkedColor;
+    [self setChecked:_checked andEnabled:_enabled];
 }
 
 - (void)setDisabledColor:(UIColor *)disabledColor
 {
     _disabledColor = disabledColor;
-    CGFloat diameter = MIN(self.frame.size.width, self.frame.size.height) - _fontSizeDifference;
-    FAKIonIcons *icon;
-    if (self.isSelected) {
-        icon = [FAKIonIcons ios7CircleFilledIconWithSize:diameter];
-    } else {
-        icon = [FAKIonIcons ios7CircleOutlineIconWithSize:diameter];
-    }
-    [icon addAttribute:NSForegroundColorAttributeName value:disabledColor];
-    [self setBackgroundImage:[icon imageWithSize:self.frame.size] forState:UIControlStateDisabled];
+    [self setChecked:_checked andEnabled:_enabled];
 }
 
-- (void)setSelected:(BOOL)selected
+- (void)setChecked:(BOOL) checked andEnabled:(BOOL) enabled
 {
-    [super setSelected:selected];
-    [self setDisabledColor:_disabledColor];
+    _checked = checked;
+    _enabled = enabled;
+    FAKIonIcons *icon = checked ? _checkedIcon : _icon;
+    UIColor *color = enabled ? (checked ? _checkedColor : _color) : _disabledColor;
+    [icon addAttribute:NSForegroundColorAttributeName value:color];
+    _iconImageView.image = [icon imageWithSize:self.frame.size];
+}
+
+- (void)setState:(YYCheckboxState) state;
+{
+    FAKIonIcons *icon;
+    switch (state) {
+        case YYCheckboxStateUnchecked:
+            icon = _icon;
+            break;
+        case YYCheckboxStateChecked:
+            break;
+        case YYCheckboxStateDisabled:
+            break;
+    }
 }
 
 @end

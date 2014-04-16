@@ -13,11 +13,14 @@
 		2F1ACA2118F7BD5000AF5B50 /* YYNewReminderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F1ACA2018F7BD5000AF5B50 /* YYNewReminderView.m */; };
 		2F1ACA2318F7BEF800AF5B50 /* YYNewReminderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F1ACA2218F7BEF800AF5B50 /* YYNewReminderView.xib */; };
 		2F23DF4C18D01CDC00E20E41 /* UIViewController+Addon.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F23DF4B18D01CDC00E20E41 /* UIViewController+Addon.m */; };
+		2F2EF89618FE546200561D3F /* YYCheckbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F2EF89518FE546200561D3F /* YYCheckbox.m */; };
 		2F84EF6918FA84D4003C3F9A /* YYReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F84EF6518FA84D4003C3F9A /* YYReminderViewController.m */; };
 		2F84EF6A18FA84D4003C3F9A /* YYTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F84EF6818FA84D4003C3F9A /* YYTimelineViewController.m */; };
 		2F84EF6D18FA84E1003C3F9A /* YYNewReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F84EF6C18FA84E1003C3F9A /* YYNewReminderViewController.m */; };
 		2F8F519A18D556CD00E45906 /* UIView+Addon.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F8F519918D556CD00E45906 /* UIView+Addon.m */; };
 		2F8F519E18D55F6300E45906 /* YYTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F8F519D18D55F6300E45906 /* YYTextField.m */; };
+		2F9ACD4318FBAF7000547B99 /* YYTextFieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9ACD4218FBAF7000547B99 /* YYTextFieldTableViewCell.m */; };
+		2F9ACD4618FBB4BD00547B99 /* YYMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9ACD4518FBB4BD00547B99 /* YYMessage.m */; };
 		2FCFD96318C1B2BB0080BB2B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FCFD96218C1B2BB0080BB2B /* Foundation.framework */; };
 		2FCFD96518C1B2BB0080BB2B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FCFD96418C1B2BB0080BB2B /* CoreGraphics.framework */; };
 		2FCFD96718C1B2BB0080BB2B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FCFD96618C1B2BB0080BB2B /* UIKit.framework */; };
@@ -35,7 +38,7 @@
 		2FCFD9AD18C1BF7C0080BB2B /* YYNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FCFD9AC18C1BF7C0080BB2B /* YYNavigationController.m */; };
 		2FE1A69818D50DF400400D93 /* YYHTTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE1A69718D50DF400400D93 /* YYHTTPManager.m */; };
 		2FE1A69A18D519BD00400D93 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FE1A69918D519BD00400D93 /* QuartzCore.framework */; };
-		2FE3FC8618E6856400F954C9 /* YYCheckbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE3FC8518E6856400F954C9 /* YYCheckbox.m */; };
+		2FE3FC8618E6856400F954C9 /* YYCheckboxButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE3FC8518E6856400F954C9 /* YYCheckboxButton.m */; };
 		2FE3FC8918E687C400F954C9 /* YYReminderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE3FC8818E687C400F954C9 /* YYReminderTableViewCell.m */; };
 		2FF3A28418D2BD8C00E89CEF /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FF3A28318D2BD8C00E89CEF /* Reachability.m */; };
 		BF97808A10FA46439F396876 /* libPods-YouYun.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C12208A10EB450EAB99243C /* libPods-YouYun.a */; };
@@ -64,6 +67,8 @@
 		2F23DF4A18D01CDC00E20E41 /* UIViewController+Addon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Addon.h"; sourceTree = "<group>"; };
 		2F23DF4B18D01CDC00E20E41 /* UIViewController+Addon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Addon.m"; sourceTree = "<group>"; };
 		2F2BB78D18F3C23000A8CC19 /* YYVariables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYVariables.h; sourceTree = "<group>"; };
+		2F2EF89418FE546200561D3F /* YYCheckbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYCheckbox.h; sourceTree = "<group>"; };
+		2F2EF89518FE546200561D3F /* YYCheckbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYCheckbox.m; sourceTree = "<group>"; };
 		2F84EF6418FA84D4003C3F9A /* YYReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYReminderViewController.h; sourceTree = "<group>"; };
 		2F84EF6518FA84D4003C3F9A /* YYReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYReminderViewController.m; sourceTree = "<group>"; };
 		2F84EF6718FA84D4003C3F9A /* YYTimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTimelineViewController.h; sourceTree = "<group>"; };
@@ -74,6 +79,10 @@
 		2F8F519918D556CD00E45906 /* UIView+Addon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Addon.m"; sourceTree = "<group>"; };
 		2F8F519C18D55F6300E45906 /* YYTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTextField.h; sourceTree = "<group>"; };
 		2F8F519D18D55F6300E45906 /* YYTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTextField.m; sourceTree = "<group>"; };
+		2F9ACD4118FBAF7000547B99 /* YYTextFieldTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTextFieldTableViewCell.h; sourceTree = "<group>"; };
+		2F9ACD4218FBAF7000547B99 /* YYTextFieldTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTextFieldTableViewCell.m; sourceTree = "<group>"; };
+		2F9ACD4418FBB4BD00547B99 /* YYMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYMessage.h; sourceTree = "<group>"; };
+		2F9ACD4518FBB4BD00547B99 /* YYMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYMessage.m; sourceTree = "<group>"; };
 		2FCFD95F18C1B2BB0080BB2B /* YouYun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouYun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FCFD96218C1B2BB0080BB2B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2FCFD96418C1B2BB0080BB2B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -98,8 +107,8 @@
 		2FE1A69618D50DF400400D93 /* YYHTTPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYHTTPManager.h; sourceTree = "<group>"; };
 		2FE1A69718D50DF400400D93 /* YYHTTPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYHTTPManager.m; sourceTree = "<group>"; };
 		2FE1A69918D519BD00400D93 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		2FE3FC8418E6856400F954C9 /* YYCheckbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYCheckbox.h; sourceTree = "<group>"; };
-		2FE3FC8518E6856400F954C9 /* YYCheckbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYCheckbox.m; sourceTree = "<group>"; };
+		2FE3FC8418E6856400F954C9 /* YYCheckboxButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYCheckboxButton.h; sourceTree = "<group>"; };
+		2FE3FC8518E6856400F954C9 /* YYCheckboxButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYCheckboxButton.m; sourceTree = "<group>"; };
 		2FE3FC8718E687C400F954C9 /* YYReminderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYReminderTableViewCell.h; sourceTree = "<group>"; };
 		2FE3FC8818E687C400F954C9 /* YYReminderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYReminderTableViewCell.m; sourceTree = "<group>"; };
 		2FF3A28218D2BD8C00E89CEF /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -187,13 +196,17 @@
 			children = (
 				2F8F519C18D55F6300E45906 /* YYTextField.h */,
 				2F8F519D18D55F6300E45906 /* YYTextField.m */,
-				2FE3FC8418E6856400F954C9 /* YYCheckbox.h */,
-				2FE3FC8518E6856400F954C9 /* YYCheckbox.m */,
+				2FE3FC8418E6856400F954C9 /* YYCheckboxButton.h */,
+				2FE3FC8518E6856400F954C9 /* YYCheckboxButton.m */,
 				2FE3FC8718E687C400F954C9 /* YYReminderTableViewCell.h */,
 				2FE3FC8818E687C400F954C9 /* YYReminderTableViewCell.m */,
 				2F1ACA1F18F7BD5000AF5B50 /* YYNewReminderView.h */,
 				2F1ACA2018F7BD5000AF5B50 /* YYNewReminderView.m */,
 				2F1ACA2218F7BEF800AF5B50 /* YYNewReminderView.xib */,
+				2F9ACD4118FBAF7000547B99 /* YYTextFieldTableViewCell.h */,
+				2F9ACD4218FBAF7000547B99 /* YYTextFieldTableViewCell.m */,
+				2F2EF89418FE546200561D3F /* YYCheckbox.h */,
+				2F2EF89518FE546200561D3F /* YYCheckbox.m */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -331,6 +344,8 @@
 			children = (
 				2FE1A69618D50DF400400D93 /* YYHTTPManager.h */,
 				2FE1A69718D50DF400400D93 /* YYHTTPManager.m */,
+				2F9ACD4418FBB4BD00547B99 /* YYMessage.h */,
+				2F9ACD4518FBB4BD00547B99 /* YYMessage.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -495,18 +510,21 @@
 				2F8F519A18D556CD00E45906 /* UIView+Addon.m in Sources */,
 				2F23DF4C18D01CDC00E20E41 /* UIViewController+Addon.m in Sources */,
 				2FCFD9A918C1B7D60080BB2B /* YYMenuViewController.m in Sources */,
-				2FE3FC8618E6856400F954C9 /* YYCheckbox.m in Sources */,
+				2FE3FC8618E6856400F954C9 /* YYCheckboxButton.m in Sources */,
 				2F84EF6918FA84D4003C3F9A /* YYReminderViewController.m in Sources */,
 				2FCFD96F18C1B2BB0080BB2B /* main.m in Sources */,
+				2F2EF89618FE546200561D3F /* YYCheckbox.m in Sources */,
 				2F1AC74C18CEB8080045FA4F /* YYLoginViewController.m in Sources */,
 				2FE1A69818D50DF400400D93 /* YYHTTPManager.m in Sources */,
 				2F1ACA2118F7BD5000AF5B50 /* YYNewReminderView.m in Sources */,
+				2F9ACD4318FBAF7000547B99 /* YYTextFieldTableViewCell.m in Sources */,
 				2F84EF6D18FA84E1003C3F9A /* YYNewReminderViewController.m in Sources */,
 				2F1AC74818CEB4EB0045FA4F /* YYUser.m in Sources */,
 				2F8F519E18D55F6300E45906 /* YYTextField.m in Sources */,
 				2F84EF6A18FA84D4003C3F9A /* YYTimelineViewController.m in Sources */,
 				2FE3FC8918E687C400F954C9 /* YYReminderTableViewCell.m in Sources */,
 				2FF3A28418D2BD8C00E89CEF /* Reachability.m in Sources */,
+				2F9ACD4618FBB4BD00547B99 /* YYMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

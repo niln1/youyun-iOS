@@ -30,7 +30,10 @@
     
     [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : UI_FG_COLOR} forState:UIControlStateNormal];
     [[UINavigationBar appearance] setTintColor:UI_FG_COLOR];
-
+    
+    // SIAlertView
+    [[SIAlertView appearance] setDestructiveButtonColor:UI_BG_COLOR];
+    
     return YES;
 }
 							
