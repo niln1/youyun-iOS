@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <MarqueeLabel/MarqueeLabel.h>
-#import "YYCheckbox.h"
+#import "YYCheckboxButton.h"
 
 @interface YYReminderTableViewCell : UITableViewCell
 
-@property (nonatomic, weak) IBOutlet YYCheckbox *checkbox;
+@property (nonatomic, weak) IBOutlet YYCheckboxButton *checkbox;
 @property (nonatomic, weak) IBOutlet MarqueeLabel *title;
 @property (nonatomic, weak) IBOutlet MarqueeLabel *subtitle;
 
