@@ -17,6 +17,7 @@ typedef NS_ENUM(NSInteger, YYCheckboxState) {
     YYCheckboxStateDisabled
 };
 
+@property (nonatomic, copy) void (^onTap)(BOOL checked);
 @property (nonatomic) BOOL checked;
 @property (nonatomic) BOOL enabled;
 @property (nonatomic, retain) FAKIonIcons *icon;
