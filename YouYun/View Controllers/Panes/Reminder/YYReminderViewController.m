@@ -144,8 +144,13 @@ static NSString * const REMINDER_TABLE_VIEW_CELL_ID = @"REMINDER_TABLE_VIEW_CELL
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSDictionary *info = _reminders[indexPath.item];
-        
-    }
+        NSString *deleteReminderURL = [NSString stringWithFormat:UPDATE_REMINDER_API, info[@"_id"]];
+        [[YYHTTPManager I] DELETE:deleteReminderURL withJSONParameters:@{@"signature" : @"tempkey"} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            OLog(responseObject);
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            OLog(error);
+        }];
+    }   
 }
 
 @end
