@@ -22,7 +22,8 @@ static NSString *API_CALL_FAILED_NOTIFICATION = @"API_CALL_FAILED_NOTIFICATION";
 
 + (YYHTTPManager *) I;
 - (AFHTTPRequestOperation *)GET:(NSString *) path parameters:(NSDictionary *)parameters success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure;
-- (AFHTTPRequestOperation *)POST:(NSString *) path formWithParameters:(NSDictionary *)parameters success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure;
-- (AFHTTPRequestOperation *)POST:(NSString *) path jsonWithParameters:(NSDictionary *)parameters success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure;
+- (AFHTTPRequestOperation *)POST:(NSString *) path withFormParameters:(NSDictionary *)parameters success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure;
+- (AFHTTPRequestOperation *)POST:(NSString *) path withJSONParameters:(NSDictionary *)parameters success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure;
+- (AFHTTPRequestOperation *)PATCH:(NSString *) path withJSONParameters:(NSDictionary *)parameters success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure;
 
 @end

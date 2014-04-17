@@ -56,12 +56,11 @@ static YYUser *instance;
 - (void)isUserLoggedIn:(void (^) (BOOL userLoggedIn, NSInteger statusCode, NSError *error)) callback
 {
     [[YYHTTPManager I] GET:GET_ACCOUNT_API parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        OLog(responseObject);
         [self parseLoginResponse:responseObject withOperation:operation andCallback:callback];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSHTTPURLResponse *response = operation.response;
-        id responseObject = operation.responseObject;
-        NSString *errorMsg = responseObject[@"description"] ? responseObject[@"description"] : @"Login response invalid.";
-        callback(NO, response.statusCode, [NSError errorWithDomain:GET_ACCOUNT_API code:response.statusCode userInfo:@{@"message" : errorMsg}]);
+        callback(NO, response.statusCode, [NSError errorWithDomain:GET_ACCOUNT_API code:response.statusCode userInfo:@{@"operation" : operation}]);
     }];
 }
 
@@ -70,13 +69,12 @@ static YYUser *instance;
     NSDictionary *formData = @{@"username" : username,
                                @"password" : password};
     
-    [[YYHTTPManager I] POST:LOGIN_API_PATH formWithParameters:formData success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [[YYHTTPManager I] POST:LOGIN_API_PATH withFormParameters:formData success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        OLog(responseObject);
         [self parseLoginResponse:responseObject withOperation:operation andCallback:callback];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSHTTPURLResponse *response = operation.response;
-        id responseObject = operation.responseObject;
-        NSString *errorMsg = responseObject[@"description"] ? responseObject[@"description"] : @"Login response invalid.";
-        callback(NO, response.statusCode, [NSError errorWithDomain:LOGIN_API_PATH code:response.statusCode userInfo:@{@"message" : errorMsg}]);
+        callback(NO, response.statusCode, [NSError errorWithDomain:GET_ACCOUNT_API code:response.statusCode userInfo:@{@"operation" : operation}]);
     }];
 }
 
@@ -85,17 +83,17 @@ static YYUser *instance;
     NSHTTPURLResponse *response = operation.response;
     @try {
         NSAssert([responseObject isKindOfClass:[NSDictionary class]], @"Login response should be a JSON dictionary.");
-        NSAssert(responseObject[@"message"] && responseObject[@"message"][@"_id"] && responseObject[@"message"][@"username"] && responseObject[@"message"][@"userType"] && [responseObject[@"message"][@"userType"] isKindOfClass:[NSNumber class]], @"Login response have name and permission level.");
-        NSInteger userType = [responseObject[@"message"][@"userType"] integerValue];
+        NSAssert(responseObject[@"result"] && responseObject[@"result"][@"_id"] && responseObject[@"result"][@"username"] && responseObject[@"result"][@"userType"] && [responseObject[@"result"][@"userType"] isKindOfClass:[NSNumber class]], @"Login response have name and permission level.");
+        NSInteger userType = [responseObject[@"result"][@"userType"] integerValue];
         NSAssert(userType >= 0 && userType < 6, @"Login response should have user type in range.");
-        _userID = responseObject[@"message"][@"_id"];
-        _username = responseObject[@"message"][@"username"];
+        _userID = responseObject[@"result"][@"_id"];
+        _username = responseObject[@"result"][@"username"];
         _userType = (YYUserType) userType;
         callback(YES, response.statusCode, nil);
     }
     @catch (NSException *exception) {
         NSString *errorMsg = responseObject[@"description"] ? responseObject[@"description"] : @"Login response invalid.";
-        callback(NO, response.statusCode, [NSError errorWithDomain:GET_ACCOUNT_API code:response.statusCode userInfo:@{@"message" : errorMsg}]);
+        callback(NO, response.statusCode, [NSError errorWithDomain:GET_ACCOUNT_API code:response.statusCode userInfo:@{@"result" : errorMsg}]);
     }
 }
 
