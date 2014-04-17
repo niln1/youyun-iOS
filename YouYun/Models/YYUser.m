@@ -55,7 +55,7 @@ static YYUser *instance;
 
 - (void)isUserLoggedIn:(void (^) (BOOL userLoggedIn, NSInteger statusCode, NSError *error)) callback
 {
-    [[YYHTTPManager I] GET:GET_ACCOUNT_API parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [[YYHTTPManager I] GET:GET_ACCOUNT_API withURLEncodedParameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         OLog(responseObject);
         [self parseLoginResponse:responseObject withOperation:operation andCallback:callback];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -99,7 +99,7 @@ static YYUser *instance;
 
 - (void)logout
 {
-    [[YYHTTPManager I] GET:LOGOUT_API_PATH parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [[YYHTTPManager I] GET:LOGOUT_API_PATH withURLEncodedParameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [[NSNotificationCenter defaultCenter] postNotificationName:USER_SESSION_INVALID_NOTIFICATION object:nil];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
     }];

@@ -73,7 +73,7 @@ static NSString * const REMINDER_TABLE_VIEW_CELL_ID = @"REMINDER_TABLE_VIEW_CELL
 - (void)fetchReminders
 {
     NSDictionary *parameter = @{@"signature" : @"tempkey"};
-    [[YYHTTPManager I] GET:GET_REMINDERS_API parameters:parameter success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [[YYHTTPManager I] GET:GET_REMINDERS_API withURLEncodedParameters:parameter success:^(AFHTTPRequestOperation *operation, id responseObject) {
         OLog(responseObject);
         _reminders = [responseObject[@"result"] mutableCopy];
         [_table reloadData];
@@ -133,6 +133,19 @@ static NSString * const REMINDER_TABLE_VIEW_CELL_ID = @"REMINDER_TABLE_VIEW_CELL
         [self setReminderIsDone:isChecked forReminderAtIndexPath:indexPath];
     };
     return cell;
+}
+
+#pragma mark - UITableViewCell
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSDictionary *info = _reminders[indexPath.item];
+        
+    }
 }
 
 @end
