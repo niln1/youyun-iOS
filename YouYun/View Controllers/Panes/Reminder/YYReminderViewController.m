@@ -73,9 +73,9 @@ static NSString * const REMINDER_TABLE_VIEW_CELL_ID = @"REMINDER_TABLE_VIEW_CELL
 - (void)fetchReminders
 {
     NSDictionary *parameter = @{@"signature" : @"tempkey"};
-    [[YYHTTPManager I] GET:GET_REMINDERS_API parameters:parameter success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [[YYHTTPManager I] GET:GET_REMINDERS_API withURLEncodedParameters:parameter success:^(AFHTTPRequestOperation *operation, id responseObject) {
         OLog(responseObject);
-        _reminders = responseObject[@"result"];
+        _reminders = [responseObject[@"result"] mutableCopy];
         [_table reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         OLog(@"failure");
@@ -86,6 +86,26 @@ static NSString * const REMINDER_TABLE_VIEW_CELL_ID = @"REMINDER_TABLE_VIEW_CELL
 - (void)reminderDidChange:(NSNotification *) aNotification
 {
     [self fetchReminders];
+}
+
+
+- (void)setReminderIsDone:(BOOL) isDone forReminderAtIndexPath:(NSIndexPath *) indexPath
+{
+    @try {
+        OLog(_reminders[indexPath.item]);
+        NSString *updateReminderURL = [NSString stringWithFormat:UPDATE_REMINDER_API, _reminders[indexPath.item][@"_id"]];
+        
+        [[YYHTTPManager I] PATCH:updateReminderURL withJSONParameters:@{@"isDone": @(isDone), @"signature" : @"tempkey"} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            _reminders[indexPath.item] = responseObject[@"result"];
+            [_table reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [_table reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }];
+    }
+    @catch (NSException *exception) {
+    }
+    @finally {
+    }
 }
 
 #pragma mark - UIBarButtonItem
@@ -107,7 +127,30 @@ static NSString * const REMINDER_TABLE_VIEW_CELL_ID = @"REMINDER_TABLE_VIEW_CELL
     YYReminderTableViewCell *cell = [_table dequeueReusableCellWithIdentifier:REMINDER_TABLE_VIEW_CELL_ID];
     NSDictionary *info = _reminders[indexPath.row];
     cell.title.text = info[@"message"];
+    BOOL isChecked = [info[@"isDone"] boolValue];
+    if (cell.checkbox.checked != isChecked) [cell.checkbox setChecked:isChecked];
+    cell.checkbox.onTap = ^void (BOOL isChecked) {
+        [self setReminderIsDone:isChecked forReminderAtIndexPath:indexPath];
+    };
     return cell;
+}
+
+#pragma mark - UITableViewCell
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSDictionary *info = _reminders[indexPath.item];
+        NSString *deleteReminderURL = [NSString stringWithFormat:UPDATE_REMINDER_API, info[@"_id"]];
+        [[YYHTTPManager I] DELETE:deleteReminderURL withJSONParameters:@{@"signature" : @"tempkey"} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            OLog(responseObject);
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            OLog(error);
+        }];
+    }   
 }
 
 @end

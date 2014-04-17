@@ -21,8 +21,10 @@ static NSString *API_CALL_FAILED_NOTIFICATION = @"API_CALL_FAILED_NOTIFICATION";
 @property (nonatomic, retain) NSString *serverPort;
 
 + (YYHTTPManager *) I;
-- (AFHTTPRequestOperation *)GET:(NSString *) path parameters:(NSDictionary *)parameters success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure;
-- (AFHTTPRequestOperation *)POST:(NSString *) path formWithParameters:(NSDictionary *)parameters success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure;
-- (AFHTTPRequestOperation *)POST:(NSString *) path jsonWithParameters:(NSDictionary *)parameters success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure;
+- (AFHTTPRequestOperation *)GET:(NSString *) path withURLEncodedParameters:(NSDictionary *)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error)) failure;
+- (AFHTTPRequestOperation *)POST:(NSString *) path withFormParameters:(NSDictionary *)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error)) failure;
+- (AFHTTPRequestOperation *)POST:(NSString *) path withJSONParameters:(NSDictionary *)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error)) failure;
+- (AFHTTPRequestOperation *)PATCH:(NSString *) path withJSONParameters:(NSDictionary *)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error)) failure;
+- (AFHTTPRequestOperation *)DELETE:(NSString *) path withJSONParameters:(NSDictionary *)parameters success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error)) failure;
 
 @end
