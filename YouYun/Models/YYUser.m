@@ -55,7 +55,7 @@ static YYUser *instance;
 
 - (void)isUserLoggedIn:(void (^) (BOOL userLoggedIn, NSInteger statusCode, NSError *error)) callback
 {
-    [[YYHTTPManager I] GET:GET_ACCOUNT_API withURLEncodedParameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [[YYHTTPManager I] GET:GET_ACCOUNT_API withURLEncodedParameters:@{@"signature" : @"tempkey"} success:^(AFHTTPRequestOperation *operation, id responseObject) {
         OLog(responseObject);
         [self parseLoginResponse:responseObject withOperation:operation andCallback:callback];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
