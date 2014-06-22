@@ -38,10 +38,11 @@
  ASBESTOS
  */
 
+#define UI_SELECTION_ALPHA 0.5
 #define UI_FG_COLOR [UIColor whiteColor]
 #define UI_BG_COLOR [UIColor turquoiseColor]
 #define UI_SHADOW_COLOR [UIColor nephritisColor]
-#define UI_SELECTION_COLOR
+#define UI_SELECTION_COLOR [UI_SHADOW_COLOR colorWithAlphaComponent:UI_SELECTION_ALPHA]
 
 #define UI_CORNER_RADIUS 10.0f
 

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "YYHTTPManager.h"
+#import "YYTimeOffDetailViewController.h"
 
 @interface YYTimeOffViewController : UIViewController
 

@@ -68,12 +68,24 @@
     cell.textLabel.text = child[@"username"];
     cell.detailTextLabel.text = nil;
     cell.imageView.image = nil;
+    UIView *selectedBgView = [[UIView alloc] initWithFrame:cell.frame];
+    selectedBgView.backgroundColor = UI_SELECTION_COLOR;
+    cell.selectedBackgroundView = selectedBgView;
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return _children.count;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    YYTimeOffDetailViewController *detail = [self.storyboard instantiateViewControllerWithIdentifier:[YYTimeOffDetailViewController identifier]];
+    [self.navigationController pushViewController:detail animated:YES];
 }
 
 @end

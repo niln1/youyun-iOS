@@ -94,6 +94,29 @@
             </objects>
             <point key="canvasLocation" x="158" y="1543"/>
         </scene>
+        <!--Time Off Detail View Controller-->
+        <scene sceneID="1da-LH-qGZ">
+            <objects>
+                <viewController storyboardIdentifier="YYTimeOffDetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="39Z-pU-pUy" customClass="YYTimeOffDetailViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0j6-Xp-PWu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YYTimeOffDetailViewController" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="59p-Z2-dlF">
+                                <rect key="frame" x="52" y="265" width="238" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e8L-DS-oeg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="629" y="1543"/>
+        </scene>
         <!--Reminder View Controller-->
         <scene sceneID="vNR-3o-usy">
             <objects>

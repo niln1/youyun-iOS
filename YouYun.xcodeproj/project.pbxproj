@@ -41,6 +41,7 @@
 		2FE3FC8918E687C400F954C9 /* YYReminderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE3FC8818E687C400F954C9 /* YYReminderTableViewCell.m */; };
 		2FF3A28418D2BD8C00E89CEF /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FF3A28318D2BD8C00E89CEF /* Reachability.m */; };
 		5131F9D21952A32D004EF3E5 /* YYTimeOffViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5131F9D11952A32D004EF3E5 /* YYTimeOffViewController.m */; };
+		51BE4F3219569DF000D7B350 /* YYTimeOffDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51BE4F3119569DF000D7B350 /* YYTimeOffDetailViewController.m */; };
 		BF97808A10FA46439F396876 /* libPods-YouYun.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C12208A10EB450EAB99243C /* libPods-YouYun.a */; };
 /* End PBXBuildFile section */
 
@@ -113,6 +114,8 @@
 		2FF3A28318D2BD8C00E89CEF /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		5131F9D01952A32D004EF3E5 /* YYTimeOffViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTimeOffViewController.h; sourceTree = "<group>"; };
 		5131F9D11952A32D004EF3E5 /* YYTimeOffViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTimeOffViewController.m; sourceTree = "<group>"; };
+		51BE4F3019569DF000D7B350 /* YYTimeOffDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTimeOffDetailViewController.h; sourceTree = "<group>"; };
+		51BE4F3119569DF000D7B350 /* YYTimeOffDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTimeOffDetailViewController.m; sourceTree = "<group>"; };
 		5C12208A10EB450EAB99243C /* libPods-YouYun.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YouYun.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -371,6 +374,8 @@
 			children = (
 				5131F9D01952A32D004EF3E5 /* YYTimeOffViewController.h */,
 				5131F9D11952A32D004EF3E5 /* YYTimeOffViewController.m */,
+				51BE4F3019569DF000D7B350 /* YYTimeOffDetailViewController.h */,
+				51BE4F3119569DF000D7B350 /* YYTimeOffDetailViewController.m */,
 			);
 			path = Pickup;
 			sourceTree = "<group>";
@@ -521,6 +526,7 @@
 				2F84EF6918FA84D4003C3F9A /* YYReminderViewController.m in Sources */,
 				2FCFD96F18C1B2BB0080BB2B /* main.m in Sources */,
 				2F2EF89618FE546200561D3F /* YYCheckbox.m in Sources */,
+				51BE4F3219569DF000D7B350 /* YYTimeOffDetailViewController.m in Sources */,
 				2F1AC74C18CEB8080045FA4F /* YYLoginViewController.m in Sources */,
 				2FE1A69818D50DF400400D93 /* YYHTTPManager.m in Sources */,
 				2F1ACA2118F7BD5000AF5B50 /* YYNewReminderView.m in Sources */,
