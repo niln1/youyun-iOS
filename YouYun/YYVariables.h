@@ -45,6 +45,8 @@
 
 #define UI_CORNER_RADIUS 10.0f
 
+#define UI_DEFAULT_CELL_ID @"UITableViewCell"
+
 /************************************************
  * API
  ************************************************/
@@ -53,6 +55,7 @@ static NSString * const LOGIN_API_PATH = @"/api/v1/account/login";
 static NSString * const LOGOUT_API_PATH = @"/api/v1/account/logout";
 static NSString * const GET_ACCOUNT_API = @"/api/v1/account";
 static NSString * const GET_REMINDERS_API = @"/api/v1/reminders";
+static NSString * const GET_CHILDREN_API = @"/api/v1/users/child";
 static NSString * const CREATE_REMINDER_API = @"/api/v1/reminders";
 static NSString * const UPDATE_REMINDER_API = @"/api/v1/reminders/%@";
 static NSString * const DELETE_REMINDER_API = @"/api/v1/reminders/%@";

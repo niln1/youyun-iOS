@@ -40,6 +40,7 @@
 		2FE1A69A18D519BD00400D93 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FE1A69918D519BD00400D93 /* QuartzCore.framework */; };
 		2FE3FC8918E687C400F954C9 /* YYReminderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE3FC8818E687C400F954C9 /* YYReminderTableViewCell.m */; };
 		2FF3A28418D2BD8C00E89CEF /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FF3A28318D2BD8C00E89CEF /* Reachability.m */; };
+		5131F9D21952A32D004EF3E5 /* YYTimeOffViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5131F9D11952A32D004EF3E5 /* YYTimeOffViewController.m */; };
 		BF97808A10FA46439F396876 /* libPods-YouYun.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C12208A10EB450EAB99243C /* libPods-YouYun.a */; };
 /* End PBXBuildFile section */
 
@@ -110,6 +111,8 @@
 		2FE3FC8818E687C400F954C9 /* YYReminderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYReminderTableViewCell.m; sourceTree = "<group>"; };
 		2FF3A28218D2BD8C00E89CEF /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		2FF3A28318D2BD8C00E89CEF /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		5131F9D01952A32D004EF3E5 /* YYTimeOffViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTimeOffViewController.h; sourceTree = "<group>"; };
+		5131F9D11952A32D004EF3E5 /* YYTimeOffViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTimeOffViewController.m; sourceTree = "<group>"; };
 		5C12208A10EB450EAB99243C /* libPods-YouYun.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YouYun.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -319,6 +322,7 @@
 		2FCFD9A618C1B7C30080BB2B /* Panes */ = {
 			isa = PBXGroup;
 			children = (
+				5131F9CF1952A177004EF3E5 /* Pickup */,
 				2F84EF6318FA84D4003C3F9A /* Reminder */,
 				2F84EF6618FA84D4003C3F9A /* Timeline */,
 			);
@@ -360,6 +364,15 @@
 				2FF3A28318D2BD8C00E89CEF /* Reachability.m */,
 			);
 			path = Reachability;
+			sourceTree = "<group>";
+		};
+		5131F9CF1952A177004EF3E5 /* Pickup */ = {
+			isa = PBXGroup;
+			children = (
+				5131F9D01952A32D004EF3E5 /* YYTimeOffViewController.h */,
+				5131F9D11952A32D004EF3E5 /* YYTimeOffViewController.m */,
+			);
+			path = Pickup;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -515,6 +528,7 @@
 				2F84EF6D18FA84E1003C3F9A /* YYNewReminderViewController.m in Sources */,
 				2F1AC74818CEB4EB0045FA4F /* YYUser.m in Sources */,
 				2F8F519E18D55F6300E45906 /* YYTextField.m in Sources */,
+				5131F9D21952A32D004EF3E5 /* YYTimeOffViewController.m in Sources */,
 				2F84EF6A18FA84D4003C3F9A /* YYTimelineViewController.m in Sources */,
 				2FE3FC8918E687C400F954C9 /* YYReminderTableViewCell.m in Sources */,
 				2FF3A28418D2BD8C00E89CEF /* Reachability.m in Sources */,

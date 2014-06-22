@@ -15,6 +15,8 @@
 #import "YYNavigationController.h"
 #import "YYUser.h"
 
+#define LOGOUT_MENU_ITEM @"登出"
+
 @interface YYMenuViewController : UIViewController
 
 @property (nonatomic, weak) IBOutlet UITableView *table;
@@ -27,6 +29,7 @@
 @property (nonatomic, retain) NSArray *menuItems;
 @property (nonatomic, retain) NSDictionary *selectedMenuItem;
 
+- (void)reload;
 - (void)loadInitialMenuItem;
 - (void)loadMenuItemAtIndex:(NSInteger) index;
 

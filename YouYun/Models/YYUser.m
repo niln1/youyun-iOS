@@ -10,10 +10,6 @@
 
 @interface YYUser ()
 
-@property (nonatomic) YYUserType userType;
-@property (nonatomic, retain) NSString *username;
-@property (nonatomic, retain) NSString *userID;
-
 @end
 
 @implementation YYUser
@@ -35,9 +31,12 @@ static YYUser *instance;
     self = [super init];
     if (self) {
         // TODO
-        _userType = YYUserTypeAdmin;
-        _username = @"";
-        _userID = @"";
+        NSString *userID = [[NSUserDefaults standardUserDefaults] objectForKey:USER_ID_KEY];
+        NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:USERNAME_KEY];
+        NSNumber *userType = [[NSUserDefaults standardUserDefaults] objectForKey:USER_TYPE_KEY];
+        _userID = userID ? userID : @"";
+        _userType = userType ? [userType boolValue] : YYUserTypeStudent;
+        _username = username ? username : @"";
     }
     return self;
 }
@@ -51,6 +50,25 @@ static YYUser *instance;
         case YYUserTypeParent: return @"parent";
         case YYUserTypeAlumni: return @"alumni";
     }
+}
+
+- (void)setUserID:(NSString *)userID
+{
+    _userID = userID;
+    [[NSUserDefaults standardUserDefaults] setObject:userID forKey:USER_ID_KEY];
+}
+
+- (void)setUsername:(NSString *)username
+{
+    _username = username;
+    [[NSUserDefaults standardUserDefaults] setObject:username forKey:USERNAME_KEY];
+}
+
+- (void)setUserType:(YYUserType)userType
+{
+    _userType = userType;
+    [[NSUserDefaults standardUserDefaults] setObject:@(userType) forKey:USER_TYPE_KEY];
+    
 }
 
 - (void)isUserLoggedIn:(void (^) (BOOL userLoggedIn, NSInteger statusCode, NSError *error)) callback
@@ -71,7 +89,13 @@ static YYUser *instance;
     
     [[YYHTTPManager I] POST:LOGIN_API_PATH withFormParameters:formData success:^(AFHTTPRequestOperation *operation, id responseObject) {
         OLog(responseObject);
-        [self parseLoginResponse:responseObject withOperation:operation andCallback:callback];
+        [self parseLoginResponse:responseObject withOperation:operation andCallback:^(BOOL userLoggedIn, NSInteger statusCode, NSError *error) {
+            if (userLoggedIn) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:USER_LOG_IN_NOTIFICATION object:nil];
+                
+            }
+            callback(userLoggedIn, statusCode, error);
+        }];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSHTTPURLResponse *response = operation.response;
         callback(NO, response.statusCode, [NSError errorWithDomain:GET_ACCOUNT_API code:response.statusCode userInfo:@{@"operation" : operation}]);
@@ -100,6 +124,11 @@ static YYUser *instance;
 - (void)logout
 {
     [[YYHTTPManager I] GET:LOGOUT_API_PATH withURLEncodedParameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
+        for (NSHTTPCookie *cookie in cookies) {
+            [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
+        }
+        
         [[NSNotificationCenter defaultCenter] postNotificationName:USER_SESSION_INVALID_NOTIFICATION object:nil];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
     }];

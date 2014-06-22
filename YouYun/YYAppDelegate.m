@@ -23,10 +23,10 @@
     _drawer.delegate = self;
     
     // Set menu view controller for drawer
-    YYMenuViewController *menu = [_drawer.storyboard instantiateViewControllerWithIdentifier:[YYMenuViewController identifier]];
-    [_drawer setDrawerViewController:menu forDirection:MSDynamicsDrawerDirectionLeft];
-    menu.drawer = _drawer;
-    [menu loadInitialMenuItem];
+    _menu = [_drawer.storyboard instantiateViewControllerWithIdentifier:[YYMenuViewController identifier]];
+    [_drawer setDrawerViewController:_menu forDirection:MSDynamicsDrawerDirectionLeft];
+    _menu.drawer = _drawer;
+    [_menu loadInitialMenuItem];
     
     [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : UI_FG_COLOR} forState:UIControlStateNormal];
     [[UINavigationBar appearance] setTintColor:UI_FG_COLOR];
@@ -41,26 +41,29 @@
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:USER_SESSION_INVALID_NOTIFICATION object:nil];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:USER_SESSION_INVALID_NOTIFICATION object:nil];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLoginViewController) name:USER_SESSION_INVALID_NOTIFICATION object:nil];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLoginViewController) name:USER_SESSION_INVALID_NOTIFICATION object:nil];
     [[YYUser I] isUserLoggedIn:^(BOOL userLoggedIn, NSInteger statusCode, NSError *error) {
         if (!userLoggedIn) [self showLoginViewController];
+        else {
+            [_menu reload];
+        }
     }];
 }
 

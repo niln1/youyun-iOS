@@ -56,6 +56,44 @@
             </objects>
             <point key="canvasLocation" x="158" y="831"/>
         </scene>
+        <!--Time Off View Controller-->
+        <scene sceneID="efJ-lw-BcZ">
+            <objects>
+                <viewController storyboardIdentifier="YYTimeOffViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qCg-EC-eqv" customClass="YYTimeOffViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rcO-Z4-stg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="7aj-Fm-DeS">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UITableViewCell" id="6N6-xQ-EyD">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6N6-xQ-EyD" id="Kw8-9a-Y7v">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="qCg-EC-eqv" id="zLN-Kc-acm"/>
+                                    <outlet property="delegate" destination="qCg-EC-eqv" id="56H-FM-D5O"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="table" destination="7aj-Fm-DeS" id="oMa-4N-SEb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Bw-H7-1vf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="158" y="1543"/>
+        </scene>
         <!--Reminder View Controller-->
         <scene sceneID="vNR-3o-usy">
             <objects>

@@ -9,7 +9,7 @@
 		<key>protocol</key>
 		<string>http</string>
 		<key>host</key>
-		<string>127.0.0.1</string>
+		<string>localhost</string>
 	</dict>
 	<key>school color</key>
 	<string></string>
@@ -17,6 +17,8 @@
 	<string>平和双语学校</string>
 	<key>module identifiers</key>
 	<dict>
+		<key>TimeOff</key>
+		<string>YYTimeOffViewController</string>
 		<key>Reminder</key>
 		<string>YYReminderViewController</string>
 		<key>Timeline</key>
@@ -97,6 +99,12 @@
 				<string>提醒事项</string>
 				<key>module</key>
 				<string>Reminder</string>
+			</dict>
+			<dict>
+				<key>title</key>
+				<string>接车信息</string>
+				<key>module</key>
+				<string>TimeOff</string>
 			</dict>
 		</array>
 		<key>admin</key>

@@ -48,12 +48,20 @@ static NSString * const MENU_TABLE_VIEW_CELL_ID = @"MENU_TABLE_VIEW_CELL_ID";
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(usedLoggedOut) name:USER_SESSION_INVALID_NOTIFICATION object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reload) name:USER_LOG_IN_NOTIFICATION object:nil];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)initialize
@@ -63,8 +71,11 @@ static NSString * const MENU_TABLE_VIEW_CELL_ID = @"MENU_TABLE_VIEW_CELL_ID";
 
 - (void)reload {
     @try {
+        OLog([[YYUser I] typeKey]);
         NSDictionary *settings = [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"settings" withExtension:@"plist"]];
-        _menuItems = settings[@"menu items"][[[YYUser I] typeKey]];
+        NSMutableArray *menuItems = [settings[@"menu items"][[[YYUser I] typeKey]] mutableCopy];
+        [menuItems addObject:@{@"title": LOGOUT_MENU_ITEM, @"module": @""}];
+        _menuItems = menuItems;
         
         // Validate entries
         NSAssert(_menuItems && _menuItems.count, @"Settings file should have menu items.");
@@ -76,12 +87,20 @@ static NSString * const MENU_TABLE_VIEW_CELL_ID = @"MENU_TABLE_VIEW_CELL_ID";
         for (NSString *key in [_moduleIdentifiers allKeys]) {
             NSAssert(key && _moduleIdentifiers[key], @"Module should have a key and an identifier.");
         }
+        
+        [_table reloadData];
+        [self loadInitialMenuItem];
     }
     @catch (NSException *exception) {
         // TODO
     }
     @finally {
     }
+}
+
+- (void)usedLoggedOut
+{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:LAST_VISITED_PAGE_KEY];
 }
 
 - (void)loadInitialMenuItem
@@ -101,13 +120,22 @@ static NSString * const MENU_TABLE_VIEW_CELL_ID = @"MENU_TABLE_VIEW_CELL_ID";
 
 - (void)transitionToViewController:(NSDictionary *) info
 {
+    [self transitionToViewController:info animated:NO];
+}
+
+- (void)transitionToViewController:(NSDictionary *) info animated:(BOOL) animateTransition
+{
     if (info == _selectedMenuItem) return;
+    else if ([info[@"title"] isEqualToString:LOGOUT_MENU_ITEM]) {
+        [_drawer setPaneViewController:_drawer.paneViewController animated:_drawer.paneViewController != nil completion:nil];
+        [[YYUser I] logout];
+        return;
+    }
     
     @try {
         _selectedMenuItem = info;
         [[NSUserDefaults standardUserDefaults] setObject:info forKey:LAST_VISITED_PAGE_KEY];
         
-        BOOL animateTransition = _drawer.paneViewController != nil;
         UIViewController *viewController = [_drawer.storyboard instantiateViewControllerWithIdentifier:_moduleIdentifiers[info[@"module"]]];
         viewController.navigationItem.title = info[@"title"];
         [self setMenuIconForViewController:viewController];
@@ -171,7 +199,7 @@ static NSString * const MENU_TABLE_VIEW_CELL_ID = @"MENU_TABLE_VIEW_CELL_ID";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDictionary *info = _menuItems[indexPath.row];
-    [self transitionToViewController:info];
+    [self transitionToViewController:info animated:YES];
 }
 
 @end

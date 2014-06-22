@@ -13,6 +13,11 @@
 @class YYHTTPManager;
 
 static NSString *USER_SESSION_INVALID_NOTIFICATION = @"USER_SESSION_INVALID_NOTIFICATION";
+static NSString *USER_LOG_IN_NOTIFICATION = @"USER_LOG_IN_NOTIFICATION";
+
+static NSString *USER_ID_KEY = @"USER_ID_KEY";
+static NSString *USERNAME_KEY = @"USERNAME_KEY";
+static NSString *USER_TYPE_KEY = @"USER_TYPE_KEY";
 
 typedef NS_ENUM(NSInteger, YYUserType) {
     YYUserTypeAdmin,
@@ -24,6 +29,11 @@ typedef NS_ENUM(NSInteger, YYUserType) {
 };
 
 @interface YYUser : NSObject
+
+@property (nonatomic, retain, readonly) NSString *userID;
+@property (nonatomic, retain, readonly) NSString *username;
+@property (nonatomic, readonly) YYUserType userType;
+
 
 + (YYUser *)I;
 - (NSString *) typeKey;
