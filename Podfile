@@ -14,6 +14,7 @@ target "YouYun" do
 	pod 'MarqueeLabel'
 	pod 'KNSemiModalViewController'
 	pod 'DateCellsController'
+	pod 'socket.IO'
 end
 
 target "YouYunTests" do
