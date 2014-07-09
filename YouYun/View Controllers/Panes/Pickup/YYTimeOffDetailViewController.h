@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <socket.IO/SocketIO.h>
+#import <socket.IO/SocketIOPacket.h>
+#import "YYHTTPManager.h"
 
-@interface YYTimeOffDetailViewController : UIViewController
+@interface YYTimeOffDetailViewController : UIViewController<SocketIODelegate>
+
+@property (nonatomic, retain) SocketIO *socket;
 
 @end

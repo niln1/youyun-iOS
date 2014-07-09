@@ -49,6 +49,12 @@
 #define UI_DEFAULT_CELL_ID @"UITableViewCell"
 
 /************************************************
+ * Socket Events
+ ************************************************/
+
+static NSString * const CREATE_PICKUP_REPORT_EVENT = @"pickup::create";
+
+/************************************************
  * API
  ************************************************/
 
