@@ -17,6 +17,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) MSDynamicsDrawerViewController *drawer;
+@property (strong, nonatomic) YYMenuViewController *menu;
 @property (strong, nonatomic) YYUser *user;
 
 @end

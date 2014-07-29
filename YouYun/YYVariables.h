@@ -38,12 +38,21 @@
  ASBESTOS
  */
 
+#define UI_SELECTION_ALPHA 0.5
 #define UI_FG_COLOR [UIColor whiteColor]
 #define UI_BG_COLOR [UIColor turquoiseColor]
 #define UI_SHADOW_COLOR [UIColor nephritisColor]
-#define UI_SELECTION_COLOR
+#define UI_SELECTION_COLOR [UI_SHADOW_COLOR colorWithAlphaComponent:UI_SELECTION_ALPHA]
 
 #define UI_CORNER_RADIUS 10.0f
+
+#define UI_DEFAULT_CELL_ID @"UITableViewCell"
+
+/************************************************
+ * Socket Events
+ ************************************************/
+
+static NSString * const CREATE_PICKUP_REPORT_EVENT = @"pickup::create";
 
 /************************************************
  * API
@@ -53,6 +62,7 @@ static NSString * const LOGIN_API_PATH = @"/api/v1/account/login";
 static NSString * const LOGOUT_API_PATH = @"/api/v1/account/logout";
 static NSString * const GET_ACCOUNT_API = @"/api/v1/account";
 static NSString * const GET_REMINDERS_API = @"/api/v1/reminders";
+static NSString * const GET_CHILDREN_API = @"/api/v1/users/child";
 static NSString * const CREATE_REMINDER_API = @"/api/v1/reminders";
 static NSString * const UPDATE_REMINDER_API = @"/api/v1/reminders/%@";
 static NSString * const DELETE_REMINDER_API = @"/api/v1/reminders/%@";
