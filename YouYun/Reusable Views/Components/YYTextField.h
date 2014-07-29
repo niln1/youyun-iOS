@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <FlatUIKit/FlatUIKit.h>
-#import <FlatUIKit/UIColor+FlatUI.h>
+#import "FlatUIKit.h"
 #import "UIView+Addon.h"
 
 @interface YYTextField : UITextField

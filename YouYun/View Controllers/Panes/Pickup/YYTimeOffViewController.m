@@ -85,6 +85,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     YYTimeOffDetailViewController *detail = [self.storyboard instantiateViewControllerWithIdentifier:[YYTimeOffDetailViewController identifier]];
+    detail.child = _children[indexPath.row];
     [self.navigationController pushViewController:detail animated:YES];
 }
 

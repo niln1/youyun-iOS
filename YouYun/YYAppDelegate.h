@@ -20,4 +20,6 @@
 @property (strong, nonatomic) YYMenuViewController *menu;
 @property (strong, nonatomic) YYUser *user;
 
+- (void)reloadMenu;
+
 @end

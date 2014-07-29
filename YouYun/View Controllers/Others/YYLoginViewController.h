@@ -7,16 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <FlatUIKit/FlatUIKit.h>
 #import <CRMotionView/CRMotionView.h>
 #import <UITextField+Shake/UITextField+Shake.h>
 #import <QuartzCore/QuartzCore.h>
-#import <FlatUIKit/UIColor+FlatUI.h>
 #import <StackBluriOS/UIImage+StackBlur.h>
+#import "FlatUIKit.h"
 #import "UIView+Addon.h"
 #import "YYHTTPManager.h"
 #import "YYUser.h"
 #import "YYVariables.h"
+
+@class YYAppDelegate;
 
 @interface YYLoginViewController : UIViewController
 
