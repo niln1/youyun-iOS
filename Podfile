@@ -14,6 +14,7 @@ target "YouYun" do
 	pod 'KNSemiModalViewController'
 	pod 'DateCellsController'
 	pod 'socket.IO'
+	pod 'Underscore.m'
 end
 
 target "YouYunTests" do

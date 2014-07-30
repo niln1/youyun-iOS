@@ -41,6 +41,7 @@
 		2FE3FC8918E687C400F954C9 /* YYReminderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FE3FC8818E687C400F954C9 /* YYReminderTableViewCell.m */; };
 		2FF3A28418D2BD8C00E89CEF /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FF3A28318D2BD8C00E89CEF /* Reachability.m */; };
 		5131F9D21952A32D004EF3E5 /* YYTimeOffViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5131F9D11952A32D004EF3E5 /* YYTimeOffViewController.m */; };
+		518DF2031988D732003A43F7 /* NSDate+Addon.m in Sources */ = {isa = PBXBuildFile; fileRef = 518DF2021988D732003A43F7 /* NSDate+Addon.m */; };
 		51BE4F3219569DF000D7B350 /* YYTimeOffDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51BE4F3119569DF000D7B350 /* YYTimeOffDetailViewController.m */; };
 		51DB0F1219875E5D006F3EF6 /* FUIAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 51DB0EED19875E5D006F3EF6 /* FUIAlertView.m */; };
 		51DB0F1319875E5D006F3EF6 /* FUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 51DB0EEF19875E5D006F3EF6 /* FUIButton.m */; };
@@ -61,6 +62,7 @@
 		51DB0F2219875E5D006F3EF6 /* UITabBar+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 51DB0F0D19875E5D006F3EF6 /* UITabBar+FlatUI.m */; };
 		51DB0F2319875E5D006F3EF6 /* UITableViewCell+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 51DB0F0F19875E5D006F3EF6 /* UITableViewCell+FlatUI.m */; };
 		51DB0F2419875E5D006F3EF6 /* UIToolbar+FlatUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 51DB0F1119875E5D006F3EF6 /* UIToolbar+FlatUI.m */; };
+		51EB12521988D2C6001AAB09 /* YYPickupReportDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 51EB12511988D2C6001AAB09 /* YYPickupReportDetailTableViewCell.m */; };
 		BF97808A10FA46439F396876 /* libPods-YouYun.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C12208A10EB450EAB99243C /* libPods-YouYun.a */; };
 /* End PBXBuildFile section */
 
@@ -133,6 +135,8 @@
 		2FF3A28318D2BD8C00E89CEF /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		5131F9D01952A32D004EF3E5 /* YYTimeOffViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTimeOffViewController.h; sourceTree = "<group>"; };
 		5131F9D11952A32D004EF3E5 /* YYTimeOffViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTimeOffViewController.m; sourceTree = "<group>"; };
+		518DF2011988D732003A43F7 /* NSDate+Addon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Addon.h"; sourceTree = "<group>"; };
+		518DF2021988D732003A43F7 /* NSDate+Addon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Addon.m"; sourceTree = "<group>"; };
 		51BE4F3019569DF000D7B350 /* YYTimeOffDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTimeOffDetailViewController.h; sourceTree = "<group>"; };
 		51BE4F3119569DF000D7B350 /* YYTimeOffDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTimeOffDetailViewController.m; sourceTree = "<group>"; };
 		51DB0EEB19875E5D006F3EF6 /* FlatUIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlatUIKit.h; sourceTree = "<group>"; };
@@ -174,6 +178,8 @@
 		51DB0F0F19875E5D006F3EF6 /* UITableViewCell+FlatUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+FlatUI.m"; sourceTree = "<group>"; };
 		51DB0F1019875E5D006F3EF6 /* UIToolbar+FlatUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIToolbar+FlatUI.h"; sourceTree = "<group>"; };
 		51DB0F1119875E5D006F3EF6 /* UIToolbar+FlatUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIToolbar+FlatUI.m"; sourceTree = "<group>"; };
+		51EB12501988D2C6001AAB09 /* YYPickupReportDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYPickupReportDetailTableViewCell.h; sourceTree = "<group>"; };
+		51EB12511988D2C6001AAB09 /* YYPickupReportDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYPickupReportDetailTableViewCell.m; sourceTree = "<group>"; };
 		5C12208A10EB450EAB99243C /* libPods-YouYun.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YouYun.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -248,6 +254,8 @@
 			children = (
 				2F8F519818D556CD00E45906 /* UIView+Addon.h */,
 				2F8F519918D556CD00E45906 /* UIView+Addon.m */,
+				518DF2011988D732003A43F7 /* NSDate+Addon.h */,
+				518DF2021988D732003A43F7 /* NSDate+Addon.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -266,6 +274,8 @@
 				2F9ACD4218FBAF7000547B99 /* YYTextFieldTableViewCell.m */,
 				2F2EF89418FE546200561D3F /* YYCheckbox.h */,
 				2F2EF89518FE546200561D3F /* YYCheckbox.m */,
+				51EB12501988D2C6001AAB09 /* YYPickupReportDetailTableViewCell.h */,
+				51EB12511988D2C6001AAB09 /* YYPickupReportDetailTableViewCell.m */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -638,6 +648,7 @@
 				51DB0F1719875E5D006F3EF6 /* FUISwitch.m in Sources */,
 				51DB0F1219875E5D006F3EF6 /* FUIAlertView.m in Sources */,
 				51DB0F1819875E5D006F3EF6 /* FUITextField.m in Sources */,
+				51EB12521988D2C6001AAB09 /* YYPickupReportDetailTableViewCell.m in Sources */,
 				51DB0F2019875E5D006F3EF6 /* UISlider+FlatUI.m in Sources */,
 				51DB0F1419875E5D006F3EF6 /* FUICellBackgroundView.m in Sources */,
 				51BE4F3219569DF000D7B350 /* YYTimeOffDetailViewController.m in Sources */,
@@ -647,6 +658,7 @@
 				2F1ACA2118F7BD5000AF5B50 /* YYNewReminderView.m in Sources */,
 				51DB0F1E19875E5D006F3EF6 /* UIPopoverController+FlatUI.m in Sources */,
 				2F9ACD4318FBAF7000547B99 /* YYTextFieldTableViewCell.m in Sources */,
+				518DF2031988D732003A43F7 /* NSDate+Addon.m in Sources */,
 				2F84EF6D18FA84E1003C3F9A /* YYNewReminderViewController.m in Sources */,
 				2F1AC74818CEB4EB0045FA4F /* YYUser.m in Sources */,
 				51DB0F1A19875E5D006F3EF6 /* UIColor+FlatUI.m in Sources */,

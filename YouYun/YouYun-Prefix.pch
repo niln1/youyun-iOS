@@ -13,6 +13,8 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+    #import <Underscore.m/Underscore.h>
+    #define _ Underscore
     #import "UIColor+FlatUI.h"
     #import "UIViewController+Addon.h"
     #import "YYVariables.h"

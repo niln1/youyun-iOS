@@ -70,32 +70,34 @@ static NSString * const MENU_TABLE_VIEW_CELL_ID = @"MENU_TABLE_VIEW_CELL_ID";
 }
 
 - (void)reload {
-    @try {
-        OLog([[YYUser I] typeKey]);
-        NSDictionary *settings = [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"settings" withExtension:@"plist"]];
-        NSMutableArray *menuItems = [settings[@"menu items"][[[YYUser I] typeKey]] mutableCopy];
-        [menuItems addObject:@{@"title": LOGOUT_MENU_ITEM, @"module": @""}];
-        _menuItems = menuItems;
-        
-        // Validate entries
-        NSAssert(_menuItems && _menuItems.count, @"Settings file should have menu items.");
-        for (NSDictionary *item in _menuItems) {
-            NSAssert(item[@"module"] && item[@"title"], @"Menu item should have a module and a title.");
+    dispatch_async(dispatch_get_main_queue(), ^{
+        @try {
+            OLog([[YYUser I] typeKey]);
+            NSDictionary *settings = [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"settings" withExtension:@"plist"]];
+            NSMutableArray *menuItems = [settings[@"menu items"][[[YYUser I] typeKey]] mutableCopy];
+            [menuItems addObject:@{@"title": LOGOUT_MENU_ITEM, @"module": @""}];
+            _menuItems = menuItems;
+            
+            // Validate entries
+            NSAssert(_menuItems && _menuItems.count, @"Settings file should have menu items.");
+            for (NSDictionary *item in _menuItems) {
+                NSAssert(item[@"module"] && item[@"title"], @"Menu item should have a module and a title.");
+            }
+            
+            _moduleIdentifiers = settings[@"module identifiers"];
+            for (NSString *key in [_moduleIdentifiers allKeys]) {
+                NSAssert(key && _moduleIdentifiers[key], @"Module should have a key and an identifier.");
+            }
+            
+            [_table reloadData];
+            [self loadInitialMenuItem];
         }
-        
-        _moduleIdentifiers = settings[@"module identifiers"];
-        for (NSString *key in [_moduleIdentifiers allKeys]) {
-            NSAssert(key && _moduleIdentifiers[key], @"Module should have a key and an identifier.");
+        @catch (NSException *exception) {
+            // TODO
         }
-        
-        [_table reloadData];
-        [self loadInitialMenuItem];
-    }
-    @catch (NSException *exception) {
-        // TODO
-    }
-    @finally {
-    }
+        @finally {
+        }
+    });
 }
 
 - (void)userLoggedIn
@@ -112,6 +114,7 @@ static NSString * const MENU_TABLE_VIEW_CELL_ID = @"MENU_TABLE_VIEW_CELL_ID";
 {
     // Retrieve last visited page
     NSDictionary *lastVisited = [[NSUserDefaults standardUserDefaults] dictionaryForKey:LAST_VISITED_PAGE_KEY];
+    OLog(lastVisited);
     NSDictionary *info = lastVisited ? lastVisited : _menuItems[0];
     [self transitionToViewController:info];
 }
@@ -143,6 +146,9 @@ static NSString * const MENU_TABLE_VIEW_CELL_ID = @"MENU_TABLE_VIEW_CELL_ID";
         
         UIViewController *viewController = [_drawer.storyboard instantiateViewControllerWithIdentifier:_moduleIdentifiers[info[@"module"]]];
         viewController.navigationItem.title = info[@"title"];
+        OLog(_moduleIdentifiers[info[@"module"]]);
+        NSAssert(viewController != nil, @"ViewController shouldn't be nil");
+        
         [self setMenuIconForViewController:viewController];
         
         YYNavigationController *navi = [[YYNavigationController alloc] initWithRootViewController:viewController];
@@ -150,6 +156,7 @@ static NSString * const MENU_TABLE_VIEW_CELL_ID = @"MENU_TABLE_VIEW_CELL_ID";
         [_drawer setPaneViewController:navi animated:animateTransition completion:nil];
     }
     @catch (NSException *exception) {
+        OLog(exception);
     }
     @finally {
     }
