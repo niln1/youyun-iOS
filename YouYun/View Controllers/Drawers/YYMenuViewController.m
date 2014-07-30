@@ -49,8 +49,8 @@ static NSString * const MENU_TABLE_VIEW_CELL_ID = @"MENU_TABLE_VIEW_CELL_ID";
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(usedLoggedOut) name:USER_SESSION_INVALID_NOTIFICATION object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reload) name:USER_LOG_IN_NOTIFICATION object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLoggedOut) name:USER_SESSION_INVALID_NOTIFICATION object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLoggedIn) name:USER_LOG_IN_NOTIFICATION object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -98,7 +98,12 @@ static NSString * const MENU_TABLE_VIEW_CELL_ID = @"MENU_TABLE_VIEW_CELL_ID";
     }
 }
 
-- (void)usedLoggedOut
+- (void)userLoggedIn
+{
+    [self reload];
+}
+
+- (void)userLoggedOut
 {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:LAST_VISITED_PAGE_KEY];
 }

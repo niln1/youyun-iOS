@@ -31,7 +31,12 @@
     _socket = [[SocketIO alloc] initWithDelegate:self];
     [_socket connectToHost:[YYHTTPManager I].serverHost onPort:[[YYHTTPManager I].serverPort integerValue]];
     
-    [_socket sendEvent:CREATE_PICKUP_REPORT_EVENT withData:@{}];
+    OLog(_child);
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [_socket sendEvent:FETCH_CHILD_PICKUP_REPORT_EVENT withData:@{@"childId" : _child[@"_id"]}];
 }
 
 - (void)didReceiveMemoryWarning

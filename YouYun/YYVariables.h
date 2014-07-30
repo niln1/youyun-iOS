@@ -53,6 +53,7 @@
  ************************************************/
 
 static NSString * const CREATE_PICKUP_REPORT_EVENT = @"pickup::create";
+static NSString * const FETCH_CHILD_PICKUP_REPORT_EVENT = @"pickup::parent::get-child-report";
 
 /************************************************
  * API

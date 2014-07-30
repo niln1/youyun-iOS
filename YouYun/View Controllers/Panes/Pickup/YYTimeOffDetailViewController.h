@@ -14,5 +14,6 @@
 @interface YYTimeOffDetailViewController : UIViewController<SocketIODelegate>
 
 @property (nonatomic, retain) SocketIO *socket;
+@property (nonatomic, retain) NSDictionary *child;
 
 @end

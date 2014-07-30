@@ -31,6 +31,7 @@ static NSString * const REMINDER_TABLE_VIEW_CELL_ID = @"REMINDER_TABLE_VIEW_CELL
     // Do any additional setup after loading the view.
     
     [self initialize];
+    [self fetchReminders];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -147,6 +148,8 @@ static NSString * const REMINDER_TABLE_VIEW_CELL_ID = @"REMINDER_TABLE_VIEW_CELL
         NSString *deleteReminderURL = [NSString stringWithFormat:UPDATE_REMINDER_API, info[@"_id"]];
         [[YYHTTPManager I] DELETE:deleteReminderURL withJSONParameters:@{@"signature" : @"tempkey"} success:^(AFHTTPRequestOperation *operation, id responseObject) {
             OLog(responseObject);
+            [_reminders removeObjectAtIndex:indexPath.item];
+            [_table deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             OLog(error);
         }];

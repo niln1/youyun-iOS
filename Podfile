@@ -6,7 +6,6 @@ target "YouYun" do
 	pod 'CRMotionView'
 	pod 'AFNetworking'
 	pod 'FontAwesomeKit'
-	pod 'FlatUIKit'
 	pod 'UITextField+Shake'
 	pod 'StackBluriOS'
 	pod 'SIAlertView'

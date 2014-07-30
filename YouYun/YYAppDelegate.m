@@ -12,6 +12,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // Cookie
+    [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
+    
+    // Register for push notifications
+    [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound];
+    
     // Assign root view controller
     UINavigationController *navi = (UINavigationController *) self.window.rootViewController;
     _drawer = (MSDynamicsDrawerViewController *) navi.viewControllers[0];
@@ -41,7 +47,7 @@
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:USER_SESSION_INVALID_NOTIFICATION object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
@@ -59,10 +65,13 @@
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLoginViewController) name:USER_SESSION_INVALID_NOTIFICATION object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadMenu) name:USER_LOG_IN_NOTIFICATION object:nil];
+    
     [[YYUser I] isUserLoggedIn:^(BOOL userLoggedIn, NSInteger statusCode, NSError *error) {
-        if (!userLoggedIn) [self showLoginViewController];
-        else {
-            [_menu reload];
+        if (!userLoggedIn) {
+            [self showLoginViewController];
+        } else {
+            [self reloadMenu];
         }
     }];
 }
@@ -72,6 +81,31 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+//- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceTokenData
+//{
+//    NSString *deviceToken = [NSString stringWithFormat:@"%@", deviceTokenData];
+//    OLog(deviceToken);
+//}
+
+- (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    NSString *str = [NSString stringWithFormat:@"Device Token=%@",deviceToken];
+    NSLog(@"%@", str);
+}
+
+
+- (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
+    NSString *str = [NSString stringWithFormat: @"Error: %@", err];
+    NSLog(@"%@", str);
+}
+
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    
+    for (id key in userInfo) {
+        NSLog(@"key: %@, value: %@", key, [userInfo objectForKey:key]);
+    }
+}
+
 - (void)showLoginViewController
 {
     if (![[_drawer.navigationController visibleViewController] isMemberOfClass:[YYLoginViewController class]]) {
@@ -79,6 +113,11 @@
         OLog([YYLoginViewController identifier]);
         [_drawer.navigationController presentViewController:login animated:YES completion:nil];
     }
+}
+
+- (void)reloadMenu
+{
+    [_menu reload];
 }
 
 @end
