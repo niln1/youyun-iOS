@@ -47,6 +47,7 @@
 #define UI_CORNER_RADIUS 10.0f
 
 #define UI_DEFAULT_CELL_ID @"UITableViewCell"
+#define UI_PICKUP_DETAIL_CELL_ID @"YYPickupReportDetailTableViewCell"
 
 /************************************************
  * Socket Events
@@ -54,6 +55,7 @@
 
 static NSString * const CREATE_PICKUP_REPORT_EVENT = @"pickup::create";
 static NSString * const FETCH_CHILD_PICKUP_REPORT_EVENT = @"pickup::parent::get-child-report";
+static NSString * const FETCH_CHILD_PICKUP_REPORT_SUCCESS_EVENT = @"pickup::parent::get-child-report::success";
 
 /************************************************
  * API
