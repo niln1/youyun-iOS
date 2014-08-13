@@ -17,6 +17,8 @@
 	<string>平和双语学校</string>
 	<key>module identifiers</key>
 	<dict>
+		<key>TeacherPickup</key>
+		<string>YYTeacherPickupViewController</string>
 		<key>TimeOff</key>
 		<string>YYTimeOffViewController</string>
 		<key>Reminder</key>
@@ -78,6 +80,12 @@
 				<string>首页</string>
 				<key>module</key>
 				<string>Timeline</string>
+			</dict>
+			<dict>
+				<key>title</key>
+				<string>Pickup Report</string>
+				<key>module</key>
+				<string>TeacherPickup</string>
 			</dict>
 			<dict>
 				<key>title</key>
