@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		206CE01E198B59CA00A62FBE /* YYTeacherPickupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 206CE01D198B59CA00A62FBE /* YYTeacherPickupViewController.m */; };
+		20B5CFD1199B262C00A00C49 /* YYPickupReportTeacherTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20B5CFD0199B262C00A00C49 /* YYPickupReportTeacherTableViewCell.m */; };
 		2F1AC74418CEB2690045FA4F /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2F1AC74318CEB2690045FA4F /* settings.plist */; };
 		2F1AC74818CEB4EB0045FA4F /* YYUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F1AC74718CEB4EB0045FA4F /* YYUser.m */; };
 		2F1AC74C18CEB8080045FA4F /* YYLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F1AC74B18CEB8080045FA4F /* YYLoginViewController.m */; };
@@ -78,6 +80,10 @@
 
 /* Begin PBXFileReference section */
 		01B3922D83A9434481DDF803 /* Pods-YouYun.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YouYun.xcconfig"; path = "Pods/Pods-YouYun.xcconfig"; sourceTree = "<group>"; };
+		206CE01C198B59CA00A62FBE /* YYTeacherPickupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTeacherPickupViewController.h; sourceTree = "<group>"; };
+		206CE01D198B59CA00A62FBE /* YYTeacherPickupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTeacherPickupViewController.m; sourceTree = "<group>"; };
+		20B5CFCF199B262C00A00C49 /* YYPickupReportTeacherTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYPickupReportTeacherTableViewCell.h; sourceTree = "<group>"; };
+		20B5CFD0199B262C00A00C49 /* YYPickupReportTeacherTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYPickupReportTeacherTableViewCell.m; sourceTree = "<group>"; };
 		2F1AC74318CEB2690045FA4F /* settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = settings.plist; sourceTree = "<group>"; };
 		2F1AC74618CEB4EB0045FA4F /* YYUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYUser.h; sourceTree = "<group>"; };
 		2F1AC74718CEB4EB0045FA4F /* YYUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYUser.m; sourceTree = "<group>"; };
@@ -276,6 +282,8 @@
 				2F2EF89518FE546200561D3F /* YYCheckbox.m */,
 				51EB12501988D2C6001AAB09 /* YYPickupReportDetailTableViewCell.h */,
 				51EB12511988D2C6001AAB09 /* YYPickupReportDetailTableViewCell.m */,
+				20B5CFCF199B262C00A00C49 /* YYPickupReportTeacherTableViewCell.h */,
+				20B5CFD0199B262C00A00C49 /* YYPickupReportTeacherTableViewCell.m */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -445,6 +453,8 @@
 				5131F9D11952A32D004EF3E5 /* YYTimeOffViewController.m */,
 				51BE4F3019569DF000D7B350 /* YYTimeOffDetailViewController.h */,
 				51BE4F3119569DF000D7B350 /* YYTimeOffDetailViewController.m */,
+				206CE01C198B59CA00A62FBE /* YYTeacherPickupViewController.h */,
+				206CE01D198B59CA00A62FBE /* YYTeacherPickupViewController.m */,
 			);
 			path = Pickup;
 			sourceTree = "<group>";
@@ -657,9 +667,11 @@
 				2FE1A69818D50DF400400D93 /* YYHTTPManager.m in Sources */,
 				2F1ACA2118F7BD5000AF5B50 /* YYNewReminderView.m in Sources */,
 				51DB0F1E19875E5D006F3EF6 /* UIPopoverController+FlatUI.m in Sources */,
+				206CE01E198B59CA00A62FBE /* YYTeacherPickupViewController.m in Sources */,
 				2F9ACD4318FBAF7000547B99 /* YYTextFieldTableViewCell.m in Sources */,
 				518DF2031988D732003A43F7 /* NSDate+Addon.m in Sources */,
 				2F84EF6D18FA84E1003C3F9A /* YYNewReminderViewController.m in Sources */,
+				20B5CFD1199B262C00A00C49 /* YYPickupReportTeacherTableViewCell.m in Sources */,
 				2F1AC74818CEB4EB0045FA4F /* YYUser.m in Sources */,
 				51DB0F1A19875E5D006F3EF6 /* UIColor+FlatUI.m in Sources */,
 				51DB0F1519875E5D006F3EF6 /* FUIPopoverBackgroundView.m in Sources */,

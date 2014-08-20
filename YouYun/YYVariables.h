@@ -59,6 +59,7 @@ static NSString * const FETCH_CHILD_PICKUP_REPORT_SUCCESS_EVENT = @"pickup::pare
 static NSString * const ADD_ABSENCE_TO_PICKUP_REPORT_EVENT = @"pickup::parent::add-absence";
 static NSString * const ADD_ABSENCE_TO_PICKUP_REPORT_SUCCESS_EVENT = @"pickup::parent::add-absence::success";
 static NSString * const ADD_ABSENCE_TO_PICKUP_REPORT_FAILURE_EVENT = @"pickup::parent::add-absence::failure";
+static NSString * const GET_REPORT_FOR_TODAY_EVENT = @"pickup::teacher:get-report-for-today";
 
 /************************************************
  * API

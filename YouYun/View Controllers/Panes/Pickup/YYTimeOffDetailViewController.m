@@ -28,7 +28,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    // init a socket
     _socket = [[SocketIO alloc] initWithDelegate:self];
+    // connect to server
     [_socket connectToHost:[YYHTTPManager I].serverHost onPort:[[YYHTTPManager I].serverPort integerValue]];
     
     OLog(_child);
