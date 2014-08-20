@@ -74,6 +74,19 @@
             [self sortPickupReport];
             
             [_table reloadData];
+        } else if ([messageName isEqualToString:ADD_ABSENCE_TO_PICKUP_REPORT_SUCCESS_EVENT]) {
+            NSDictionary *newData = [self processPickupReport:data[@"args"][0]];
+            
+            for (NSInteger i = 0; i < _data.count; i++) {
+                NSDictionary *oldData = _data[i];
+                if ([oldData[@"_id"] isEqualToString:newData[@"_id"]]) {
+                    _data[i] = newData;
+                    [_table reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:i inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+                    break;
+                }
+            }
+        } else if ([messageName isEqualToString:ADD_ABSENCE_TO_PICKUP_REPORT_FAILURE_EVENT]) {
+            [_table reloadData];
         }
     }
     @catch (NSException *exception) {
@@ -114,6 +127,8 @@
         NSDictionary *reportInfo = _data[indexPath.row];
         cell.label.text = reportInfo[@"date"];
         [cell.toggle setOn:[reportInfo[@"needToPickup"] boolValue] animated:NO];
+        [cell.toggle addTarget:self action:@selector(switchValueChanged:) forControlEvents:UIControlEventValueChanged];
+        cell.toggle.tag = indexPath.row;
     }
     @catch (NSException *exception) {
         OLog(exception);
@@ -127,6 +142,18 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return _data ? _data.count : 0;
+}
+
+- (void)switchValueChanged:(UISwitch *) toggle
+{
+    NSInteger row = toggle.tag;
+    BOOL needToPickup = toggle.on;
+    NSDictionary *reportInfo = _data[row];
+    [_socket sendEvent:ADD_ABSENCE_TO_PICKUP_REPORT_EVENT withData:@{
+        @"reportID" : reportInfo[@"_id"],
+        @"childID" : _child[@"_id"],
+        @"needToPickup" : needToPickup ? @"true" : @"false"
+    }];
 }
 
 @end
