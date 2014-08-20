@@ -32,13 +32,11 @@
     _socket = [[SocketIO alloc] initWithDelegate:self];
     // connect to server
     [_socket connectToHost:[YYHTTPManager I].serverHost onPort:[[YYHTTPManager I].serverPort integerValue]];
-    
-    OLog(_report);
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [_socket sendMessage:GET_REPORT_FOR_TODAY_EVENT];
+    [_socket sendEvent:GET_REPORT_FOR_TODAY_EVENT withData:@{}];
 }
 
 - (void)didReceiveMemoryWarning
@@ -58,23 +56,38 @@
 // event delegate
 - (void) socketIO:(SocketIO *)socket didReceiveEvent:(SocketIOPacket *)packet
 {
+    OLog(packet);
+    OLog([packet dataAsJSON])
     NSLog(@"didReceiveEvent >>> data: %@", [packet dataAsJSON]);
     @try {
-//        NSDictionary *data = [packet dataAsJSON];
-//        NSString *messageName = data[@"name"];
-//        if ([messageName isEqualToString:FETCH_CHILD_PICKUP_REPORT_SUCCESS_EVENT]) {
-//            NSArray *allReports = data[@"args"][0];
-//            
-//            NSMutableArray *newData = [@[] mutableCopy];
-//            for (NSDictionary *report in allReports) {
-//                [newData addObject:[self processPickupReport:report]];
-//            }
-//            
-//            _data = newData;
-//            [self sortPickupReport];
-//            
-//            [_table reloadData];
-//        }
+        NSDictionary *data = [packet dataAsJSON];
+        NSString *messageName = data[@"name"];
+        if ([messageName isEqualToString:GET_REPORT_FOR_TODAY_SUCCESS_EVENT]) {
+            NSDictionary *report = data[@"args"][0];
+            
+            NSMutableArray *students = [@[] mutableCopy];
+            for (NSDictionary *studentInfo in report[@"needToPickupList"]) {
+                NSMutableDictionary *mutableInfo = [studentInfo mutableCopy];
+                mutableInfo[@"pickedUp"] = @(NO);
+                [students addObject:mutableInfo];
+            }
+            for (NSDictionary *studentInfo in report[@"pickedUpList"]) {
+                NSMutableDictionary *mutableInfo = [studentInfo mutableCopy];
+                mutableInfo[@"pickedUp"] = @(YES);
+                [students addObject:mutableInfo];
+            }
+            
+            _reportID = report[@"_id"];
+            _students = students;
+            [self sortPickupReport];
+            
+            [_table reloadData];
+        }  else if ([messageName isEqualToString:PICKUP_STUDENT_SUCCESS_EVENT]) {
+            [_socket sendEvent:GET_REPORT_FOR_TODAY_EVENT withData:@{}];
+            
+        } else if ([messageName isEqualToString:FAILURE_EVENT]) {
+            [_table reloadData];
+        }
     }
     @catch (NSException *exception) {
         OLog(exception);
@@ -83,62 +96,49 @@
     }
 }
 
-//- (void)sortPickupReportByAddress
-//{
-//    _data = [[_data sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-//        NSDate *date1 = [NSDate dateForJSTimeString:obj1[@"date"]];
-//        NSDate *date2 = [NSDate dateForJSTimeString:obj2[@"date"]];
-//        
-//        return [date1 compare:date2];
-//    }] mutableCopy];
-//}
-
-//- (NSDictionary *)processPickupReport:(NSDictionary *) report
-//{
-//    NSString *childID = _child[@"_id"];
-//    NSString *reportID = report[@"_id"];
-//    NSString *reportDate = report[@"date"];
-//    BOOL needToPickup = _.any(report[@"needToPickupList"], _.isEqual(childID));
-//    return @{@"_id": reportID,
-//             @"date": reportDate,
-//             @"needToPickup": @(needToPickup)};
-//}
-//
-//#pragma mark - UITableViewDataSource
-//
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    YYPickupReportDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UI_PICKUP_DETAIL_CELL_ID forIndexPath:indexPath];
-//    
-//    @try {
-//        NSDictionary *reportInfo = _data[indexPath.row];
-//        cell.label.text = reportInfo[@"date"];
-//        [cell.toggle setOn:[reportInfo[@"needToPickup"] boolValue] animated:NO];
-//    }
-//    @catch (NSException *exception) {
-//        OLog(exception);
-//    }
-//    @finally {
-//    }
-//    
-//    return cell;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//{
-//    return _data ? _data.count : 0;
-//}
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)sortPickupReport
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    [_students sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSString *fullname1 = [NSString stringWithFormat:@"%@ %@ %@", obj1[@"firstname"], obj1[@"lastname"], obj1[@"_id"]];
+        NSString *fullname2 = [NSString stringWithFormat:@"%@ %@ %@", obj2[@"firstname"], obj2[@"lastname"], obj2[@"_id"]];
+        
+        return [fullname1 compare:fullname2];
+    }];
 }
-*/
+
+#pragma mark - UITableViewDataSource
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    YYPickupReportTeacherTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UI_PICKUP_TEACHER_CELL_ID forIndexPath:indexPath];
+    
+    @try {
+        NSDictionary *studentInfo = _students[indexPath.row];
+        cell.studentNameLabel.text = [NSString stringWithFormat:@"%@ %@", studentInfo[@"firstname"], studentInfo[@"lastname"]];
+        cell.pickupLocationLabel.text = studentInfo[@"pickupLocation"];
+        cell.pickedUpSwitch.on = [studentInfo[@"pickedUp"] boolValue];
+        
+        cell.pickedUpSwitch.tag = indexPath.row;
+        [cell.pickedUpSwitch addTarget:self action:@selector(switchClicked:) forControlEvents:UIControlEventValueChanged];
+    }
+    @catch (NSException *exception) {
+        OLog(exception);
+    }
+    @finally {
+    }
+    
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return _students ? _students.count : 0;
+}
+
+- (void)switchClicked:(UISwitch *) aSwitch
+{
+    NSDictionary *studentInfo = _students[aSwitch.tag];
+    [_socket sendEvent:PICKUP_STUDENT_EVENT withData:@{@"reportID" : _reportID, @"studentID" : studentInfo[@"_id"], @"pickedUp" : aSwitch.on ? @"true" : @"false"}];
+}
 
 @end

@@ -16,7 +16,8 @@
 @interface YYTeacherPickupViewController : UIViewController<SocketIODelegate>
 
 @property (nonatomic, retain) SocketIO *socket;
-@property (nonatomic, retain) NSDictionary *report;
+@property (nonatomic, retain) NSString *reportID;
+@property (nonatomic, retain) NSMutableArray *students;
 
 @property (nonatomic, weak) IBOutlet UITableView *table;
 

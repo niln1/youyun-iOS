@@ -85,7 +85,7 @@
                     break;
                 }
             }
-        } else if ([messageName isEqualToString:ADD_ABSENCE_TO_PICKUP_REPORT_FAILURE_EVENT]) {
+        } else if ([messageName isEqualToString:FAILURE_EVENT]) {
             [_table reloadData];
         }
     }
