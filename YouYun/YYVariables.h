@@ -48,6 +48,7 @@
 
 #define UI_DEFAULT_CELL_ID @"UITableViewCell"
 #define UI_PICKUP_DETAIL_CELL_ID @"YYPickupReportDetailTableViewCell"
+#define UI_PICKUP_TEACHER_CELL_ID @"YYPickupReportTeacherTableViewCell"
 
 /************************************************
  * Socket Events
@@ -58,8 +59,11 @@ static NSString * const FETCH_CHILD_PICKUP_REPORT_EVENT = @"pickup::parent::get-
 static NSString * const FETCH_CHILD_PICKUP_REPORT_SUCCESS_EVENT = @"pickup::parent::get-child-report::success";
 static NSString * const ADD_ABSENCE_TO_PICKUP_REPORT_EVENT = @"pickup::parent::add-absence";
 static NSString * const ADD_ABSENCE_TO_PICKUP_REPORT_SUCCESS_EVENT = @"pickup::parent::add-absence::success";
-static NSString * const ADD_ABSENCE_TO_PICKUP_REPORT_FAILURE_EVENT = @"pickup::parent::add-absence::failure";
-static NSString * const GET_REPORT_FOR_TODAY_EVENT = @"pickup::teacher:get-report-for-today";
+static NSString * const GET_REPORT_FOR_TODAY_EVENT = @"pickup::teacher::get-report-for-today";
+static NSString * const GET_REPORT_FOR_TODAY_SUCCESS_EVENT = @"pickup::teacher::get-report-for-today::success";
+static NSString * const PICKUP_STUDENT_EVENT = @"pickup::teacher::pickup-student";
+static NSString * const PICKUP_STUDENT_SUCCESS_EVENT = @"pickup::teacher::pickup-student::success";
+static NSString * const FAILURE_EVENT = @"all::failure";
 
 /************************************************
  * API
