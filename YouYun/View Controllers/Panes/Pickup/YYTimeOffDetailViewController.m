@@ -64,6 +64,7 @@
         NSString *messageName = data[@"name"];
         if ([messageName isEqualToString:FETCH_CHILD_PICKUP_REPORT_SUCCESS_EVENT]) {
             NSArray *allReports = data[@"args"][0];
+            OLog(allReports);
             
             NSMutableArray *newData = [@[] mutableCopy];
             for (NSDictionary *report in allReports) {
@@ -125,7 +126,9 @@
     
     @try {
         NSDictionary *reportInfo = _data[indexPath.row];
-        cell.label.text = reportInfo[@"date"];
+        NSDate *date = [NSDate dateForJSTimeString:reportInfo[@"date"]];
+        cell.label.text = [NSDateFormatter localizedStringFromDate:date dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
+
         [cell.toggle setOn:[reportInfo[@"needToPickup"] boolValue] animated:NO];
         [cell.toggle addTarget:self action:@selector(switchValueChanged:) forControlEvents:UIControlEventValueChanged];
         cell.toggle.tag = indexPath.row;

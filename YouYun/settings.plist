@@ -9,7 +9,7 @@
 		<key>protocol</key>
 		<string>http</string>
 		<key>host</key>
-		<string>localhost</string>
+		<string>192.168.1.235</string>
 	</dict>
 	<key>school color</key>
 	<string></string>
