@@ -82,7 +82,7 @@
             [self sortPickupReport];
             
             [_table reloadData];
-        }  else if ([messageName isEqualToString:PICKUP_STUDENT_SUCCESS_EVENT]) {
+        }  else if ([messageName isEqualToString:PICKUP_STUDENT_SUCCESS_EVENT] || [messageName isEqualToString:STUDENT_PICKED_UP_EVENT]) {
             [_socket sendEvent:GET_REPORT_FOR_TODAY_EVENT withData:@{}];
             
         } else if ([messageName isEqualToString:FAILURE_EVENT]) {

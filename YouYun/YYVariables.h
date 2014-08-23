@@ -55,14 +55,15 @@
  ************************************************/
 
 static NSString * const CREATE_PICKUP_REPORT_EVENT = @"pickup::create";
-static NSString * const FETCH_CHILD_PICKUP_REPORT_EVENT = @"pickup::parent::get-child-report";
-static NSString * const FETCH_CHILD_PICKUP_REPORT_SUCCESS_EVENT = @"pickup::parent::get-child-report::success";
+static NSString * const FETCH_CHILD_PICKUP_REPORT_EVENT = @"pickup::parent::get-future-child-report";
+static NSString * const FETCH_CHILD_PICKUP_REPORT_SUCCESS_EVENT = @"pickup::parent::get-future-child-report::success";
 static NSString * const ADD_ABSENCE_TO_PICKUP_REPORT_EVENT = @"pickup::parent::add-absence";
 static NSString * const ADD_ABSENCE_TO_PICKUP_REPORT_SUCCESS_EVENT = @"pickup::parent::add-absence::success";
 static NSString * const GET_REPORT_FOR_TODAY_EVENT = @"pickup::teacher::get-report-for-today";
 static NSString * const GET_REPORT_FOR_TODAY_SUCCESS_EVENT = @"pickup::teacher::get-report-for-today::success";
 static NSString * const PICKUP_STUDENT_EVENT = @"pickup::teacher::pickup-student";
 static NSString * const PICKUP_STUDENT_SUCCESS_EVENT = @"pickup::teacher::pickup-student::success";
+static NSString * const STUDENT_PICKED_UP_EVENT = @"pickup::all::picked-up::success";
 static NSString * const FAILURE_EVENT = @"all::failure";
 
 /************************************************

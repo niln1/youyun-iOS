@@ -15,7 +15,7 @@
 #import "YYNavigationController.h"
 #import "YYUser.h"
 
-#define LOGOUT_MENU_ITEM @"登出"
+#define LOGOUT_MENU_ITEM @"Log Out"
 
 @interface YYMenuViewController : UIViewController
 
