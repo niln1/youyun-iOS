@@ -65,23 +65,30 @@
         if ([messageName isEqualToString:GET_REPORT_FOR_TODAY_SUCCESS_EVENT]) {
             NSDictionary *report = data[@"args"][0];
             
-            NSMutableArray *students = [@[] mutableCopy];
-            for (NSDictionary *studentInfo in report[@"needToPickupList"]) {
-                NSMutableDictionary *mutableInfo = [studentInfo mutableCopy];
-                mutableInfo[@"pickedUp"] = @(NO);
-                [students addObject:mutableInfo];
+            if (![report isKindOfClass:[NSNull class]]) {
+                NSMutableArray *students = [@[] mutableCopy];
+                for (NSDictionary *studentInfo in report[@"needToPickupList"]) {
+                    NSMutableDictionary *mutableInfo = [studentInfo mutableCopy];
+                    mutableInfo[@"pickedUp"] = @(NO);
+                    [students addObject:mutableInfo];
+                }
+                for (NSDictionary *studentInfo in report[@"pickedUpList"]) {
+                    NSMutableDictionary *mutableInfo = [studentInfo mutableCopy];
+                    mutableInfo[@"pickedUp"] = @(YES);
+                    [students addObject:mutableInfo];
+                }
+                
+                _reportID = report[@"_id"];
+                _students = students;
+                [self sortPickupReport];
+                
+                _table.alpha = 1;
+                [_table reloadData];
+            } else {
+                _table.alpha = 0;
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Report" message:@"There is no report for today" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alert show];
             }
-            for (NSDictionary *studentInfo in report[@"pickedUpList"]) {
-                NSMutableDictionary *mutableInfo = [studentInfo mutableCopy];
-                mutableInfo[@"pickedUp"] = @(YES);
-                [students addObject:mutableInfo];
-            }
-            
-            _reportID = report[@"_id"];
-            _students = students;
-            [self sortPickupReport];
-            
-            [_table reloadData];
         }  else if ([messageName isEqualToString:PICKUP_STUDENT_SUCCESS_EVENT] || [messageName isEqualToString:STUDENT_PICKED_UP_EVENT]) {
             [_socket sendEvent:GET_REPORT_FOR_TODAY_EVENT withData:@{}];
             

@@ -113,9 +113,7 @@ static NSString * const MENU_TABLE_VIEW_CELL_ID = @"MENU_TABLE_VIEW_CELL_ID";
 - (void)loadInitialMenuItem
 {
     // Retrieve last visited page
-    NSDictionary *lastVisited = [[NSUserDefaults standardUserDefaults] dictionaryForKey:LAST_VISITED_PAGE_KEY];
-    OLog(lastVisited);
-    NSDictionary *info = lastVisited ? lastVisited : _menuItems[0];
+    NSDictionary *info = _menuItems[0];
     [self transitionToViewController:info];
 }
 

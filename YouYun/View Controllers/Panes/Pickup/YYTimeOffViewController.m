@@ -65,7 +65,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UI_DEFAULT_CELL_ID forIndexPath:indexPath];
     NSDictionary *child = _children[indexPath.item];
     NSAssert(child[@"username"] != nil, @"Child should have a username");
-    cell.textLabel.text = child[@"username"];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", child[@"firstname"], child[@"lastname"]];
     cell.detailTextLabel.text = nil;
     cell.imageView.image = nil;
     UIView *selectedBgView = [[UIView alloc] initWithFrame:cell.frame];

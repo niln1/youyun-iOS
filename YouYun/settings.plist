@@ -5,16 +5,16 @@
 	<key>school server</key>
 	<dict>
 		<key>port</key>
-		<string>3000</string>
+		<string>3999</string>
 		<key>protocol</key>
 		<string>http</string>
 		<key>host</key>
-		<string>192.168.1.235</string>
+		<string>66.228.45.15</string>
 	</dict>
 	<key>school color</key>
 	<string></string>
 	<key>school name</key>
-	<string>平和双语学校</string>
+	<string>翰林</string>
 	<key>module identifiers</key>
 	<dict>
 		<key>TeacherPickup</key>
@@ -32,7 +32,7 @@
 		<array>
 			<dict>
 				<key>title</key>
-				<string>首页</string>
+				<string></string>
 				<key>module</key>
 				<string>Timeline</string>
 			</dict>
@@ -47,7 +47,7 @@
 		<array>
 			<dict>
 				<key>title</key>
-				<string>首页</string>
+				<string></string>
 				<key>module</key>
 				<string>Timeline</string>
 			</dict>
@@ -62,7 +62,7 @@
 		<array>
 			<dict>
 				<key>title</key>
-				<string>首页</string>
+				<string></string>
 				<key>module</key>
 				<string>Timeline</string>
 			</dict>
@@ -95,7 +95,7 @@
 		<array>
 			<dict>
 				<key>title</key>
-				<string>首页</string>
+				<string></string>
 				<key>module</key>
 				<string>Timeline</string>
 			</dict>
