@@ -2,8 +2,8 @@
 //  YYAppDelegate.h
 //  YouYun
 //
-//  Created by Ranchao Zhang on 2/28/14.
-//  Copyright (c) 2014 Ranchao Zhang. All rights reserved.
+//  Created by Zhihao Ni and Ranchao Zhang on 2/28/14.
+//  Copyright (c) 2014 Youyun. All rights reserved.
 //
 
 /*
@@ -38,10 +38,14 @@
  ASBESTOS
  */
 
+#define SCHOOL_COLOR_HEX @"#3D714B"
+#define SCHOOL_LIGHT_COLOR_HEX @"#16a085"
+#define SCHOOL_BASE_COLOR_HEX @"#D6E6DB"
+
 #define UI_SELECTION_ALPHA 0.5
-#define UI_FG_COLOR [UIColor whiteColor]
-#define UI_BG_COLOR [UIColor turquoiseColor]
-#define UI_SHADOW_COLOR [UIColor nephritisColor]
+#define UI_FG_COLOR [UIColor colorFromHexCode:SCHOOL_BASE_COLOR_HEX]
+#define UI_BG_COLOR [UIColor colorFromHexCode:SCHOOL_COLOR_HEX]
+#define UI_SHADOW_COLOR [UIColor colorFromHexCode:SCHOOL_LIGHT_COLOR_HEX]
 #define UI_SELECTION_COLOR [UI_SHADOW_COLOR colorWithAlphaComponent:UI_SELECTION_ALPHA]
 
 #define UI_CORNER_RADIUS 10.0f

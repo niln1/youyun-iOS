@@ -34,7 +34,7 @@
     _menu.drawer = _drawer;
     [_menu loadInitialMenuItem];
     
-    [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : UI_FG_COLOR} forState:UIControlStateNormal];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName :UI_FG_COLOR} forState:UIControlStateNormal];
     [[UINavigationBar appearance] setTintColor:UI_FG_COLOR];
     
     // SIAlertView

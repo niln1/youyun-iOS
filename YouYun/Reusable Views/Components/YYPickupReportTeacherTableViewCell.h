@@ -12,6 +12,8 @@
 
 @property (nonatomic, weak) IBOutlet UILabel *studentNameLabel;
 @property (nonatomic, weak) IBOutlet UILabel *pickupLocationLabel;
+@property (nonatomic, weak) IBOutlet UILabel *pickedUpTimeLabel;
 @property (nonatomic, weak) IBOutlet UISwitch *pickedUpSwitch;
+@property (nonatomic, weak) IBOutlet UIImageView *studentImageView;
 
 @end

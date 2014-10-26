@@ -15,6 +15,9 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        self.studentImageView.layer.cornerRadius = self.studentImageView.frame.size.height /2;
+        self.studentImageView.layer.masksToBounds = YES;
+        self.studentImageView.layer.borderWidth = 0;
     }
     return self;
 }
@@ -22,6 +25,9 @@
 - (void)awakeFromNib
 {
     // Initialization code
+    self.studentImageView.layer.cornerRadius = self.studentImageView.frame.size.height /2;
+    self.studentImageView.layer.masksToBounds = YES;
+    self.studentImageView.layer.borderWidth = 0;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

@@ -202,6 +202,9 @@ static NSString * const MENU_TABLE_VIEW_CELL_ID = @"MENU_TABLE_VIEW_CELL_ID";
     UITableViewCell *cell = [_table dequeueReusableCellWithIdentifier:MENU_TABLE_VIEW_CELL_ID];
     NSDictionary *info = _menuItems[indexPath.row];
     cell.textLabel.text = info[@"title"];
+    UIView *selectedBgView = [[UIView alloc] initWithFrame:cell.frame];
+    selectedBgView.backgroundColor = UI_SELECTION_COLOR;
+    cell.selectedBackgroundView = selectedBgView;
     return cell;
 }
 
