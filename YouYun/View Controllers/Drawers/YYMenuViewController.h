@@ -21,7 +21,7 @@
 
 @property (nonatomic, weak) IBOutlet UITableView *table;
 @property (nonatomic, weak) IBOutlet UIView *headerView;
-@property (nonatomic, weak) IBOutlet UIImageView *userIcon;
+@property (nonatomic, weak) IBOutlet UIButton *userButton;
 
 @property (nonatomic, weak) MSDynamicsDrawerViewController *drawer;
 

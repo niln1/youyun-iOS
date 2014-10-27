@@ -2,8 +2,8 @@
 //  YYMenuViewController.m
 //  YouYun
 //
-//  Created by Ranchao Zhang on 2/28/14.
-//  Copyright (c) 2014 Ranchao Zhang. All rights reserved.
+//  Created by Zhihao Ni and Ranchao Zhang on 2/28/14.
+//  Copyright (c) 2014 Youyun. All rights reserved.
 //
 
 #import "YYMenuViewController.h"
@@ -47,8 +47,14 @@ static NSString * const MENU_TABLE_VIEW_CELL_ID = @"MENU_TABLE_VIEW_CELL_ID";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    // UI setup
+    self.userButton.layer.cornerRadius = self.userButton.frame.size.height /2;
+    self.userButton.layer.masksToBounds = YES;
+    self.userButton.layer.borderWidth = 1;
+    self.userButton.layer.borderColor = UI_BG_COLOR.CGColor;
+    self.view.backgroundColor = UI_FG_COLOR;
     
+    // Others
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLoggedOut) name:USER_SESSION_INVALID_NOTIFICATION object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLoggedIn) name:USER_LOG_IN_NOTIFICATION object:nil];
 }
@@ -73,6 +79,8 @@ static NSString * const MENU_TABLE_VIEW_CELL_ID = @"MENU_TABLE_VIEW_CELL_ID";
     dispatch_async(dispatch_get_main_queue(), ^{
         @try {
             OLog([[YYUser I] typeKey]);
+            
+            //data
             NSDictionary *settings = [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"settings" withExtension:@"plist"]];
             NSMutableArray *menuItems = [settings[@"menu items"][[[YYUser I] typeKey]] mutableCopy];
             [menuItems addObject:@{@"title": LOGOUT_MENU_ITEM, @"module": @""}];

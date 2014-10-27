@@ -26,7 +26,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    // UI setup
+    self.view.backgroundColor = UI_FG_COLOR;
+    self.table.backgroundColor = UI_FG_COLOR;
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = UI_BG_COLOR;
+    self.refreshControl.tintColor = UI_FG_COLOR;
+    [self.refreshControl addTarget:self
+                            action:@selector(getReportForToday)
+                            forControlEvents:UIControlEventValueChanged];
+    [self.table addSubview:self.refreshControl];
+    
+    [self.table setSeparatorColor:UI_BG_COLOR];
+    self.table.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    
+    // get day of week
+    [self updateDayOfWeek];
     
     // init a socket
     _socket = [[SocketIO alloc] initWithDelegate:self];
@@ -36,13 +53,25 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [_socket sendEvent:GET_REPORT_FOR_TODAY_EVENT withData:@{}];
+    [self getReportForToday];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)getReportForToday
+{
+    [_socket sendEvent:GET_REPORT_FOR_TODAY_EVENT withData:@{}];
+}
+
+- (void)updateDayOfWeek
+{
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *comps = [gregorian components:NSWeekdayCalendarUnit fromDate:[NSDate date]];
+    self.currentWeekDay = [comps weekday];
 }
 
 #pragma mark - SocketIODelegate
@@ -60,9 +89,12 @@
     OLog([packet dataAsJSON])
     NSLog(@"didReceiveEvent >>> data: %@", [packet dataAsJSON]);
     @try {
+        [self updateDayOfWeek];
+        
         NSDictionary *data = [packet dataAsJSON];
         NSString *messageName = data[@"name"];
         if ([messageName isEqualToString:GET_REPORT_FOR_TODAY_SUCCESS_EVENT]) {
+            [self.refreshControl endRefreshing];
             NSDictionary *report = data[@"args"][0];
             
             if (![report isKindOfClass:[NSNull class]]) {
@@ -105,6 +137,7 @@
 
 - (void)sortPickupReport
 {
+    // sort by Location then time then name
     [_students sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         NSString *fullname1 = [NSString stringWithFormat:@"%@ %@ %@", obj1[@"firstname"], obj1[@"lastname"], obj1[@"_id"]];
         NSString *fullname2 = [NSString stringWithFormat:@"%@ %@ %@", obj2[@"firstname"], obj2[@"lastname"], obj2[@"_id"]];
@@ -123,6 +156,45 @@
         NSDictionary *studentInfo = _students[indexPath.row];
         cell.studentNameLabel.text = [NSString stringWithFormat:@"%@ %@", studentInfo[@"firstname"], studentInfo[@"lastname"]];
         cell.pickupLocationLabel.text = studentInfo[@"pickupLocation"];
+        
+        NSString *dateSelector;
+        
+        switch (self.currentWeekDay) {
+            case 1:
+                dateSelector = @"sundayPickupTime";
+                break;
+            case 2:
+                dateSelector = @"mondayPickupTime";
+                break;
+            case 3:
+                dateSelector = @"tuesdayPickupTime";
+                break;
+            case 4:
+                dateSelector = @"wednesdayPickupTime";
+                break;
+            case 5:
+                dateSelector = @"thursdayPickupTime";
+                break;
+            case 6:
+                dateSelector = @"fridayPickupTime";
+                break;
+            case 7:
+                dateSelector = @"saturdayPickupTime";
+                break;
+            default:
+                break;
+        }
+        
+        if (dateSelector) {
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            dateFormatter.dateFormat = @"HH:mm";
+            NSDate *date = [dateFormatter dateFromString:studentInfo[@"studentPickupDetail"][dateSelector]];
+            
+            dateFormatter.dateFormat = @"h:mm a";
+            NSString *pmamDateString = [dateFormatter stringFromDate:date];
+            cell.pickedUpTimeLabel.text = pmamDateString;
+        }
+        
         cell.pickedUpSwitch.on = [studentInfo[@"pickedUp"] boolValue];
         
         cell.pickedUpSwitch.tag = indexPath.row;

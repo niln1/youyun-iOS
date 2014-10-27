@@ -21,4 +21,7 @@
 
 @property (nonatomic, weak) IBOutlet UITableView *table;
 
+@property (nonatomic) NSInteger currentWeekDay;
+@property (nonatomic, retain) UIRefreshControl *refreshControl;
+
 @end
