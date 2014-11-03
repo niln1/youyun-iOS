@@ -51,9 +51,11 @@ static NSString * const MENU_TABLE_VIEW_CELL_ID = @"MENU_TABLE_VIEW_CELL_ID";
     self.userButton.layer.cornerRadius = self.userButton.frame.size.height /2;
     self.userButton.layer.masksToBounds = YES;
     self.userButton.layer.borderWidth = 1;
-    self.userButton.layer.borderColor = UI_BG_COLOR.CGColor;
-    self.view.backgroundColor = UI_FG_COLOR;
+    self.userButton.layer.borderColor = SCHOOL_DARK_COLOR.CGColor;
+    self.view.backgroundColor = INVERSE_DARK_COLOR;
     
+    self.table.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+
     // Others
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLoggedOut) name:USER_SESSION_INVALID_NOTIFICATION object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLoggedIn) name:USER_LOG_IN_NOTIFICATION object:nil];
@@ -170,8 +172,9 @@ static NSString * const MENU_TABLE_VIEW_CELL_ID = @"MENU_TABLE_VIEW_CELL_ID";
 
 - (void)setMenuIconForViewController:(UIViewController *) viewCtrl
 {
+    //Humburger button
     FAKIonIcons *menuIcon = [FAKIonIcons naviconRoundIconWithSize:28];
-    [menuIcon addAttribute:NSForegroundColorAttributeName value:UI_FG_COLOR];
+    [menuIcon addAttribute:NSForegroundColorAttributeName value:FG_COLOR];
     
     UIButton *menuButton = [UIButton new];
     menuButton.frame = CGRectMake(276, 0, 44, 44);
@@ -209,9 +212,10 @@ static NSString * const MENU_TABLE_VIEW_CELL_ID = @"MENU_TABLE_VIEW_CELL_ID";
 {
     UITableViewCell *cell = [_table dequeueReusableCellWithIdentifier:MENU_TABLE_VIEW_CELL_ID];
     NSDictionary *info = _menuItems[indexPath.row];
+    cell.textLabel.textColor = [UIColor lightGrayColor];
     cell.textLabel.text = info[@"title"];
     UIView *selectedBgView = [[UIView alloc] initWithFrame:cell.frame];
-    selectedBgView.backgroundColor = UI_SELECTION_COLOR;
+    selectedBgView.backgroundColor = INVERSE_LIGHT_COLOR;
     cell.selectedBackgroundView = selectedBgView;
     return cell;
 }

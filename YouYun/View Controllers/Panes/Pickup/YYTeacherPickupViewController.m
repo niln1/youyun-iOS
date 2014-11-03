@@ -27,18 +27,18 @@
 {
     [super viewDidLoad];
     // UI setup
-    self.view.backgroundColor = UI_FG_COLOR;
-    self.table.backgroundColor = UI_FG_COLOR;
+    self.view.backgroundColor = BG_COLOR;
+    self.table.backgroundColor = BG_COLOR;
     
     self.refreshControl = [[UIRefreshControl alloc] init];
-    self.refreshControl.backgroundColor = UI_BG_COLOR;
-    self.refreshControl.tintColor = UI_FG_COLOR;
+    self.refreshControl.backgroundColor = BG_COLOR;
+    self.refreshControl.tintColor = FG_COLOR;
     [self.refreshControl addTarget:self
                             action:@selector(getReportForToday)
                             forControlEvents:UIControlEventValueChanged];
     [self.table addSubview:self.refreshControl];
     
-    [self.table setSeparatorColor:UI_BG_COLOR];
+    [self.table setSeparatorColor:SCHOOL_DARK_COLOR];
     self.table.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     
@@ -85,8 +85,6 @@
 // event delegate
 - (void) socketIO:(SocketIO *)socket didReceiveEvent:(SocketIOPacket *)packet
 {
-    OLog(packet);
-    OLog([packet dataAsJSON])
     NSLog(@"didReceiveEvent >>> data: %@", [packet dataAsJSON]);
     @try {
         [self updateDayOfWeek];

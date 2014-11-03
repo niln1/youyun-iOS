@@ -2,8 +2,8 @@
 //  YYAppDelegate.m
 //  YouYun
 //
-//  Created by Ranchao Zhang on 2/28/14.
-//  Copyright (c) 2014 Ranchao Zhang. All rights reserved.
+//  Created by Zhihao Ni & Ranchao Zhang on 2/28/14.
+//  Copyright (c) 2014 Youyun. All rights reserved.
 //
 
 #import "YYAppDelegate.h"
@@ -13,13 +13,25 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // UI setup
-    [[UISwitch appearance] setTintColor:UI_BG_COLOR];
+    [[UISwitch appearance] setTintColor:SCHOOL_COLOR];
     
     // Cookie
     [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
     
     // Register for push notifications
-    [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound];
+    if ([application respondsToSelector:@selector(isRegisteredForRemoteNotifications)])
+    {
+        // iOS 8 Notifications
+        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
+        
+        [application registerForRemoteNotifications];
+    }
+    else
+    {
+        // iOS < 8 Notifications
+        [application registerForRemoteNotificationTypes:
+         (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
+    }
     
     // Assign root view controller
     UINavigationController *navi = (UINavigationController *) self.window.rootViewController;
@@ -37,11 +49,11 @@
     _menu.drawer = _drawer;
     [_menu loadInitialMenuItem];
     
-    [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName :UI_FG_COLOR} forState:UIControlStateNormal];
-    [[UINavigationBar appearance] setTintColor:UI_FG_COLOR];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName :SCHOOL_VERY_LIGHT_COLOR} forState:UIControlStateNormal];
+    [[UINavigationBar appearance] setTintColor:SCHOOL_VERY_LIGHT_COLOR];
     
     // SIAlertView
-    [[SIAlertView appearance] setDestructiveButtonColor:UI_BG_COLOR];
+    [[SIAlertView appearance] setDestructiveButtonColor:SCHOOL_DARK_COLOR];
     
     return YES;
 }
@@ -84,20 +96,17 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-//- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceTokenData
-//{
-//    NSString *deviceToken = [NSString stringWithFormat:@"%@", deviceTokenData];
-//    OLog(deviceToken);
-//}
-
 - (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    NSString *str = [NSString stringWithFormat:@"Device Token=%@",deviceToken];
+    NSString *deviceTokenString = [[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    deviceTokenString = [deviceTokenString stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSString *str = [NSString stringWithFormat:@"Device Token=%@",deviceTokenString];
+    [[YYUser I] addDeviceToken:deviceTokenString];
     DLog(@"%@", str);
 }
 
 
 - (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
-    NSString *str = [NSString stringWithFormat: @"Error: %@", err];
+    NSString *str = [NSString stringWithFormat: @"APNS Error: %@", err];
     DLog(@"%@", str);
 }
 

@@ -38,10 +38,13 @@
     self.studentImageView.layer.cornerRadius = self.studentImageView.frame.size.height /2;
     self.studentImageView.layer.masksToBounds = YES;
     self.studentImageView.layer.borderWidth = 1;
-    self.studentImageView.layer.borderColor = UI_BG_COLOR.CGColor;
+    self.studentImageView.layer.borderColor = SCHOOL_DARK_COLOR.CGColor;
     
-    self.pickedUpSwitch.onTintColor = UI_BG_COLOR;
-    self.contentView.backgroundColor = UI_FG_COLOR;
+    self.pickedUpSwitch.onTintColor = SCHOOL_COLOR;
+    self.contentView.backgroundColor = BG_COLOR;
+    self.studentNameLabel.textColor = SCHOOL_DARK_COLOR;
+    self.pickupLocationLabel.textColor = SCHOOL_VERY_LIGHT_COLOR;
+    self.pickedUpTimeLabel.textColor = SCHOOL_VERY_LIGHT_COLOR;
 }
 
 @end

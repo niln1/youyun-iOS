@@ -38,15 +38,31 @@
  ASBESTOS
  */
 
-#define SCHOOL_COLOR_HEX @"#3D714B"
-#define SCHOOL_LIGHT_COLOR_HEX @"#16a085"
-#define SCHOOL_BASE_COLOR_HEX @"#D6E6DB"
-
 #define UI_SELECTION_ALPHA 0.5
-#define UI_FG_COLOR [UIColor colorFromHexCode:SCHOOL_BASE_COLOR_HEX]
-#define UI_BG_COLOR [UIColor colorFromHexCode:SCHOOL_COLOR_HEX]
-#define UI_SHADOW_COLOR [UIColor colorFromHexCode:SCHOOL_LIGHT_COLOR_HEX]
-#define UI_SELECTION_COLOR [UI_SHADOW_COLOR colorWithAlphaComponent:UI_SELECTION_ALPHA]
+
+#define SCHOOL_DARK_COLOR [UIColor colorFromHexCode:@"#255933"]
+#define SCHOOL_COLOR [UIColor colorFromHexCode:@"#3D714B"]
+#define SCHOOL_LIGHT_COLOR [UIColor colorFromHexCode:@"#588a65"]
+#define SCHOOL_VERY_LIGHT_COLOR [UIColor colorFromHexCode:@"#81a98b"]
+
+#define INVERSE_VERY_DARK_COLOR [UIColor colorFromHexCode:@"#132B3D"]
+#define INVERSE_DARK_COLOR [UIColor colorFromHexCode:@"#233B4D"]
+#define INVERSE_COLOR [UIColor colorFromHexCode:@"#374F61"]
+#define INVERSE_LIGHT_COLOR [UIColor colorFromHexCode:@"#4F6577"]
+#define INVERSE_VERY_LIGHT_COLOR [UIColor colorFromHexCode:@"#718392"]
+
+/**
+$bright-school-dark-color: #475917
+$bright-school-color: #7D8F4D
+$bright-school-light-color: #C8D6A3
+
+$error-school-dark-color: #5F2218
+$error-school-color: #975A52
+$error-school-light-color: #E2B2AC
+ */
+
+#define FG_COLOR [UIColor colorFromHexCode:@"#ffffff"]
+#define BG_COLOR [UIColor colorFromHexCode:@"#ecf0f1"]
 
 #define UI_CORNER_RADIUS 10.0f
 
@@ -77,6 +93,7 @@ static NSString * const FAILURE_EVENT = @"all::failure";
 static NSString * const LOGIN_API_PATH = @"/api/v1/account/login";
 static NSString * const LOGOUT_API_PATH = @"/api/v1/account/logout";
 static NSString * const GET_ACCOUNT_API = @"/api/v1/account";
+static NSString * const ADD_ACCOUNT_DEVICE = @"/api/v1/account/device";
 static NSString * const GET_REMINDERS_API = @"/api/v1/reminders";
 static NSString * const GET_CHILDREN_API = @"/api/v1/users/child";
 static NSString * const CREATE_REMINDER_API = @"/api/v1/reminders";

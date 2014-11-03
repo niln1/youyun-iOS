@@ -43,7 +43,7 @@ static NSString * const REMINDER_TABLE_VIEW_CELL_ID = @"REMINDER_TABLE_VIEW_CELL
 {
     // Setup new reminder icon
     FAKIonIcons *newReminderIcon = [FAKIonIcons ios7PlusIconWithSize:28];
-    [newReminderIcon addAttribute:NSForegroundColorAttributeName value:UI_FG_COLOR];
+    [newReminderIcon addAttribute:NSForegroundColorAttributeName value:SCHOOL_VERY_LIGHT_COLOR];
     
     UIButton *newReminderButton = [UIButton new];
     newReminderButton.frame = CGRectMake(276, 0, 44, 44);

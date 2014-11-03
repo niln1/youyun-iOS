@@ -71,6 +71,19 @@ static YYUser *instance;
     
 }
 
+- (void)addDeviceToken:(NSString *) deviceTokenString {
+    [[YYHTTPManager I] POST:ADD_ACCOUNT_DEVICE
+         withJSONParameters:@{
+                            @"signature" : @"tempkey",
+                            @"type" : @0,
+                            @"token" : deviceTokenString,
+                            } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        OLog(@"Successfully update device");
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        OLog(@"Failed to update device");
+    }];
+}
+
 - (void)isUserLoggedIn:(void (^) (BOOL userLoggedIn, NSInteger statusCode, NSError *error)) callback
 {
     [[YYHTTPManager I] GET:GET_ACCOUNT_API withURLEncodedParameters:@{@"signature" : @"tempkey"} success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -113,6 +126,10 @@ static YYUser *instance;
         _userID = responseObject[@"result"][@"_id"];
         _username = responseObject[@"result"][@"username"];
         _userType = (YYUserType) userType;
+        
+//        Not needed
+//        _userDevices = responseObject[@"result"][@"devices"];
+        
         callback(YES, response.statusCode, nil);
     }
     @catch (NSException *exception) {
