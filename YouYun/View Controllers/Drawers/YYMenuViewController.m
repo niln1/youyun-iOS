@@ -51,7 +51,7 @@ static NSString * const MENU_TABLE_VIEW_CELL_ID = @"MENU_TABLE_VIEW_CELL_ID";
     self.userButton.layer.cornerRadius = self.userButton.frame.size.height /2;
     self.userButton.layer.masksToBounds = YES;
     self.userButton.layer.borderWidth = 1;
-    self.userButton.layer.borderColor = SCHOOL_DARK_COLOR.CGColor;
+    self.userButton.layer.borderColor = SCHOOL_COLOR.CGColor;
     self.view.backgroundColor = INVERSE_DARK_COLOR;
     
     self.table.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];

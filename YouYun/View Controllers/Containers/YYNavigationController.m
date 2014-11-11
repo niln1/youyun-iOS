@@ -63,7 +63,7 @@
 - (void)initialize
 {
     //set bar color
-    [self.navigationBar setBarTintColor:SCHOOL_DARK_COLOR];
+    [self.navigationBar setBarTintColor:SCHOOL_COLOR];
     //optional, i don't want my bar to be translucent
     [self.navigationBar setTranslucent:NO];
     //set title and title color

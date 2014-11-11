@@ -57,7 +57,7 @@
     
     // Setup save reminder icon
     FAKIonIcons *saveReminderIcon = [FAKIonIcons ios7CheckmarkIconWithSize:28];
-    [saveReminderIcon addAttribute:NSForegroundColorAttributeName value:SCHOOL_LIGHT_COLOR];
+    [saveReminderIcon addAttribute:NSForegroundColorAttributeName value:SCHOOL_VERY_LIGHT_COLOR];
     
     UIButton *saveReminderButton = [UIButton new];
     saveReminderButton.frame = CGRectMake(276, 0, 44, 44);

@@ -40,16 +40,11 @@
 
 #define UI_SELECTION_ALPHA 0.5
 
-#define SCHOOL_DARK_COLOR [UIColor colorFromHexCode:@"#255933"]
 #define SCHOOL_COLOR [UIColor colorFromHexCode:@"#3D714B"]
-#define SCHOOL_LIGHT_COLOR [UIColor colorFromHexCode:@"#588a65"]
 #define SCHOOL_VERY_LIGHT_COLOR [UIColor colorFromHexCode:@"#81a98b"]
 
-#define INVERSE_VERY_DARK_COLOR [UIColor colorFromHexCode:@"#132B3D"]
 #define INVERSE_DARK_COLOR [UIColor colorFromHexCode:@"#233B4D"]
-#define INVERSE_COLOR [UIColor colorFromHexCode:@"#374F61"]
 #define INVERSE_LIGHT_COLOR [UIColor colorFromHexCode:@"#4F6577"]
-#define INVERSE_VERY_LIGHT_COLOR [UIColor colorFromHexCode:@"#718392"]
 
 /**
 $bright-school-dark-color: #475917

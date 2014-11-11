@@ -14,6 +14,11 @@
 {
     // UI setup
     [[UISwitch appearance] setTintColor:SCHOOL_COLOR];
+    [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init]
+                                      forBarPosition:UIBarPositionAny
+                                          barMetrics:UIBarMetricsDefault];
+    
+    [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
     
     // Cookie
     [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
@@ -53,7 +58,7 @@
     [[UINavigationBar appearance] setTintColor:SCHOOL_VERY_LIGHT_COLOR];
     
     // SIAlertView
-    [[SIAlertView appearance] setDestructiveButtonColor:SCHOOL_DARK_COLOR];
+    [[SIAlertView appearance] setDestructiveButtonColor:SCHOOL_COLOR];
     
     return YES;
 }
