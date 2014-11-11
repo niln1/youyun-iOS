@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <socket.IO/SocketIO.h>
 #import <socket.IO/SocketIOPacket.h>
-#import "YYPickupReportTeacherTableViewCell.h"
+#import "YYPickupReportTeacherNeedPickTableViewCell.h"
 #import "YYHTTPManager.h"
 #import "NSDate+Addon.h"
 

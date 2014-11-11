@@ -63,7 +63,8 @@ $error-school-light-color: #E2B2AC
 
 #define UI_DEFAULT_CELL_ID @"UITableViewCell"
 #define UI_PICKUP_DETAIL_CELL_ID @"YYPickupReportDetailTableViewCell"
-#define UI_PICKUP_TEACHER_CELL_ID @"YYPickupReportTeacherTableViewCell"
+#define UI_PICKUP_TEACHER_NEED_PICK_CELL_ID @"YYPickupReportTeacherNeedPickTableViewCell"
+#define UI_PICKUP_TEACHER_PICKED_CELL_ID @"YYPickupReportTeacherPickedTableViewCell"
 
 /************************************************
  * Socket Events

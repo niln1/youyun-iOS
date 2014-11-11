@@ -162,7 +162,7 @@
 {
     
     if (self.segmentControl.selectedSegmentIndex == 0) {
-        YYPickupReportTeacherTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UI_PICKUP_TEACHER_CELL_ID forIndexPath:indexPath];
+        YYPickupReportTeacherNeedPickTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UI_PICKUP_TEACHER_NEED_PICK_CELL_ID forIndexPath:indexPath];
         @try {
             NSDictionary *studentInfo = _needPickArray[indexPath.row];
             cell.studentNameLabel.text = [NSString stringWithFormat:@"%@ %@", studentInfo[@"firstname"], studentInfo[@"lastname"]];
@@ -219,7 +219,7 @@
         
         return cell;
     } else if (self.segmentControl.selectedSegmentIndex == 1) {
-        YYPickupReportTeacherTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UI_PICKUP_TEACHER_CELL_ID forIndexPath:indexPath];
+        YYPickupReportTeacherNeedPickTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UI_PICKUP_TEACHER_NEED_PICK_CELL_ID forIndexPath:indexPath];
         @try {
             NSDictionary *studentInfo = _pickedArray[indexPath.row];
             cell.studentNameLabel.text = [NSString stringWithFormat:@"%@ %@", studentInfo[@"firstname"], studentInfo[@"lastname"]];
@@ -239,6 +239,7 @@
         return cell;
 
     } else {
+        OLog(@"FATAL: Render A cell not in segment control");
         return nil;
     }
 }
