@@ -1,14 +1,14 @@
 //
-//  YYPickupReportTeacherTableViewCell.m
+//  YYPickupReportTeacherNeedPickTableViewCell.m
 //  YouYun
 //
 //  Created by Zhihao Ni on 8/12/14.
 //  Copyright (c) 2014 Youyun. All rights reserved.
 //
 
-#import "YYPickupReportTeacherTableViewCell.h"
+#import "YYPickupReportTeacherNeedPickTableViewCell.h"
 
-@implementation YYPickupReportTeacherTableViewCell
+@implementation YYPickupReportTeacherNeedPickTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

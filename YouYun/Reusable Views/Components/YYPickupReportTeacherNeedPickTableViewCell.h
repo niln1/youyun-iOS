@@ -3,12 +3,12 @@
 //  YouYun
 //
 //  Created by Zhihao Ni on 8/12/14.
-//  Copyright (c) 2014 Ranchao Zhang. All rights reserved.
+//  Copyright (c) 2014 Youyun. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface YYPickupReportTeacherTableViewCell : UITableViewCell
+@interface YYPickupReportTeacherNeedPickTableViewCell : UITableViewCell
 
 @property (nonatomic, weak) IBOutlet UILabel *studentNameLabel;
 @property (nonatomic, weak) IBOutlet UILabel *pickupLocationLabel;
