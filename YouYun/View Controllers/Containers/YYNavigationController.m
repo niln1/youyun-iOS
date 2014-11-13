@@ -63,15 +63,15 @@
 - (void)initialize
 {
     //set bar color
-    [self.navigationBar setBarTintColor:UI_BG_COLOR];
+    [self.navigationBar setBarTintColor:SCHOOL_COLOR];
     //optional, i don't want my bar to be translucent
     [self.navigationBar setTranslucent:NO];
     //set title and title color
-    [self.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor]];
+    [self.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObject:FG_COLOR forKey:NSForegroundColorAttributeName]];
     //set back button color
-    [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], UITextAttributeTextColor,nil] forState:UIControlStateNormal];
+    [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:FG_COLOR, NSForegroundColorAttributeName,nil] forState:UIControlStateNormal];
     //set back button arrow color
-    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    [self.navigationController.navigationBar setTintColor:FG_COLOR];
 }
 
 - (void)viewDidLoad

@@ -46,7 +46,7 @@
 - (void)initializeButtons
 {
     _loginButton.titleLabel.font = [UIFont flatFontOfSize:14];
-    [_loginButton setBackgroundColor:UI_BG_COLOR];
+    [_loginButton setBackgroundColor:SCHOOL_COLOR];
     [_loginButton setTintColor:[UIColor whiteColor]];
     [_loginButton setShowsTouchWhenHighlighted:YES];
     [_loginButton setBorderRadius:UI_CORNER_RADIUS];

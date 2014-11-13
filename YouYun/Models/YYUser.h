@@ -2,8 +2,8 @@
 //  YYUser.h
 //  YouYun
 //
-//  Created by Ranchao Zhang on 3/10/14.
-//  Copyright (c) 2014 Ranchao Zhang. All rights reserved.
+//  Created by Zhihao Ni and Ranchao Zhang on 3/10/14.
+//  Copyright (c) 2014 Youyun. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -33,10 +33,11 @@ typedef NS_ENUM(NSInteger, YYUserType) {
 @property (nonatomic, retain, readonly) NSString *userID;
 @property (nonatomic, retain, readonly) NSString *username;
 @property (nonatomic, readonly) YYUserType userType;
-
+@property (nonatomic, readonly) NSArray *userDevices;
 
 + (YYUser *)I;
 - (NSString *) typeKey;
+- (void)addDeviceToken:(NSString *) deviceTokenString;
 - (void)isUserLoggedIn:(void (^) (BOOL userLoggedIn, NSInteger statusCode, NSError *error)) callback;
 - (void)loginWithUsername:(NSString *) username andPassword:(NSString *) password withCallback:(void (^) (BOOL userLoggedIn, NSInteger statusCode, NSError *error)) callback;
 - (void)logout;

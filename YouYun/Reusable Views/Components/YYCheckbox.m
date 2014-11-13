@@ -54,8 +54,8 @@
     _icon = [FAKIonIcons ios7CircleOutlineIconWithSize:width - 10];
 //    _checkedIcon = [FAKIonIcons ios7CircleFilledIconWithSize:width - 10];
     _checkedIcon = [FAKIonIcons ios7CheckmarkIconWithSize:width - 10];
-    _color = UI_BG_COLOR;
-    _checkedColor = UI_BG_COLOR;
+    _color = SCHOOL_COLOR;
+    _checkedColor = SCHOOL_COLOR;
     _disabledColor = [UIColor silverColor];
     _iconImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, width, width)];
     _iconImageView.backgroundColor = [UIColor clearColor];

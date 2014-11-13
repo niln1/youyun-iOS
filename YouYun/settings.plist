@@ -5,14 +5,12 @@
 	<key>school server</key>
 	<dict>
 		<key>port</key>
-		<string>3999</string>
+		<string>3000</string>
 		<key>protocol</key>
 		<string>http</string>
 		<key>host</key>
-		<string>66.228.45.15</string>
+		<string>172.20.10.2</string>
 	</dict>
-	<key>school color</key>
-	<string></string>
 	<key>school name</key>
 	<string>翰林</string>
 	<key>module identifiers</key>

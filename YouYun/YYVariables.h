@@ -2,8 +2,8 @@
 //  YYAppDelegate.h
 //  YouYun
 //
-//  Created by Ranchao Zhang on 2/28/14.
-//  Copyright (c) 2014 Ranchao Zhang. All rights reserved.
+//  Created by Zhihao Ni and Ranchao Zhang on 2/28/14.
+//  Copyright (c) 2014 Youyun. All rights reserved.
 //
 
 /*
@@ -39,16 +39,32 @@
  */
 
 #define UI_SELECTION_ALPHA 0.5
-#define UI_FG_COLOR [UIColor whiteColor]
-#define UI_BG_COLOR [UIColor turquoiseColor]
-#define UI_SHADOW_COLOR [UIColor nephritisColor]
-#define UI_SELECTION_COLOR [UI_SHADOW_COLOR colorWithAlphaComponent:UI_SELECTION_ALPHA]
+
+#define SCHOOL_COLOR [UIColor colorFromHexCode:@"#3D714B"]
+#define SCHOOL_VERY_LIGHT_COLOR [UIColor colorFromHexCode:@"#81a98b"]
+
+#define INVERSE_DARK_COLOR [UIColor colorFromHexCode:@"#233B4D"]
+#define INVERSE_LIGHT_COLOR [UIColor colorFromHexCode:@"#4F6577"]
+
+/**
+$bright-school-dark-color: #475917
+$bright-school-color: #7D8F4D
+$bright-school-light-color: #C8D6A3
+
+$error-school-dark-color: #5F2218
+$error-school-color: #975A52
+$error-school-light-color: #E2B2AC
+ */
+
+#define FG_COLOR [UIColor colorFromHexCode:@"#ffffff"]
+#define BG_COLOR [UIColor colorFromHexCode:@"#ecf0f1"]
 
 #define UI_CORNER_RADIUS 10.0f
 
 #define UI_DEFAULT_CELL_ID @"UITableViewCell"
 #define UI_PICKUP_DETAIL_CELL_ID @"YYPickupReportDetailTableViewCell"
-#define UI_PICKUP_TEACHER_CELL_ID @"YYPickupReportTeacherTableViewCell"
+#define UI_PICKUP_TEACHER_NEED_PICK_CELL_ID @"YYPickupReportTeacherNeedPickTableViewCell"
+#define UI_PICKUP_TEACHER_PICKED_CELL_ID @"YYPickupReportTeacherPickedTableViewCell"
 
 /************************************************
  * Socket Events
@@ -73,6 +89,7 @@ static NSString * const FAILURE_EVENT = @"all::failure";
 static NSString * const LOGIN_API_PATH = @"/api/v1/account/login";
 static NSString * const LOGOUT_API_PATH = @"/api/v1/account/logout";
 static NSString * const GET_ACCOUNT_API = @"/api/v1/account";
+static NSString * const ADD_ACCOUNT_DEVICE = @"/api/v1/account/device";
 static NSString * const GET_REMINDERS_API = @"/api/v1/reminders";
 static NSString * const GET_CHILDREN_API = @"/api/v1/users/child";
 static NSString * const CREATE_REMINDER_API = @"/api/v1/reminders";

@@ -69,7 +69,7 @@
     cell.detailTextLabel.text = nil;
     cell.imageView.image = nil;
     UIView *selectedBgView = [[UIView alloc] initWithFrame:cell.frame];
-    selectedBgView.backgroundColor = UI_SELECTION_COLOR;
+    selectedBgView.backgroundColor = INVERSE_LIGHT_COLOR;
     cell.selectedBackgroundView = selectedBgView;
     return cell;
 }
