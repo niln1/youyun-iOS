@@ -219,13 +219,23 @@
         
         return cell;
     } else if (self.segmentControl.selectedSegmentIndex == 1) {
-        YYPickupReportTeacherNeedPickTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UI_PICKUP_TEACHER_NEED_PICK_CELL_ID forIndexPath:indexPath];
+        YYPickupReportTeacherPickedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UI_PICKUP_TEACHER_PICKED_CELL_ID forIndexPath:indexPath];
         @try {
-            NSDictionary *studentInfo = _pickedArray[indexPath.row];
-            cell.studentNameLabel.text = [NSString stringWithFormat:@"%@ %@", studentInfo[@"firstname"], studentInfo[@"lastname"]];
-            cell.pickupLocationLabel.text = studentInfo[@"pickupLocation"];
+            NSDictionary *pickedReportInfo = _pickedArray[indexPath.row];
             
-            cell.pickedUpSwitch.on = [studentInfo[@"pickedUp"] boolValue];
+            cell.studentNameLabel.text = [NSString stringWithFormat:@"%@ %@",
+                                          pickedReportInfo[@"student"][@"firstname"], pickedReportInfo[@"student"][@"lastname"]];
+            
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
+            NSString *dateString = pickedReportInfo[@"pickedUpTime"];
+            NSDate *date = [dateFormatter dateFromString:dateString];
+            
+            dateFormatter.dateFormat = @"h:mm a";
+            NSString *pmamDateString = [dateFormatter stringFromDate:date];
+            cell.pickedUpTimeLabel.text = [NSString stringWithFormat:@"Picked time: %@", pmamDateString];
+            
+            cell.pickedUpSwitch.on = [pickedReportInfo[@"pickedUp"] boolValue];
             
             cell.pickedUpSwitch.tag = indexPath.row;
             [cell.pickedUpSwitch addTarget:self action:@selector(switchClicked:) forControlEvents:UIControlEventValueChanged];
@@ -257,8 +267,15 @@
 
 - (void)switchClicked:(UISwitch *) aSwitch
 {
-    NSDictionary *studentInfo = _needPickArray[aSwitch.tag];
-    [_socket sendEvent:PICKUP_STUDENT_EVENT withData:@{@"reportID" : _reportID, @"studentID" : studentInfo[@"_id"], @"pickedUp" : aSwitch.on ? @"true" : @"false"}];
+    if (self.segmentControl.selectedSegmentIndex == 0) {
+        NSDictionary *studentInfo = _needPickArray[aSwitch.tag];
+        [_socket sendEvent:PICKUP_STUDENT_EVENT withData:@{@"reportID" : _reportID, @"studentID" : studentInfo[@"_id"], @"pickedUp" : aSwitch.on ? @"true" : @"false"}];
+    } else if (self.segmentControl.selectedSegmentIndex == 1) {
+        NSDictionary *pickedReportInfo = _pickedArray[aSwitch.tag];
+        [_socket sendEvent:PICKUP_STUDENT_EVENT withData:@{@"reportID" : _reportID, @"studentID" : pickedReportInfo[@"student"][@"_id"], @"pickedUp" : aSwitch.on ? @"true" : @"false"}];
+    } else {
+        OLog(@"Fatal: data error in switch click");
+    }
 }
 
 @end

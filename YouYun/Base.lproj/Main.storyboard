@@ -104,7 +104,7 @@
                                             <outlet property="studentNameLabel" destination="O1i-PV-KMN" id="AQh-HM-5vw"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="YYPickupReportTeacherTableViewCell" rowHeight="60" id="b4u-A3-fsX" customClass="YYPickupReportTeacherTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="YYPickupReportTeacherPickedTableViewCell" rowHeight="60" id="b4u-A3-fsX" customClass="YYPickupReportTeacherPickedTableViewCell">
                                         <rect key="frame" x="0.0" y="102" width="320" height="70"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b4u-A3-fsX" id="YUV-4d-bkA">
@@ -138,10 +138,10 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <outlet property="pickedUpSwitch" destination="5mu-1M-fbP" id="h3k-Lb-nGX"/>
-                                            <outlet property="pickedUpTimeLabel" destination="v2W-A4-W7N" id="IeM-ve-7px"/>
-                                            <outlet property="studentImageView" destination="mfM-Ft-m8Y" id="h1f-vN-TTh"/>
-                                            <outlet property="studentNameLabel" destination="gXU-1O-gfU" id="V04-fg-S2h"/>
+                                            <outlet property="pickedUpSwitch" destination="5mu-1M-fbP" id="OfP-as-6hF"/>
+                                            <outlet property="pickedUpTimeLabel" destination="v2W-A4-W7N" id="vSS-Sz-xHY"/>
+                                            <outlet property="studentImageView" destination="mfM-Ft-m8Y" id="g4m-cD-E2J"/>
+                                            <outlet property="studentNameLabel" destination="gXU-1O-gfU" id="lTi-mQ-NG2"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
