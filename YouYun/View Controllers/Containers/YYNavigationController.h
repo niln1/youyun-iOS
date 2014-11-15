@@ -2,8 +2,8 @@
 //  MLNavigationController.h
 //  MusicLunatic
 //
-//  Created by Ranchao Zhang on 6/13/13.
-//  Copyright (c) 2013 Ranchao Zhang. All rights reserved.
+//  Created by Zhihao Ni on 6/13/13.
+//  Copyright (c) 2013 Youyun. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

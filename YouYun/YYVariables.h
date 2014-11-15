@@ -40,21 +40,25 @@
 
 #define UI_SELECTION_ALPHA 0.5
 
+#define SCHOOL_DARK_COLOR [UIColor colorFromHexCode:@"#124720"]
 #define SCHOOL_COLOR [UIColor colorFromHexCode:@"#3D714B"]
 #define SCHOOL_VERY_LIGHT_COLOR [UIColor colorFromHexCode:@"#81a98b"]
 
 #define INVERSE_DARK_COLOR [UIColor colorFromHexCode:@"#233B4D"]
 #define INVERSE_LIGHT_COLOR [UIColor colorFromHexCode:@"#4F6577"]
 
-/**
-$bright-school-dark-color: #475917
-$bright-school-color: #7D8F4D
-$bright-school-light-color: #C8D6A3
+//$info-color: #DB8700
+//$info-light-color: #FFD898
 
-$error-school-dark-color: #5F2218
-$error-school-color: #975A52
-$error-school-light-color: #E2B2AC
- */
+
+#define SUCCESS_COLOR [UIColor colorFromHexCode:@"#008161"]
+#define SUCCESS_LIGHT_COLOR [UIColor colorFromHexCode:@"#81D8C2"]
+
+#define ERROR_COLOR [UIColor colorFromHexCode:@"#BD0E2D"]
+#define ERROR_LIGHT_COLOR [UIColor colorFromHexCode:@"#F894A6"]
+
+#define INFO_COLOR [UIColor colorFromHexCode:@"#DB8700"]
+#define INFO_LIGHT_COLOR [UIColor colorFromHexCode:@"#FFD898"]
 
 #define FG_COLOR [UIColor colorFromHexCode:@"#ffffff"]
 #define BG_COLOR [UIColor colorFromHexCode:@"#ecf0f1"]

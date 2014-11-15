@@ -3,7 +3,7 @@
 //  YouYun
 //
 //  Created by Zhihao Ni on 7/31/14.
-//  Copyright (c) 2014 Ranchao Zhang. All rights reserved.
+//  Copyright (c) 2014 Youyun. All rights reserved.
 //
 
 #import "YYTeacherPickupViewController.h"
@@ -26,6 +26,35 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // Nav UI setup
+    CGRect headerTitleSubtitleFrame = CGRectMake(0, 0, 160, 44);
+    UIView* headerTitleSubtitleView = [[UILabel alloc] initWithFrame:headerTitleSubtitleFrame];
+    headerTitleSubtitleView.backgroundColor = [UIColor clearColor];
+    headerTitleSubtitleView.autoresizesSubviews = NO;
+    
+    CGRect titleFrame = CGRectMake(0, 6, 160, 20);
+    UILabel *titleView = [[UILabel alloc] initWithFrame:titleFrame];
+    titleView.backgroundColor = [UIColor clearColor];
+    titleView.font = [UIFont boldSystemFontOfSize:17];
+    titleView.textAlignment = NSTextAlignmentCenter;
+    titleView.textColor = FG_COLOR;
+    titleView.text = @"Pickup Report";
+    titleView.adjustsFontSizeToFitWidth = YES;
+    [headerTitleSubtitleView addSubview:titleView];
+    
+    CGRect subtitleFrame = CGRectMake(0, 22, 160, 44-20);
+    _subtitleView = [[UILabel alloc] initWithFrame:subtitleFrame];
+    _subtitleView.backgroundColor = [UIColor clearColor];
+    _subtitleView.font = [UIFont systemFontOfSize:10];
+    _subtitleView.textAlignment = NSTextAlignmentCenter;
+    _subtitleView.textColor = INFO_LIGHT_COLOR;
+    _subtitleView.text = @"Connecting...";
+    _subtitleView.adjustsFontSizeToFitWidth = YES;
+    [headerTitleSubtitleView addSubview:_subtitleView];
+    
+    self.navigationItem.titleView = headerTitleSubtitleView;
+    
     // UI setup
     self.view.backgroundColor = BG_COLOR;
     self.table.backgroundColor = BG_COLOR;
@@ -46,19 +75,18 @@
     [self.table setSeparatorColor:SCHOOL_COLOR];
     self.table.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
-    
     // get day of week
     [self updateDayOfWeek];
     
     // init a socket
     _socket = [[SocketIO alloc] initWithDelegate:self];
     // connect to server
-    [_socket connectToHost:[YYHTTPManager I].serverHost onPort:[[YYHTTPManager I].serverPort integerValue]];
+    [self connectSocket];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [self getReportForToday];
+    [self connectSocket];
 }
 
 - (void)didReceiveMemoryWarning
@@ -84,8 +112,72 @@
     self.currentWeekDay = [comps weekday];
 }
 
-#pragma mark - SocketIODelegate
 
+- (void)sortPickupReport
+{
+    // TODO: sort by Location then time then name
+    [_needPickArray sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSString *fullname1 = [NSString stringWithFormat:@"%@ %@ %@", obj1[@"firstname"], obj1[@"lastname"], obj1[@"_id"]];
+        NSString *fullname2 = [NSString stringWithFormat:@"%@ %@ %@", obj2[@"firstname"], obj2[@"lastname"], obj2[@"_id"]];
+        
+        return [fullname1 compare:fullname2];
+    }];
+}
+
+#pragma subtitle
+
+- (void) showErrorMessage: (NSString *)message {
+    _subtitleView.text = message;
+    _subtitleView.textColor = ERROR_LIGHT_COLOR;
+}
+
+- (void) showSuccessMessage: (NSString *)message {
+    _subtitleView.text = message;
+    _subtitleView.textColor = SUCCESS_LIGHT_COLOR;
+}
+
+- (void) showReportDate {
+    NSDateFormatter *dateformate=[[NSDateFormatter alloc]init];
+    [dateformate setDateFormat:@"E MM/dd/YYYY"];
+    NSString *dateString=[dateformate stringFromDate:[NSDate date]];
+    _subtitleView.text = dateString;
+    _subtitleView.textColor = SUCCESS_LIGHT_COLOR;
+}
+
+- (void) showInfoMessage: (NSString *)message {
+    _subtitleView.text = message;
+    _subtitleView.textColor = INFO_LIGHT_COLOR;
+}
+
+#pragma mark - SocketIODelegate
+- (void) socketIODidConnect:(SocketIO *)socket {
+    OLog(@"Connected");
+    [self showSuccessMessage:@"Connected"];
+    [self performSelector:@selector(showReportDate) withObject:nil afterDelay:1.0];
+    [self getReportForToday];
+}
+
+- (void) socketIODidDisconnect:(SocketIO *)socket disconnectedWithError:(NSError *)error {
+    OLog(@"Disconnected");
+    [self showErrorMessage:@"Disconnected"];
+    [self performSelector:@selector(reconnectSocket) withObject:nil afterDelay:10.0];
+
+}
+
+- (void) socketIO:(SocketIO *)socket onError:(NSError *)error {
+    [self showErrorMessage:@"Disconnected"];
+    [self performSelector:@selector(reconnectSocket) withObject:nil afterDelay:10.0];
+}
+
+- (void) connectSocket {
+    [self showInfoMessage:@"Connecting..."];
+    [_socket connectToHost:[YYHTTPManager I].serverHost onPort:[[YYHTTPManager I].serverPort integerValue]];
+}
+
+- (void) reconnectSocket {
+    [_socket disconnect];
+    [self connectSocket];
+}
 // message delegate
 - (void) socketIO:(SocketIO *)socket didReceiveMessage:(SocketIOPacket *)packet
 {
@@ -143,17 +235,6 @@
     }
     @finally {
     }
-}
-
-- (void)sortPickupReport
-{
-    // TODO: sort by Location then time then name
-    [_needPickArray sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSString *fullname1 = [NSString stringWithFormat:@"%@ %@ %@", obj1[@"firstname"], obj1[@"lastname"], obj1[@"_id"]];
-        NSString *fullname2 = [NSString stringWithFormat:@"%@ %@ %@", obj2[@"firstname"], obj2[@"lastname"], obj2[@"_id"]];
-        
-        return [fullname1 compare:fullname2];
-    }];
 }
 
 #pragma mark - UITableViewDataSource

@@ -15,6 +15,9 @@ target "YouYun" do
 	pod 'DateCellsController'
 	pod 'socket.IO'
 	pod 'Underscore.m'
+	pod 'JDStatusBarNotification'
+	pod 'KIProgressView', '~> 0.1.1'
+	pod 'CRToast', '~> 0.0.7'
 end
 
 target "YouYunTests" do

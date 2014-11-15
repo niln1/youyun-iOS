@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <socket.IO/SocketIO.h>
 #import <socket.IO/SocketIOPacket.h>
+#import <CRToast/CRToast.h>
+#import <FontAwesomeKit/FAKFontAwesome.h>
 #import "YYPickupReportTeacherNeedPickTableViewCell.h"
 #import "YYPickupReportTeacherPickedTableViewCell.h"
 #import "YYHTTPManager.h"
@@ -28,5 +30,7 @@
 
 @property (nonatomic) NSInteger currentWeekDay;
 @property (nonatomic, retain) UIRefreshControl *refreshControl;
+
+@property (nonatomic, retain) UILabel *subtitleView;
 
 @end
