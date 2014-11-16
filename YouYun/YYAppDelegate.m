@@ -13,7 +13,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // UI setup
-    [[UISwitch appearance] setTintColor:SCHOOL_COLOR];
+    [[UISwitch appearance] setTintColor:SCHOOL_DARK_COLOR];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init]
                                       forBarPosition:UIBarPositionAny
                                           barMetrics:UIBarMetricsDefault];

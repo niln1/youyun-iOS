@@ -30,7 +30,7 @@
     
     self.pickedUpSwitch.onTintColor = SCHOOL_COLOR;
     self.contentView.backgroundColor = BG_COLOR;
-    self.studentNameLabel.textColor = SCHOOL_COLOR;
+    self.studentNameLabel.textColor = SCHOOL_DARK_COLOR;
     self.pickedUpTimeLabel.textColor = SCHOOL_VERY_LIGHT_COLOR;
 }
 
