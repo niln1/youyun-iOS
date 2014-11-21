@@ -122,7 +122,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    YYPickupReportDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UI_PICKUP_DETAIL_CELL_ID forIndexPath:indexPath];
+    YYPickupReportParentDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UI_PICKUP_PARENT_DETAIL_CELL_ID forIndexPath:indexPath];
     
     @try {
         NSDictionary *reportInfo = _data[indexPath.row];

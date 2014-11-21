@@ -66,7 +66,9 @@
 #define UI_CORNER_RADIUS 10.0f
 
 #define UI_DEFAULT_CELL_ID @"UITableViewCell"
-#define UI_PICKUP_DETAIL_CELL_ID @"YYPickupReportDetailTableViewCell"
+#define UI_TIMELINE_CELL_ID @"YYTimelineTableViewCell"
+#define UI_PICKUP_PARENT_STUDENT_CELL_ID @"YYPickupReportParentStudentTableViewCell"
+#define UI_PICKUP_PARENT_DETAIL_CELL_ID @"YYPickupReportParentDetailTableViewCell"
 #define UI_PICKUP_TEACHER_NEED_PICK_CELL_ID @"YYPickupReportTeacherNeedPickTableViewCell"
 #define UI_PICKUP_TEACHER_PICKED_CELL_ID @"YYPickupReportTeacherPickedTableViewCell"
 

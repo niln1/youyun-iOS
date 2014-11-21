@@ -84,6 +84,12 @@
 		<array>
 			<dict>
 				<key>title</key>
+				<string>Notifications</string>
+				<key>module</key>
+				<string>Timeline</string>
+			</dict>
+			<dict>
+				<key>title</key>
 				<string>Pickup Report</string>
 				<key>module</key>
 				<string>TimeOff</string>
