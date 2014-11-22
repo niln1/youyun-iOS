@@ -2,8 +2,8 @@
 //  YYMenuViewController.h
 //  YouYun
 //
-//  Created by Ranchao Zhang on 2/28/14.
-//  Copyright (c) 2014 Ranchao Zhang. All rights reserved.
+//  Created by Zhihao Ni on 2/28/14.
+//  Copyright (c) 2014 Youyun. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

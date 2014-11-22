@@ -107,13 +107,38 @@
 }
 
 #pragma mark - UITableViewCell
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
+}
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }
 
+- (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewRowAction *moreAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"More" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
+        // maybe show an action sheet with more options
+        [self.table setEditing:NO];
+    }];
+    moreAction.backgroundColor = [UIColor lightGrayColor];
+    
+    UITableViewRowAction *blurAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Blur" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
+        [self.table setEditing:NO];
+    }];
+    blurAction.backgroundEffect = [UIVibrancyEffect effectForBlurEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight]];
+    
+    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"Delete"  handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
+        [self.feeds removeObjectAtIndex:indexPath.row];
+        [self.table deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }];
+    
+    return @[deleteAction, moreAction, blurAction];
+}
+
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [self.feeds removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 //        NSDictionary *info = _reminders[indexPath.item];
 //        NSString *deleteReminderURL = [NSString stringWithFormat:UPDATE_REMINDER_API, info[@"_id"]];
 //        [[YYHTTPManager I] DELETE:deleteReminderURL withJSONParameters:@{@"signature" : @"tempkey"} success:^(AFHTTPRequestOperation *operation, id responseObject) {

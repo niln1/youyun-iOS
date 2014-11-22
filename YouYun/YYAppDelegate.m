@@ -48,6 +48,7 @@
     
     // Set delegate for drawer
     _drawer.delegate = self;
+    _drawer.screenEdgePanCancelsConflictingGestures = NO;
     
     // Set menu view controller for drawer
     _menu = [_drawer.storyboard instantiateViewControllerWithIdentifier:[YYMenuViewController identifier]];

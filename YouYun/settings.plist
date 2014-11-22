@@ -9,7 +9,7 @@
 		<key>protocol</key>
 		<string>http</string>
 		<key>host</key>
-		<string>192.168.1.235</string>
+		<string>172.20.10.2</string>
 	</dict>
 	<key>school name</key>
 	<string>翰林</string>

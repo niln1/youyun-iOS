@@ -103,7 +103,6 @@
         if ([view conformsToProtocol:@protocol(YYSwipeToPopViewController)]) {
             return [(id<YYSwipeToPopViewController>) view shouldAllowSwipeToPop];
         }
-        
         return YES;
     } else {
         return NO;
