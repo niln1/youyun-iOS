@@ -10,9 +10,17 @@
 
 @implementation MSDynamicsDrawerViewController (Addon)
 
-// fix gesture for cell
--(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-    return YES;
+- (BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)panGestureRecognizer {
+    if ([panGestureRecognizer isKindOfClass: [UIPanGestureRecognizer class]]) {
+        CGPoint velocity = [panGestureRecognizer velocityInView:panGestureRecognizer.view];
+        if (self.paneState == MSDynamicsDrawerPaneStateClosed) {
+            return velocity.x > 0;
+        } else {
+            return velocity.x < 0;
+        }
+    } else {
+        return true;
+    }
 }
 
 @end
