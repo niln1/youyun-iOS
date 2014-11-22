@@ -2,8 +2,8 @@
 //  NSDate+Addon.m
 //  YouYun
 //
-//  Created by Ranchao Zhang on 7/30/14.
-//  Copyright (c) 2014 Ranchao Zhang. All rights reserved.
+//  Created by Zhihao Ni on 7/30/14.
+//  Copyright (c) 2014 Youyun. All rights reserved.
 //
 
 #import "NSDate+Addon.h"

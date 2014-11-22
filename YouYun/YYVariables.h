@@ -97,6 +97,7 @@ static NSString * const LOGOUT_API_PATH = @"/api/v1/account/logout";
 static NSString * const GET_ACCOUNT_API = @"/api/v1/account";
 static NSString * const ADD_ACCOUNT_DEVICE = @"/api/v1/account/device";
 static NSString * const GET_REMINDERS_API = @"/api/v1/reminders";
+static NSString * const GET_FEEDS_API = @"/api/v1/feeds";
 static NSString * const GET_CHILDREN_API = @"/api/v1/users/child";
 static NSString * const CREATE_REMINDER_API = @"/api/v1/reminders";
 static NSString * const UPDATE_REMINDER_API = @"/api/v1/reminders/%@";
@@ -107,3 +108,13 @@ static NSString * const DELETE_REMINDER_API = @"/api/v1/reminders/%@";
  ************************************************/
 
 static NSString * const REMINDERS_DID_CHANGE_NOTIFICATION = @"REMINDER_DID_CHANGE_NOTIFICATION";
+
+/************************************************
+ * Misc
+ ************************************************/
+
+static NSString * const FEED_TYPE_SCHOOL = @"school";
+static NSString * const FEED_TYPE_PICKUP = @"pickup";
+static NSString * const INFO_TYPE_INFO = @"info";
+static NSString * const INFO_TYPE_SUCCESS = @"success";
+static NSString * const INFO_TYPE_ERROR = @"error";

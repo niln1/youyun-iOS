@@ -249,6 +249,7 @@
             cell.studentNameLabel.text = [NSString stringWithFormat:@"%@ %@", studentInfo[@"firstname"], studentInfo[@"lastname"]];
             cell.pickupLocationLabel.text = studentInfo[@"pickupLocation"];
             
+            // should move to cell
             NSString *dateSelector;
             
             switch (self.currentWeekDay) {
