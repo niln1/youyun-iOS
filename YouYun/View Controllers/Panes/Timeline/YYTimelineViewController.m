@@ -54,6 +54,8 @@
                   forControlEvents:UIControlEventValueChanged];
     [self.table addSubview:self.refreshControl];
     
+    self.navigationItem.title = @"HanLin";
+    
     if ([[NSProcessInfo processInfo] respondsToSelector:@selector(operatingSystemVersion)]) {
         // if iOS 8
         self.table.rowHeight = UITableViewAutomaticDimension;

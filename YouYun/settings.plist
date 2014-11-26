@@ -90,7 +90,7 @@
 			</dict>
 			<dict>
 				<key>title</key>
-				<string>Pickup Report</string>
+				<string>Pickup Timesheet</string>
 				<key>module</key>
 				<string>TimeOff</string>
 			</dict>

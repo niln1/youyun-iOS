@@ -160,12 +160,14 @@
 - (void) socketIODidDisconnect:(SocketIO *)socket disconnectedWithError:(NSError *)error {
     OLog(@"Disconnected");
     [self showErrorMessage:@"Disconnected"];
+    [socket disconnect];
     [self performSelector:@selector(reconnectSocket) withObject:nil afterDelay:10.0];
 
 }
 
 - (void) socketIO:(SocketIO *)socket onError:(NSError *)error {
     [self showErrorMessage:@"Disconnected"];
+    [socket disconnect];
     [self performSelector:@selector(reconnectSocket) withObject:nil afterDelay:10.0];
 }
 
