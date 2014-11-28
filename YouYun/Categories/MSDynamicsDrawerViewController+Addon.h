@@ -10,5 +10,4 @@
 #import <MSDynamicsDrawerViewController/MSDynamicsDrawerViewController.h>
 
 @interface MSDynamicsDrawerViewController (Addon)
-
 @end

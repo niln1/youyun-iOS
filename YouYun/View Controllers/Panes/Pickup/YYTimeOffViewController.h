@@ -10,6 +10,7 @@
 #import <socket.IO/SocketIO.h>
 #import <socket.IO/SocketIOPacket.h>
 #import "YYHTTPManager.h"
+#import "YYPickupReportTimeOffTableViewCell.h"
 #import "YYTimeOffDetailViewController.h"
 
 @interface YYTimeOffViewController : UIViewController <SocketIODelegate>
@@ -18,6 +19,7 @@
 
 @property (nonatomic, weak) IBOutlet UITableView *table;
 @property (nonatomic, retain) NSArray *children;
+@property (nonatomic, retain) NSMutableArray *tableDataSource;
 
 @property (nonatomic, retain) UIRefreshControl *refreshControl;
 @property (nonatomic, retain) UILabel *subtitleView;

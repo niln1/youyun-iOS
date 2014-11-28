@@ -2,11 +2,14 @@
 //  YYTimeOffViewController.m
 //  YouYun
 //
-//  Created by Ranchao Zhang on 6/18/14.
-//  Copyright (c) 2014 Ranchao Zhang. All rights reserved.
+//  Created by Zhihao Ni & Ranchao Zhang on 6/18/14.
+//  Copyright (c) 2014 Youyun. All rights reserved.
 //
 
 #import "YYTimeOffViewController.h"
+
+// View Based constant
+static NSString * const STUDENT_IS_ABSENT= @"isAbsent";
 
 @interface YYTimeOffViewController ()
 
@@ -14,14 +17,6 @@
 
 @implementation YYTimeOffViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -67,6 +62,21 @@
     [headerTitleSubtitleView addSubview:_subtitleView];
     
     self.navigationItem.titleView = headerTitleSubtitleView;
+    
+    // refresh control
+
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = BG_COLOR;
+    self.refreshControl.tintColor = INVERSE_LIGHT_COLOR;
+    [self.refreshControl addTarget:self
+                            action:@selector(getChildFutureReport)
+                  forControlEvents:UIControlEventValueChanged];
+    [self.table addSubview:self.refreshControl];
+    
+    self.view.backgroundColor = BG_COLOR;
+    self.table.backgroundColor = BG_COLOR;
+    [self.table setSeparatorColor:SCHOOL_COLOR];
+    self.table.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)didReceiveMemoryWarning
@@ -85,12 +95,43 @@
     [_table reloadData];
 }
 
+
+// process report to { _id:xxx,  date: xxx, data : [{name: location: userImage: absence:}] }
 - (NSDictionary *)processPickupReport:(NSDictionary *) report
 {
-    NSString *reportID = report[@"_id"];
-    NSString *reportDate = report[@"date"];
-//    BOOL needToPickup = _.any(report[@"needToPickupList"], _.isEqual(childID));
-    return @{@"_id": reportID};
+    NSMutableArray *data = [@[] mutableCopy];
+    
+    _.array(_children).each(^(NSString *childID){
+        _.array(report[@"needToPickupList"]).each(^(NSDictionary *student) {
+            if (student[@"_id"] == childID) {
+                [data addObject:@{
+                    @"_id": student[@"_id"],
+                    @"fullname": student[@"fullname"],
+                    @"pickupLocation": student[@"pickupLocation"],
+                    @"userImage": student[@"userImage"],
+                    STUDENT_IS_ABSENT: @NO
+                }];
+            }
+        });
+        
+        _.array(report[@"absenceList"]).each(^(NSDictionary *student) {
+            if (student[@"_id"] == childID) {
+                [data addObject:@{
+                      @"_id": student[@"_id"],
+                      @"fullname": student[@"fullname"],
+                      @"pickupLocation": student[@"pickupLocation"],
+                      @"userImage": student[@"userImage"],
+                      STUDENT_IS_ABSENT: @YES
+                }];
+            }
+        });
+    });
+
+    return @{
+             @"_id": report[@"_id"],
+             @"date": report[@"date"],
+             @"data": data
+    };
 }
 
 #pragma subtitle
@@ -154,6 +195,7 @@
         NSDictionary *data = [packet dataAsJSON];
         NSString *messageName = data[@"name"];
         if ([messageName isEqualToString:FETCH_CHILD_PICKUP_REPORT_SUCCESS_EVENT]) {
+            [self.refreshControl endRefreshing];
             NSDictionary *allData = data[@"args"][0];
             _children = allData[@"children"];
             
@@ -163,26 +205,18 @@
             for (NSDictionary *report in reports) {
                 [timeSheet addObject:[self processPickupReport:report]];
             }
-//
-//            _data = newData;
-//            
-//            [_table reloadData];
+            
+            _tableDataSource = timeSheet;
+
+            [_table reloadData];
         }
         
-//        else if ([messageName isEqualToString:ADD_ABSENCE_TO_PICKUP_REPORT_SUCCESS_EVENT]) {
-//            NSDictionary *newData = [self processPickupReport:data[@"args"][0]];
-//            
-//            for (NSInteger i = 0; i < _data.count; i++) {
-//                NSDictionary *oldData = _data[i];
-//                if ([oldData[@"_id"] isEqualToString:newData[@"_id"]]) {
-//                    _data[i] = newData;
-//                    [_table reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:i inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
-//                    break;
-//                }
-//            }
-//        } else if ([messageName isEqualToString:FAILURE_EVENT]) {
-//            [_table reloadData];
-//        }
+        else if ([messageName isEqualToString:ADD_ABSENCE_TO_PICKUP_REPORT_SUCCESS_EVENT]) {
+            // update to a better way
+            [self getChildFutureReport];
+        } else if ([messageName isEqualToString:FAILURE_EVENT]) {
+            [_table reloadData];
+        }
     }
     @catch (NSException *exception) {
         OLog(exception);
@@ -193,34 +227,86 @@
 
 
 #pragma mark - UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return _tableDataSource.count;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UI_DEFAULT_CELL_ID forIndexPath:indexPath];
-    NSDictionary *child = _children[indexPath.item];
-    NSAssert(child[@"username"] != nil, @"Child should have a username");
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", child[@"firstname"], child[@"lastname"]];
-    cell.detailTextLabel.text = nil;
-    cell.imageView.image = nil;
-    UIView *selectedBgView = [[UIView alloc] initWithFrame:cell.frame];
-    selectedBgView.backgroundColor = INVERSE_LIGHT_COLOR;
-    cell.selectedBackgroundView = selectedBgView;
+    YYPickupReportTimeOffTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UI_PICKUP_PARENT_TIMESHEET_CELL_ID forIndexPath:indexPath];
+    NSDictionary *child = _tableDataSource[indexPath.section][@"data"][indexPath.row];
+    NSAssert(child[@"fullname"] != nil, @"Child should have a name");
+    cell.fullNameLabel.text = child[@"fullname"];
+    cell.pickupLocationLabel.text = child[@"pickupLocation"];
+    [cell updateTimeOffButtonByVariable:[child[STUDENT_IS_ABSENT] boolValue]];
+    
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _children.count;
+    @try {
+        return [(NSArray *)_tableDataSource[section][@"data"] count];
+    }
+    @catch (NSException *exception) {
+        OLog(exception);
+        return 0;
+    }
+    @finally {
+    }
 }
 
-#pragma mark - UITableViewDelegate
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 22)];
+    UILabel *labelHeader = [[UILabel alloc] initWithFrame:CGRectMake (10,4,tableView.bounds.size.width-10,16)];
+    headerView.backgroundColor = SCHOOL_VERY_LIGHT_COLOR;
+    labelHeader.textColor = FG_COLOR;
+    labelHeader.font = [labelHeader.font fontWithSize:13];
+    NSDate *date = [NSDate dateForJSTimeString:_tableDataSource[section][@"date"]];
+    labelHeader.text = [NSDateFormatter localizedStringFromDate:date dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
+    [headerView addSubview:labelHeader];
+    
+    return headerView;
+}
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+#pragma mark - CellButtonDelegate
+- (IBAction)onButtonClick:(id)sender
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    YYTimeOffDetailViewController *detail = [self.storyboard instantiateViewControllerWithIdentifier:[YYTimeOffDetailViewController identifier]];
-    detail.child = _children[indexPath.row];
-    [self.navigationController pushViewController:detail animated:YES];
+    NSIndexPath *indexPath = [self GetIndexPathFromSender:sender];
+    
+    NSLog(@"%ld %ld", (long)indexPath.section, (long)indexPath.row);
+    
+    NSDictionary *child = _tableDataSource[indexPath.section][@"data"][indexPath.row];
+    [_socket sendEvent:ADD_ABSENCE_TO_PICKUP_REPORT_EVENT withData:@{
+                                                                     @"reportID" : _tableDataSource[indexPath.section][@"_id"],
+                                                                     @"childID" : child[@"_id"],
+                                                                     @"needToPickup" : [child[STUDENT_IS_ABSENT] boolValue] ? @"true" : @"false"
+                                                                     }];
 }
+
+-(NSIndexPath*)GetIndexPathFromSender:(id)sender{
+    
+    if(!sender) { return nil; }
+    
+    if([sender isKindOfClass:[UITableViewCell class]])
+    {
+        UITableViewCell *cell = sender;
+        return [self.table indexPathForCell:cell];
+    }
+    
+    return [self GetIndexPathFromSender:((UIView*)[sender superview])];
+}
+
+//#pragma mark - UITableViewDelegate
+//
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    YYTimeOffDetailViewController *detail = [self.storyboard instantiateViewControllerWithIdentifier:[YYTimeOffDetailViewController identifier]];
+//    detail.child = _children[indexPath.row];
+//    [self.navigationController pushViewController:detail animated:YES];
+//}
 
 @end

@@ -54,7 +54,7 @@
 
 - (void)setTimeLabel:(NSString *)timeString {
     NSDate *date = [NSDate dateForJSTimeString:timeString];
-    _timeStampLabel.text = [NSDateFormatter localizedStringFromDate:date dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];;
+    _timeStampLabel.text = [NSDateFormatter localizedStringFromDate:date dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
 }
 
 @end

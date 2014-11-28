@@ -67,10 +67,13 @@
 
 #define UI_DEFAULT_CELL_ID @"UITableViewCell"
 #define UI_TIMELINE_CELL_ID @"YYTimelineTableViewCell"
-#define UI_PICKUP_PARENT_STUDENT_CELL_ID @"YYPickupReportParentStudentTableViewCell"
-#define UI_PICKUP_PARENT_DETAIL_CELL_ID @"YYPickupReportParentDetailTableViewCell"
+#define UI_PICKUP_PARENT_TIMESHEET_CELL_ID @"YYPickupReportTimeOffTableViewCell"
 #define UI_PICKUP_TEACHER_NEED_PICK_CELL_ID @"YYPickupReportTeacherNeedPickTableViewCell"
 #define UI_PICKUP_TEACHER_PICKED_CELL_ID @"YYPickupReportTeacherPickedTableViewCell"
+/** depreciated **/
+#define UI_PICKUP_PARENT_STUDENT_CELL_ID @"YYPickupReportParentStudentTableViewCell"
+#define UI_PICKUP_PARENT_DETAIL_CELL_ID @"YYPickupReportParentDetailTableViewCell"
+/** **/
 
 /************************************************
  * Socket Events
