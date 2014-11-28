@@ -86,6 +86,8 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLoginViewController) name:USER_SESSION_INVALID_NOTIFICATION object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadMenu) name:USER_LOG_IN_NOTIFICATION object:nil];
     
@@ -106,9 +108,7 @@
 - (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     NSString *deviceTokenString = [[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
     deviceTokenString = [deviceTokenString stringByReplacingOccurrencesOfString:@" " withString:@""];
-    NSString *str = [NSString stringWithFormat:@"Device Token=%@",deviceTokenString];
     [[YYUser I] addDeviceToken:deviceTokenString];
-    DLog(@"%@", str);
 }
 
 
