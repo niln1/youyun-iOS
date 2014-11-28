@@ -145,8 +145,6 @@ static YYUser *instance;
         for (NSHTTPCookie *cookie in cookies) {
             [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
         }
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:USER_SESSION_INVALID_NOTIFICATION object:nil];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
     }];
 }

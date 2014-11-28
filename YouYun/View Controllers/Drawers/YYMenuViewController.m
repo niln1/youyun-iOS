@@ -144,6 +144,7 @@ static NSString * const MENU_TABLE_VIEW_CELL_ID = @"MENU_TABLE_VIEW_CELL_ID";
     if (info == _selectedMenuItem) return;
     else if ([info[@"title"] isEqualToString:LOGOUT_MENU_ITEM]) {
         [_drawer setPaneViewController:_drawer.paneViewController animated:_drawer.paneViewController != nil completion:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:USER_SESSION_INVALID_NOTIFICATION object:nil];
         [[YYUser I] logout];
         return;
     }
