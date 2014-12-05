@@ -37,9 +37,8 @@
 - (void)initializeBackground
 {
     _background = [[CRMotionView alloc] initWithFrame:self.view.bounds];
-    UIImage *origBGImg = [UIImage imageNamed:@"LoginViewBackgroundImage"];
-    UIImage *blurBGImg = [origBGImg stackBlur:20];
-    [_background setImage:blurBGImg];
+    UIImage *origBGImg = [UIImage imageNamed:@"LoginBG"];
+    [_background setImage:origBGImg];
     [self.view insertSubview:_background atIndex:0];
 }
 
