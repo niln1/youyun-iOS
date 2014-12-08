@@ -218,18 +218,31 @@
                 _pickedArray = pickedArray;
                 [self sortPickupReport];
                 
-                _table.alpha = 1;
-                [_table reloadData];
+                if ([_needPickArray count] == 0 && [_pickedArray count] == 0) {
+                    [self.view bringSubviewToFront:_infoLabel];
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No One need Pick" message:@"There is no student need to pick for today, try Pull to Refresh" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    [alert show];
+                } else {
+                    [self.view sendSubviewToBack:_infoLabel];
+                    [_table reloadData];
+                }
             } else {
-                _table.alpha = 0;
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Report" message:@"There is no report for today" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [self.view bringSubviewToFront:_infoLabel];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Report" message:@"There is no report for today, try pull to refresh" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 [alert show];
             }
         }  else if ([messageName isEqualToString:PICKUP_STUDENT_SUCCESS_EVENT] || [messageName isEqualToString:STUDENT_PICKED_UP_EVENT]) {
             [_socket sendEvent:GET_REPORT_FOR_TODAY_EVENT withData:@{}];
             
         } else if ([messageName isEqualToString:FAILURE_EVENT]) {
+            [self.refreshControl endRefreshing];
             [_table reloadData];
+        } else if ([messageName isEqualToString:GET_REPORT_FOR_TODAY_FAIL_EVENT]) {
+            [self.refreshControl endRefreshing];
+            [self.view bringSubviewToFront:_infoLabel];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Report" message:@"There is no report for today, try pull to refresh" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+
         }
     }
     @catch (NSException *exception) {

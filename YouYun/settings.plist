@@ -5,11 +5,11 @@
 	<key>school server</key>
 	<dict>
 		<key>port</key>
-		<string>3000</string>
+		<string>80</string>
 		<key>protocol</key>
 		<string>http</string>
 		<key>host</key>
-		<string>127.0.0.1</string>
+		<string>hanlin.iyoucloud.com</string>
 	</dict>
 	<key>school name</key>
 	<string>翰林</string>

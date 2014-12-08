@@ -18,6 +18,7 @@
 @property (nonatomic, retain) SocketIO *socket;
 
 @property (nonatomic, weak) IBOutlet UITableView *table;
+@property (nonatomic, weak) IBOutlet UILabel *infoLabel;
 @property (nonatomic, retain) NSArray *children;
 @property (nonatomic, retain) NSMutableArray *tableDataSource;
 

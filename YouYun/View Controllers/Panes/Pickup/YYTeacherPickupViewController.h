@@ -24,6 +24,7 @@
 @property (nonatomic, retain) NSMutableArray *pickedArray;
 
 @property (nonatomic, weak) IBOutlet UITableView *table;
+@property (nonatomic, weak) IBOutlet UILabel *infoLabel;
 
 @property (nonatomic, weak) IBOutlet UIView *topInfoView;
 @property (nonatomic, weak) IBOutlet UISegmentedControl *segmentControl;

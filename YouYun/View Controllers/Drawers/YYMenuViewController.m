@@ -141,8 +141,10 @@ static NSString * const MENU_TABLE_VIEW_CELL_ID = @"MENU_TABLE_VIEW_CELL_ID";
 
 - (void)transitionToViewController:(NSDictionary *) info animated:(BOOL) animateTransition
 {
-    if (info == _selectedMenuItem) return;
-    else if ([info[@"title"] isEqualToString:LOGOUT_MENU_ITEM]) {
+    if (info == _selectedMenuItem) {
+        [_drawer setPaneState:MSDynamicsDrawerPaneStateClosed animated:YES allowUserInterruption:YES completion:nil];
+        return;
+    } else if ([info[@"title"] isEqualToString:LOGOUT_MENU_ITEM]) {
         [_drawer setPaneViewController:_drawer.paneViewController animated:_drawer.paneViewController != nil completion:nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:USER_SESSION_INVALID_NOTIFICATION object:nil];
         [[YYUser I] logout];

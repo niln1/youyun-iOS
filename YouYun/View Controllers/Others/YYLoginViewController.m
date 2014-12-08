@@ -29,17 +29,27 @@
 
 - (void)initialize
 {
-    [self initializeBackground];
+    [self initializeBackgroundAndLogo];
     [self initializeButtons];
     [self initializeTextFields];
 }
 
-- (void)initializeBackground
+- (void)initializeBackgroundAndLogo
 {
     _background = [[CRMotionView alloc] initWithFrame:self.view.bounds];
-    UIImage *origBGImg = [UIImage imageNamed:@"LoginBG"];
+    UIImage *origBGImg = [UIImage imageNamed:@"LoginBG.jpg"];
     [_background setImage:origBGImg];
     [self.view insertSubview:_background atIndex:0];
+    
+    CALayer * layer = [_schoolLogo layer];
+    [layer setMasksToBounds:NO];
+    [layer setCornerRadius:_schoolLogo.bounds.size.height/2];
+//    _schoolLogo.backgroundColor=SCHOOL_VERY_LIGHT_COLOR;
+    
+    [layer setShadowColor:SCHOOL_VERY_LIGHT_COLOR.CGColor];
+    [layer setShadowOpacity:1];
+    [layer setShadowRadius:20.0];
+    [layer setShadowOffset:CGSizeMake(0.0, 0.0)];
 }
 
 - (void)initializeButtons
@@ -90,6 +100,13 @@
             [_passwordField shake:10 withDelta:5 andSpeed:0.03 shakeDirection:ShakeDirectionHorizontal];
         }
     }];
+}
+
+#pragma mark - textfield delegate
+-(BOOL) textFieldShouldReturn:(UITextField *)textField{
+    
+    [textField resignFirstResponder];
+    return YES;
 }
 
 @end

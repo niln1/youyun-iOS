@@ -207,14 +207,25 @@ static NSString * const STUDENT_IS_ABSENT= @"isAbsent";
             }
             
             _tableDataSource = timeSheet;
-
-            [_table reloadData];
+            
+            if ([_tableDataSource count] == 0) {
+                [self.view bringSubviewToFront:_infoLabel];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Future TimeSheet" message:@"There is report setup right now, try Pull to Refresh or check later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alert show];
+            } else {
+                [self.view sendSubviewToBack:_infoLabel];
+                [_table reloadData];
+            }
         }
         
         else if ([messageName isEqualToString:ADD_ABSENCE_TO_PICKUP_REPORT_SUCCESS_EVENT]) {
             // update to a better way
             [self getChildFutureReport];
         } else if ([messageName isEqualToString:FAILURE_EVENT]) {
+            [self.refreshControl endRefreshing];
+            [self.view bringSubviewToFront:_infoLabel];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Future TimeSheet" message:@"There is report setup right now, try Pull to Refresh or check later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
             [_table reloadData];
         }
     }

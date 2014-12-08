@@ -22,6 +22,7 @@
 @interface YYLoginViewController : UIViewController
 
 @property (nonatomic, retain) CRMotionView *background;
+@property (nonatomic, weak) IBOutlet UIImageView *schoolLogo;
 @property (nonatomic, weak) IBOutlet UITextField *usernameField;
 @property (nonatomic, weak) IBOutlet UITextField *passwordField;
 @property (nonatomic, weak) IBOutlet UIButton *loginButton;

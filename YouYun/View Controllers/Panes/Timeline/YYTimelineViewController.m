@@ -73,9 +73,16 @@
         OLog(responseObject);
         [self.refreshControl endRefreshing];
         _feeds = [responseObject[@"result"] mutableCopy];
-        [_table reloadData];
+        if ([_feeds count] == 0) {
+            [self.view bringSubviewToFront:_infoLabel];
+        } else {
+            [self.view sendSubviewToBack:_infoLabel];
+            [_table reloadData];
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         OLog(@"failure");
+        [self.refreshControl endRefreshing];
+        [self.view bringSubviewToFront:_infoLabel];
         OLog(error);
     }];
 }

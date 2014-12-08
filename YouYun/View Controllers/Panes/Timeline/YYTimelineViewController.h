@@ -16,5 +16,6 @@
 @property (nonatomic, retain) NSMutableArray *feeds;
 @property (nonatomic, retain) UIRefreshControl *refreshControl;
 @property (nonatomic, weak) IBOutlet UITableView *table;
+@property (nonatomic, weak) IBOutlet UILabel *infoLabel;
 
 @end
